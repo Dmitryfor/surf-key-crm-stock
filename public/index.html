@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KeyCRM — Stocks</title>
+<title>KeyCRM — Остатки товаров</title>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
@@ -252,38 +252,38 @@
 <body>
 
 <header>
-  <h1>KeyCRM Stocks</h1>
-  <button id="refresh">Refresh</button>
-  <input type="search" id="search" placeholder="Search by name...">
+  <h1>Остатки KeyCRM</h1>
+  <button id="refresh">Обновить</button>
+  <input type="search" id="search" placeholder="Поиск по названию...">
 </header>
 
 <div class="meta">
-  Products: <strong id="group-count">—</strong> •
-  Variants: <strong id="count">—</strong> •
-  Updated: <strong id="updated">—</strong>
+  Товаров: <strong id="group-count">—</strong> •
+  Вариантов: <strong id="count">—</strong> •
+  Обновлено: <strong id="updated">—</strong>
 </div>
 
 <div id="stale">
-  <span>⚠️ Data is <b id="stale-age">—</b> old. Press <b>Refresh</b> for the latest stock numbers.</span>
+  <span>⚠️ Данные обновлялись <b id="stale-age">—</b> назад. Нажмите <b>Обновить</b> для актуальных остатков.</span>
 </div>
 
 <div id="legend">
-  <span><i class="dot-green"></i>In stock (5+)</span>
-  <span><i class="dot-yellow"></i>Low stock (1–4)</span>
-  <span><i class="dot-red"></i>Out of stock</span>
+  <span><i class="dot-green"></i>В наличии (5+)</span>
+  <span><i class="dot-yellow"></i>Заканчивается (1–4)</span>
+  <span><i class="dot-red"></i>Нет в наличии</span>
 </div>
 
 <div id="error"></div>
 
 <div class="table">
   <div class="row hdr">
-    <span class="sort" data-sort="variant_name">Name <span class="arrow"></span></span>
-    <span class="num sort" data-sort="quantity">Stock <span class="arrow"></span></span>
-    <span class="num sort" data-sort="reserve">Reserved <span class="arrow"></span></span>
-    <span class="num sort" data-sort="available">Available <span class="arrow"></span></span>
+    <span class="sort" data-sort="variant_name">Название <span class="arrow"></span></span>
+    <span class="num sort" data-sort="quantity">Остаток <span class="arrow"></span></span>
+    <span class="num sort" data-sort="reserve">Резерв <span class="arrow"></span></span>
+    <span class="num sort" data-sort="available">Доступно <span class="arrow"></span></span>
   </div>
   <div id="rows">
-    <div class="placeholder">Press "Refresh" to load data from KeyCRM</div>
+    <div class="placeholder">Нажмите «Обновить», чтобы загрузить данные из KeyCRM</div>
   </div>
 </div>
 
@@ -327,10 +327,10 @@
 
   function formatAge(ms) {
     const mins = Math.floor(ms / 60000);
-    if (mins < 60) return `${mins} min`;
+    if (mins < 60) return `${mins} мин`;
     const hours = Math.floor(mins / 60);
     const remMin = mins % 60;
-    return remMin ? `${hours}h ${remMin}m` : `${hours}h`;
+    return remMin ? `${hours} ч ${remMin} мин` : `${hours} ч`;
   }
 
   function refreshStaleBanner() {
@@ -416,7 +416,7 @@
     $('#count').textContent = list.length;
 
     if (groups.length === 0) {
-      rowsEl.innerHTML = '<div class="placeholder">Nothing found</div>';
+      rowsEl.innerHTML = '<div class="placeholder">Ничего не найдено</div>';
       return;
     }
 
@@ -440,9 +440,9 @@
         html.push(`
           <div class="row var${isSel}" data-status="${status}" data-id="${v.id}">
             <span class="name">${escape(v.variant_name)}</span>
-            <span class="num"><i>Stock</i><b>${v.quantity}</b></span>
-            <span class="num"><i>Reserved</i><b>${v.reserve}</b></span>
-            <span class="num avail"><i>Available</i><b>${v.available}</b></span>
+            <span class="num"><i>Остаток</i><b>${v.quantity}</b></span>
+            <span class="num"><i>Резерв</i><b>${v.reserve}</b></span>
+            <span class="num avail"><i>Доступно</i><b>${v.available}</b></span>
           </div>
         `);
       }
@@ -475,11 +475,11 @@
     items = data.items || [];
     lastUpdatedAt = data.updated_at ? new Date(data.updated_at).getTime() : null;
     const updated = lastUpdatedAt
-      ? new Date(lastUpdatedAt).toLocaleTimeString('en-US', { hour12: false })
+      ? new Date(lastUpdatedAt).toLocaleTimeString('ru-RU')
       : '—';
     let suffix = '';
-    if (data.cached) suffix = ` (cached, ${Math.round((data.age_ms || 0) / 1000)}s)`;
-    else if (typeof data.took_ms === 'number') suffix = ` (${(data.took_ms / 1000).toFixed(1)}s)`;
+    if (data.cached) suffix = ` (из кеша, ${Math.round((data.age_ms || 0) / 1000)}с)`;
+    else if (typeof data.took_ms === 'number') suffix = ` (${(data.took_ms / 1000).toFixed(1)}с)`;
     $('#updated').textContent = updated + suffix;
     render();
     refreshStaleBanner();
@@ -487,7 +487,7 @@
 
   async function load({ force = false } = {}) {
     refreshBtn.disabled = true;
-    refreshBtn.textContent = 'Loading...';
+    refreshBtn.textContent = 'Загружаю...';
     showError('');
     try {
       const url = force ? '/api/stocks?fresh=1' : '/api/stocks';
@@ -497,10 +497,10 @@
       applyData(data);
       saveCache(data);
     } catch (e) {
-      showError('Error: ' + e.message);
+      showError('Ошибка: ' + e.message);
     } finally {
       refreshBtn.disabled = false;
-      refreshBtn.textContent = 'Refresh';
+      refreshBtn.textContent = 'Обновить';
     }
   }
 

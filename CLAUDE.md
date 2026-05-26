@@ -188,7 +188,9 @@ Do not ask each time — caveman is active by default.
 
 ## Communication language
 
-All commits, PR titles/descriptions, code comments, and any text pushed to GitHub must be in **English**. Local conversation in chat can be either language.
+All commits, PR titles/descriptions, code comments, CLAUDE.md, and any developer-facing text pushed to GitHub must be in **English**. Local conversation in chat can be either language.
+
+**Exception — UI strings**: `public/index.html` is in **Russian** (header, buttons, table columns, banners, placeholders, error wrappers, time locale `ru-RU`). The audience is managers who read Russian. Do not translate UI strings to English. Server error hints in `api/stocks.js` / `server.js` stay English (developer-facing).
 
 ## Optimization and working with libraries (Context7)
 
