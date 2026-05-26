@@ -425,18 +425,23 @@
 
   function applyData(data) {
     items = data.items || [];
-    $('#updated').textContent = data.updated_at
+    const updated = data.updated_at
       ? new Date(data.updated_at).toLocaleTimeString('ru-RU')
       : '—';
+    let suffix = '';
+    if (data.cached) suffix = ` (из кеша, ${Math.round((data.age_ms || 0) / 1000)}с)`;
+    else if (typeof data.took_ms === 'number') suffix = ` (${(data.took_ms / 1000).toFixed(1)}с)`;
+    $('#updated').textContent = updated + suffix;
     render();
   }
 
-  async function load() {
+  async function load({ force = false } = {}) {
     refreshBtn.disabled = true;
     refreshBtn.textContent = 'Загружаю...';
     showError('');
     try {
-      const res = await fetch('/api/stocks');
+      const url = force ? '/api/stocks?fresh=1' : '/api/stocks';
+      const res = await fetch(url);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
       applyData(data);
@@ -452,8 +457,19 @@
   const cached = loadCache();
   if (cached) applyData(cached);
 
-  refreshBtn.addEventListener('click', load);
-  searchInput.addEventListener('input', render);
+  refreshBtn.addEventListener('click', () => load({ force: true }));
+
+  let searchTimer = null;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(render, 150);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+    else if (e.key === 'r' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); load({ force: true }); }
+  });
 
   rowsEl.addEventListener('click', (e) => {
     const row = e.target.closest('.row.var');
