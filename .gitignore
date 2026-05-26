@@ -2,4 +2,15 @@
 node_modules/
 .DS_Store
 .claude/
+.vercel/
+
+# Caveman installer outputs для других AI агентов (Cursor, Windsurf, Cline, Copilot, OpenCode)
+.agents/
+.clinerules/
+.cursor/
+.opencode/
+.windsurf/
+.github/copilot-instructions.md
+AGENTS.md
+skills-lock.json
 
