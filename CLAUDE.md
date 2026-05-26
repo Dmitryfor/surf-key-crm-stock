@@ -1,207 +1,217 @@
 # KeyCRM Stocks Dashboard
 
-Локальный веб-инструмент, который тянет остатки товаров из KeyCRM API и показывает их в виде таблицы. Используется владельцем surf.ua (Дмитрий) для мониторинга остатков на этапе подготовки WooCommerce-магазина (источник правды по остаткам — KeyCRM, сайт ещё не запущен).
+A web tool that pulls product stocks from the KeyCRM API and shows them in a table. Used by the surf.ua owner (Dmitry) to monitor stock during the WooCommerce store preparation phase (KeyCRM is the source of truth for stocks, the site is not yet launched).
 
 ## Quick start
 
 ```bash
 cd ~/Desktop/keycrm-stocks
-nvm use 22                    # КРИТИЧНО: дефолтный node v10 не работает
+nvm use 22                    # CRITICAL: the default node v10 does not work
 node server.js
 # → http://localhost:3000
 ```
 
-Останов: `lsof -ti:3000 | xargs kill -9`
+Stop: `lsof -ti:3000 | xargs kill -9`
 
-## Стек
+## Stack
 
-- **Node.js 22+** (использует встроенный `fetch`, синтаксис `??`/`?.`)
-- **Express 5** — статика + один JSON endpoint
-- **dotenv** — конфиг через `.env`
-- **Vanilla HTML/JS** — никакого билд-процесса, один файл
+- **Node.js 22+** (uses built-in `fetch`, `??`/`?.` syntax)
+- **Express 5** — static files + a single JSON endpoint (local dev only)
+- **dotenv** — config via `.env`
+- **Vanilla HTML/JS** — no build step, a single file
 
-## Архитектура
+## Architecture
 
 ```
 keycrm-stocks/
-├── .env                # KEYCRM_API_KEY, PORT (gitignored, в репо не идёт)
-├── .env.example        # Шаблон без секретов
+├── .env                # KEYCRM_API_KEY, AUTH_USER, AUTH_PASS, PORT (gitignored)
+├── .env.example        # Template, no secrets
 ├── .gitignore
 ├── package.json
-├── server.js           # Express + прокси к KeyCRM
+├── server.js           # Local dev: Express + KeyCRM proxy
+├── api/
+│   └── stocks.js       # Vercel serverless function (prod)
+├── middleware.js       # Vercel edge Basic Auth (prod)
+├── vercel.json         # Vercel config
 └── public/
-    └── index.html      # UI: таблица + поиск + сортировка
+    └── index.html      # UI: table + search + sorting + staleness banner
 ```
 
-**Поток данных:**
+**Data flow (prod, Vercel):**
 
 ```
-Браузер → GET localhost:3000/api/stocks
-            ↓
-        server.js
-            ↓ (Bearer + пагинация + 250ms между страницами)
+Browser → GET surf-stocks.vercel.app/api/stocks
+            ↓ (Basic Auth via middleware.js)
+        api/stocks.js (serverless)
+            ↓ (Bearer + parallel pagination)
         KeyCRM API: GET /offers?include=product&limit=50&page=N
             ↓
-        Маппинг полей → JSON { updated_at, count, items: [...] }
-            ↓
-        Браузер рендерит таблицу
+        Field mapping → JSON { updated_at, count, items: [...] }
+            ↓ (Cache-Control: s-maxage=30, SWR=60 — Vercel edge cache)
+        Browser renders the table
 ```
 
-Один полный обновление = `Math.ceil(total / 50)` запросов к KeyCRM. На ~445 вариантах = 9 запросов = ~2.5 сек.
+One full refresh = `Math.ceil(total / 50)` requests to KeyCRM. ~445 variants = 9 requests = ~2.5 sec.
 
-## KeyCRM API — что нужно помнить
+## KeyCRM API — things to remember
 
-### Авторизация
+### Authorization
 - Base URL: `https://openapi.keycrm.app/v1`
 - Header: `Authorization: Bearer <API_KEY>`
-- Ключ хранится в `.env` (поле `KEYCRM_API_KEY`)
-- Получить/перевыпустить: KeyCRM → Settings → API → API keys
+- Key stored in `.env` (field `KEYCRM_API_KEY`)
+- Get/rotate: KeyCRM → Settings → API → API keys
 
-### Лимиты
-- **60 запросов в минуту** с одного IP на ключ
-- Между страницами стоит задержка 250ms (`PAGE_DELAY_MS` в `server.js`)
-- При 9 страницах × 250ms = 2.25 сек на полное обновление
-- Если упрёшься в 429 — KeyCRM возвращает rate-limit, сервер пробросит ошибку наверх
+### Limits
+- **60 requests per minute** per IP per key
+- Concurrent pagination with `CONCURRENCY = 4` and 200ms between batches
+- 9 pages with concurrency 4 → ~2.5 sec full refresh
+- On 429 — KeyCRM returns rate-limit, server bubbles the error up
 
-### Несоответствия Swagger ↔ реальный API
-Swagger-спека (https://keycrm.s3.de.io.cloud.ovh.net/static/open-api.yml) в нескольких местах расходится с реальностью. Подтверждённые расхождения:
+### Swagger ↔ real API mismatches
+The Swagger spec (https://keycrm.s3.de.io.cloud.ovh.net/static/open-api.yml) diverges from reality in several places. Confirmed mismatches:
 
-| Endpoint | Swagger говорит | API реально возвращает |
+| Endpoint | Swagger says | API actually returns |
 |---|---|---|
-| `/offers` | поле `reserve` | поле **`in_reserve`** |
-| `/offers/stocks` | поле `reserve` | (не проверяли — может быть так же) |
+| `/offers` | field `reserve` | field **`in_reserve`** |
+| `/offers/stocks` | field `reserve` | (not checked — may be the same) |
 
-**Вывод:** перед добавлением новых полей делай тестовый запрос с `limit=1`, смотри реальный ответ. Не доверяй спеке.
+**Conclusion:** before adding new fields, do a test request with `limit=1` and inspect the real response. Do not trust the spec.
 
-### Какой endpoint используется
-Сейчас — только `GET /offers?include=product`. Он одним вызовом отдаёт:
-- `id`, `sku`, `quantity`, `in_reserve` (остатки)
+### Which endpoint is used
+Currently — only `GET /offers?include=product`. A single call returns:
+- `id`, `sku`, `quantity`, `in_reserve` (stocks)
 - `thumbnail_url`, `price`
-- `properties[]` (цвет, размер и т.д. — для вариантов)
-- `product.name` (родительский товар, через `include=product`)
+- `properties[]` (color, size, etc. — for variants)
+- `product.name` (parent product, via `include=product`)
 
-`/offers/stocks` НЕ используется, потому что `/offers` уже даёт всё нужное и вдвое меньше запросов. **Понадобится `/offers/stocks` если:**
-- Нужна разбивка по складам → дополнительно `filter[details]=true`
-- Появится подозрение, что `quantity` на `/offers` неточен (тогда сверить)
+`/offers/stocks` is NOT used because `/offers` already returns everything needed and uses half the requests. **You will need `/offers/stocks` if:**
+- You need a per-warehouse breakdown → additionally `filter[details]=true`
+- A suspicion appears that `quantity` on `/offers` is inaccurate (then cross-check)
 
-### Маппинг полей KeyCRM → наш JSON
+### Field mapping KeyCRM → our JSON
 
 ```js
 {
-  id: o.id,                                    // ID варианта
-  sku: o.sku,                                  // SKU, типа "1057-12"
-  name: buildOfferName(o),                     // "Топ 1057 — Рожевий / L"
-  thumbnail: o.thumbnail_url,                  // URL картинки (часто null)
+  id: o.id,                                    // Variant ID
+  sku: o.sku,                                  // SKU, e.g. "1057-12"
+  product_name: o.product.name,                // Parent product name
+  variant_name: buildVariantLabel(o),          // "Pink / L" (from properties[])
   price: o.price,
-  quantity: o.quantity,                        // Общий остаток
-  reserve: o.in_reserve,                       // ВАЖНО: in_reserve, не reserve
-  available: o.quantity - o.in_reserve,        // Доступно к продаже
+  quantity: o.quantity,                        // Total stock
+  reserve: o.in_reserve,                       // IMPORTANT: in_reserve, not reserve
+  available: o.quantity - o.in_reserve,        // Available for sale
 }
 ```
 
-`buildOfferName(o)` склеивает `product.name` + значения `properties[]` через `—` и `/`.
+`buildVariantLabel(o)` joins values from `properties[]` with ` / `.
 
-## Конфигурация (`.env`)
+## Configuration (`.env`)
 
-| Переменная | Описание | По умолчанию |
+| Variable | Description | Default |
 |---|---|---|
-| `KEYCRM_API_KEY` | API-ключ KeyCRM | — (обязательно) |
-| `PORT` | Порт локального сервера | 3000 |
+| `KEYCRM_API_KEY` | KeyCRM API key | — (required) |
+| `AUTH_USER` | Basic Auth login (prod) | — (required for Vercel) |
+| `AUTH_PASS` | Basic Auth password (prod) | — (required for Vercel) |
+| `PORT` | Local server port | 3000 |
 
-## Безопасность
+## Security
 
-- `.env` в `.gitignore` — никогда не коммитить
-- Ключ KeyCRM **никогда** не должен попасть в HTML или клиентский JS — браузер не должен его видеть, всё проксируется через `server.js`
-- Если ключ засветился (в чате, в скриншоте, в логах) — **перевыпускать** в KeyCRM немедленно
-- Сервер слушает только `localhost:3000` — снаружи недоступен (хорошо)
+- `.env` is in `.gitignore` — never commit it
+- The KeyCRM key **must never** end up in HTML or client JS — the browser must not see it; everything is proxied through `server.js` (local) or `api/stocks.js` (prod)
+- If the key leaks (in chat, in a screenshot, in logs) — **rotate** it in KeyCRM immediately
+- Local server only listens on `localhost:3000` — not accessible from outside (good)
+- Prod (Vercel) is protected by Basic Auth — single shared login/password for managers
 
-## Типичные задачи
+## Common tasks
 
-### Добавить новое поле в таблицу
-1. Сделай `curl -H "Authorization: Bearer $KEY" "https://openapi.keycrm.app/v1/offers?limit=1&include=product"` и посмотри, как поле РЕАЛЬНО называется
-2. В `server.js` → функция-маппер внутри `app.get('/api/stocks', ...)` — добавь поле в возвращаемый объект
-3. В `public/index.html`:
-   - Добавь `<th data-sort="ключ">Название</th>` в шапку
-   - Добавь `<td>${escape(r.ключ)}</td>` в шаблон строки
-4. Перезапусти `node server.js`
+### Add a new field to the table
+1. Run `curl -H "Authorization: Bearer $KEY" "https://openapi.keycrm.app/v1/offers?limit=1&include=product"` and check the REAL field name
+2. In both `server.js` and `api/stocks.js` → the `mapOffer` function — add the field to the returned object
+3. In `public/index.html`:
+   - Add `<span class="sort" data-sort="key">Name <span class="arrow"></span></span>` to the header
+   - Add the field to the row template
+4. Restart `npm run dev`
 
-### Изменить частоту автообновления
-Автообновления пока нет (запрос вручную). Если будем делать — таймер `setInterval` живёт в `public/index.html`, не на сервере. См. план в `/Users/For/.claude/plans/1-cozy-wadler.md`.
+### Change the auto-refresh frequency
+There is no auto-refresh yet (manual button only). If added — the `setInterval` timer lives in `public/index.html`, not on the server.
 
-### Что делать при 401 после смены ключа
-- Проверь что `.env` сохранён
-- Перезапусти сервер (dotenv читает `.env` только при старте)
-- Если всё равно 401 — ключ в KeyCRM могли отозвать, перевыпусти
+### What to do on 401 after rotating the key
+- Check that `.env` is saved
+- Restart the server (dotenv reads `.env` only at startup)
+- If still 401 — the KeyCRM key may have been revoked, rotate it again
 
-### Что делать при 429
-- Уменьши частоту обновлений (если есть автообновление)
-- Увеличь `PAGE_DELAY_MS` в `server.js` (с 250 до 500)
-- Подожди минуту — лимит сбросится
+### What to do on 429
+- Reduce refresh frequency (if auto-refresh exists)
+- Increase `BATCH_DELAY_MS` in `server.js` / `api/stocks.js` (from 200 to 500)
+- Wait a minute — the limit resets
 
 ## Roadmap
 
-Следующие шаги (в порядке вероятности):
+Next steps (in order of likelihood):
 
-1. **Автообновление по таймеру** в UI — чекбокс + селектор интервала
-2. **Экспорт CSV** для выгрузки в Google Sheets
-3. **Разбивка по складам** — переход на `/offers/stocks?filter[details]=true` если у Дмитрия появятся отдельные склады
-4. **Webhook от KeyCRM** вместо pull — для real-time обновлений, когда каталог вырастет
-5. **Интеграция с WooCommerce** — отдельный проект: при запуске магазина synca стоков из KeyCRM в WC по SKU. Это не сюда, а в плагин WP / отдельный мост.
+1. **Auto-refresh by timer** in the UI — checkbox + interval selector
+2. **CSV export** for Google Sheets
+3. **Per-warehouse breakdown** — switch to `/offers/stocks?filter[details]=true` if Dmitry sets up separate warehouses
+4. **Webhook from KeyCRM** instead of pull — for real-time updates when the catalog grows
+5. **WooCommerce integration** — separate project: when the store launches, sync stocks from KeyCRM to WC by SKU. Not here — in a WP plugin or a standalone bridge.
 
-## Ссылки
+## Links
 
-- Документация KeyCRM API: https://docs.keycrm.app/
+- KeyCRM API docs: https://docs.keycrm.app/
 - OpenAPI spec (YAML): https://keycrm.s3.de.io.cloud.ovh.net/static/open-api.yml
-- Help: что даёт API: https://help.keycrm.app/uk/process-automation-api-and-more/iaki-mozhlivosti-nadaie-api-key-crm
-- План реализации: `/Users/For/.claude/plans/1-cozy-wadler.md`
+- KeyCRM API capabilities: https://help.keycrm.app/uk/process-automation-api-and-more/iaki-mozhlivosti-nadaie-api-key-crm
 
-## Что НЕ нужно делать
+## Do NOT
 
-- **Не делать запросы к KeyCRM напрямую из браузера** — CORS заблокирует + утечёт ключ
-- **Не уменьшать `PAGE_DELAY_MS` ниже 100ms** — упрёшься в rate limit при больших каталогах
-- **Не доверять Swagger-спеке без проверки** — она местами врёт (см. `in_reserve` vs `reserve`)
-- **Не коммитить `.env`** — `.gitignore` уже защищает, но проверь перед `git add`
-- **Не использовать дефолтный системный Node 10** — нужен `nvm use 22` каждый раз в новом терминале
+- **Do not call KeyCRM directly from the browser** — CORS will block it + the key would leak
+- **Do not lower `BATCH_DELAY_MS` below 100ms** — you will hit the rate limit on larger catalogs
+- **Do not trust the Swagger spec without verifying** — it lies in places (see `in_reserve` vs `reserve`)
+- **Do not commit `.env`** — `.gitignore` already protects, but double-check before `git add`
+- **Do not use the default system Node 10** — `nvm use 22` is required in every new terminal
 
-## Стиль общения (caveman)
+## Communication style (caveman)
 
-Все ответы в caveman-режиме (скилл `.claude/skills/caveman/SKILL.md`). Дефолт — **full**.
+All responses in caveman mode (skill `.claude/skills/caveman/SKILL.md`). Default — **full**.
 
-Drop: артикли (a/an/the), филлеры (just/really/basically/actually/simply), вежливости (sure/certainly/of course), хеджирование. Фрагменты OK. Короткие синонимы. Технические термины — точно. Код, имена функций, error-строки — без сокращений.
+Drop: articles (a/an/the), fillers (just/really/basically/actually/simply), pleasantries (sure/certainly/of course), hedging. Fragments OK. Short synonyms. Technical terms exact. Code, function names, error strings — never abbreviated.
 
-Pattern: `[вещь] [действие] [причина]. [next step].`
+Pattern: `[thing] [action] [reason]. [next step].`
 
-**Отступать от стиля** для:
-- Предупреждений о безопасности
-- Подтверждений необратимых действий (удаление, force-push)
-- Многошаговых последовательностей где порядок критичен
+**Drop caveman style** for:
+- Security warnings
+- Confirmations of irreversible actions (deletion, force-push)
+- Multi-step sequences where order is critical
 
-Уровни (`/caveman lite|full|ultra`): lite держит грамматику, ultra сокращает (DB/auth/config/req/res/fn/impl). Code/commits/PRs — обычным языком.
+Levels (`/caveman lite|full|ultra`): lite keeps grammar, ultra abbreviates (DB/auth/config/req/res/fn/impl). Code/commits/PRs — plain language.
 
-Не спрашивай каждый раз — caveman активен по умолчанию.
+Do not ask each time — caveman is active by default.
 
-## Оптимизация и работа с библиотеками (Context7)
+## Communication language
 
-При работе с внешними библиотеками (Express, Vercel, KeyCRM SDK, Node API и т.д.) **сперва** обращаться к Context7 MCP:
-- `resolve-library-id` — найти id библиотеки
-- `query-docs` — получить актуальную документацию
+All commits, PR titles/descriptions, code comments, and any text pushed to GitHub must be in **English**. Local conversation in chat can be either language.
 
-Не полагаться на тренировочные данные для свежих API. Особенно при апгрейдах зависимостей и работе с Vercel/serverless edge-runtime.
+## Optimization and working with libraries (Context7)
+
+When working with external libraries (Express, Vercel, KeyCRM SDK, Node API, etc.) **first** consult Context7 MCP:
+- `resolve-library-id` — find the library id
+- `query-docs` — get up-to-date documentation
+
+Do not rely on training data for fresh APIs. Especially when upgrading dependencies and working with Vercel/serverless edge runtime.
 
 ## Deploy
 
-Прод — Vercel (Hobby plan), репо https://github.com/Dmitryfor/surf-key-crm-stock, ветка `main` → auto-deploy.
+Prod — Vercel (Hobby plan), repo https://github.com/Dmitryfor/surf-key-crm-stock, branch `main` → auto-deploy.
 
 ```
 /api/stocks.js     — serverless function (Node runtime, maxDuration 10s)
 /middleware.js     — edge Basic Auth (AUTH_USER / AUTH_PASS)
-/public/index.html — статика (frontend без изменений)
-/server.js         — локальный dev-режим (npm run dev)
-/vercel.json       — конфиг
+/public/index.html — static (frontend, no changes)
+/server.js         — local dev mode (npm run dev)
+/vercel.json       — config
 ```
 
-**Env vars в Vercel UI**: `KEYCRM_API_KEY`, `AUTH_USER`, `AUTH_PASS`.
+**Env vars in Vercel UI**: `KEYCRM_API_KEY`, `AUTH_USER`, `AUTH_PASS`.
 
-**CDN кеш**: `/api/stocks` отдаёт `Cache-Control: s-maxage=30, stale-while-revalidate=60`. Параметр `?fresh=1` бьёт кеш.
+**CDN cache**: `/api/stocks` returns `Cache-Control: s-maxage=30, stale-while-revalidate=60`. The `?fresh=1` query bypasses the cache.
 
-**Локальный dev**: `npm run dev` (Express на :3000, без auth, без CDN-кеша — фолбэк к старому in-memory). Для эмуляции Vercel: `vercel dev`.
+**Local dev**: `npm run dev` (Express on :3000, no auth, no CDN cache — fallback to the old in-memory cache). For Vercel emulation: `vercel dev`.

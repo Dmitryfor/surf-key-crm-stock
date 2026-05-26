@@ -1,7 +1,7 @@
 {
   "name": "keycrm-stocks",
   "version": "1.0.0",
-  "description": "KeyCRM stocks dashboard — Vercel serverless + Basic Auth",
+  "description": "KeyCRM stocks dashboard - Vercel serverless + Basic Auth",
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",

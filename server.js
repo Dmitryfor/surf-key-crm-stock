@@ -13,7 +13,7 @@ const REQUEST_TIMEOUT_MS = 15_000;
 const CACHE_TTL_MS = 30_000;
 
 if (!API_KEY || API_KEY === 'your-api-key-here') {
-  console.error('FATAL: KEYCRM_API_KEY не задан в .env');
+  console.error('FATAL: KEYCRM_API_KEY not set in .env');
   process.exit(1);
 }
 
@@ -65,7 +65,7 @@ async function paginateAll(pathname, extraParams = {}) {
 function buildVariantLabel(offer) {
   const props = Array.isArray(offer.properties) ? offer.properties : [];
   const label = props.map((p) => p.value).filter(Boolean).join(' / ');
-  return label || '—';
+  return label || '-';
 }
 
 function mapOffer(o) {
@@ -73,9 +73,9 @@ function mapOffer(o) {
   const reserve = Number(o.in_reserve) || 0;
   return {
     id: o.id,
-    sku: o.sku || '—',
+    sku: o.sku || '-',
     product_id: o.product_id || 0,
-    product_name: (o.product && o.product.name) || 'Без товара',
+    product_name: (o.product && o.product.name) || 'No product',
     variant_name: buildVariantLabel(o),
     price: o.price != null ? o.price : null,
     quantity,
@@ -117,9 +117,9 @@ app.get('/api/stocks', async (req, res) => {
   } catch (e) {
     const status = e.status || (e.name === 'TimeoutError' ? 504 : 500);
     let hint = '';
-    if (status === 401) hint = ' — проверь KEYCRM_API_KEY в .env';
-    else if (status === 429) hint = ' — превышен лимит KeyCRM API (60 req/min)';
-    else if (status === 504) hint = ' — таймаут запроса к KeyCRM';
+    if (status === 401) hint = ' — check KEYCRM_API_KEY in .env';
+    else if (status === 429) hint = ' — KeyCRM API rate limit exceeded (60 req/min)';
+    else if (status === 504) hint = ' — request to KeyCRM timed out';
     console.error(`[/api/stocks] ${status}: ${e.message}`);
     res.status(status).json({ error: `${e.message}${hint}` });
   }

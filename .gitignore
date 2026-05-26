@@ -4,7 +4,7 @@ node_modules/
 .claude/
 .vercel/
 
-# Caveman installer outputs для других AI агентов (Cursor, Windsurf, Cline, Copilot, OpenCode)
+# Caveman installer outputs for other AI agents (Cursor, Windsurf, Cline, Copilot, OpenCode)
 .agents/
 .clinerules/
 .cursor/

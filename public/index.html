@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KeyCRM — Остатки товаров</title>
+<title>KeyCRM — Stocks</title>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
@@ -39,7 +39,7 @@
     padding: 10px 12px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 16px;
     flex: 1;
     min-width: 200px;
     max-width: 320px;
@@ -53,6 +53,19 @@
     border-radius: 6px;
     display: none;
   }
+  #stale {
+    margin: 12px 0;
+    padding: 12px 16px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    border-radius: 6px;
+    font-size: 14px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  #stale b { color: #78350f; }
   #legend {
     display: flex;
     gap: 14px;
@@ -73,7 +86,6 @@
   .dot-yellow { background: #eab308; }
   .dot-red { background: #dc2626; }
 
-  /* ============ GRID TABLE ============ */
   .table {
     background: white;
     border-radius: 8px;
@@ -92,7 +104,6 @@
   .row .num i { display: none; font-style: normal; }
   .totals-mobile { display: none; }
 
-  /* Header row */
   .row.hdr {
     background: #f3f4f6;
     font-weight: 600;
@@ -105,7 +116,6 @@
   .row.hdr .sort { cursor: pointer; user-select: none; }
   .row.hdr .sort:hover { color: #1f2937; }
 
-  /* Group header */
   .row.group {
     background: #eef2ff;
     border-top: 2px solid #c7d2fe;
@@ -116,7 +126,6 @@
   }
   .row.group .num { color: #1e3a8a; font-weight: 600; }
 
-  /* Variant row */
   .row.var { cursor: pointer; transition: background 0.1s; }
   .row.var .name { padding-left: 20px; color: #374151; }
 
@@ -159,10 +168,20 @@
     font-size: 14px;
   }
 
-  /* ============ MOBILE ============ */
   @media (max-width: 720px) {
     body { padding: 10px; }
     h1 { font-size: 18px; }
+
+    header {
+      gap: 10px;
+    }
+
+    input[type="search"] {
+      flex: 1 1 100%;
+      max-width: 100%;
+      min-width: 0;
+      order: 3;
+    }
 
     .row.hdr { display: none; }
 
@@ -233,34 +252,38 @@
 <body>
 
 <header>
-  <h1>Остатки KeyCRM</h1>
-  <button id="refresh">Обновить</button>
-  <input type="search" id="search" placeholder="Поиск по названию...">
+  <h1>KeyCRM Stocks</h1>
+  <button id="refresh">Refresh</button>
+  <input type="search" id="search" placeholder="Search by name...">
 </header>
 
 <div class="meta">
-  Товаров: <strong id="group-count">—</strong> •
-  Вариантов: <strong id="count">—</strong> •
-  Обновлено: <strong id="updated">—</strong>
+  Products: <strong id="group-count">—</strong> •
+  Variants: <strong id="count">—</strong> •
+  Updated: <strong id="updated">—</strong>
+</div>
+
+<div id="stale">
+  <span>⚠️ Data is <b id="stale-age">—</b> old. Press <b>Refresh</b> for the latest stock numbers.</span>
 </div>
 
 <div id="legend">
-  <span><i class="dot-green"></i>В наличии (5+)</span>
-  <span><i class="dot-yellow"></i>Заканчивается (1–4)</span>
-  <span><i class="dot-red"></i>Нет в наличии</span>
+  <span><i class="dot-green"></i>In stock (5+)</span>
+  <span><i class="dot-yellow"></i>Low stock (1–4)</span>
+  <span><i class="dot-red"></i>Out of stock</span>
 </div>
 
 <div id="error"></div>
 
 <div class="table">
   <div class="row hdr">
-    <span class="sort" data-sort="variant_name">Название <span class="arrow"></span></span>
-    <span class="num sort" data-sort="quantity">Остаток <span class="arrow"></span></span>
-    <span class="num sort" data-sort="reserve">Резерв <span class="arrow"></span></span>
-    <span class="num sort" data-sort="available">Доступно <span class="arrow"></span></span>
+    <span class="sort" data-sort="variant_name">Name <span class="arrow"></span></span>
+    <span class="num sort" data-sort="quantity">Stock <span class="arrow"></span></span>
+    <span class="num sort" data-sort="reserve">Reserved <span class="arrow"></span></span>
+    <span class="num sort" data-sort="available">Available <span class="arrow"></span></span>
   </div>
   <div id="rows">
-    <div class="placeholder">Нажмите «Обновить», чтобы загрузить данные из KeyCRM</div>
+    <div class="placeholder">Press "Refresh" to load data from KeyCRM</div>
   </div>
 </div>
 
@@ -270,10 +293,16 @@
   const refreshBtn = $('#refresh');
   const searchInput = $('#search');
   const errorBox = $('#error');
+  const staleBox = $('#stale');
+  const staleAgeEl = $('#stale-age');
+
+  const STALE_THRESHOLD_MS = 30 * 60 * 1000;
 
   let items = [];
   let sortKey = null;
   let sortDir = 1;
+  let lastUpdatedAt = null;
+  let staleTimer = null;
   const selected = new Set();
 
   const YELLOW_MAX = 4;
@@ -294,6 +323,25 @@
     if (!msg) { errorBox.style.display = 'none'; return; }
     errorBox.textContent = msg;
     errorBox.style.display = 'block';
+  }
+
+  function formatAge(ms) {
+    const mins = Math.floor(ms / 60000);
+    if (mins < 60) return `${mins} min`;
+    const hours = Math.floor(mins / 60);
+    const remMin = mins % 60;
+    return remMin ? `${hours}h ${remMin}m` : `${hours}h`;
+  }
+
+  function refreshStaleBanner() {
+    if (!lastUpdatedAt) { staleBox.style.display = 'none'; return; }
+    const age = Date.now() - lastUpdatedAt;
+    if (age > STALE_THRESHOLD_MS) {
+      staleAgeEl.textContent = formatAge(age);
+      staleBox.style.display = 'flex';
+    } else {
+      staleBox.style.display = 'none';
+    }
   }
 
   function groupByProduct(list) {
@@ -336,11 +384,11 @@
   function defaultVariantCompare(a, b) {
     const pa = variantParts(a.variant_name);
     const pb = variantParts(b.variant_name);
-    const colorCmp = pa.color.localeCompare(pb.color, 'ru');
+    const colorCmp = pa.color.localeCompare(pb.color);
     if (colorCmp !== 0) return colorCmp;
     const sizeCmp = sizeRank(pa.size) - sizeRank(pb.size);
     if (sizeCmp !== 0) return sizeCmp;
-    return String(pa.size).localeCompare(String(pb.size), 'ru');
+    return String(pa.size).localeCompare(String(pb.size));
   }
 
   function sortVariants(list) {
@@ -368,7 +416,7 @@
     $('#count').textContent = list.length;
 
     if (groups.length === 0) {
-      rowsEl.innerHTML = '<div class="placeholder">Ничего не найдено</div>';
+      rowsEl.innerHTML = '<div class="placeholder">Nothing found</div>';
       return;
     }
 
@@ -392,9 +440,9 @@
         html.push(`
           <div class="row var${isSel}" data-status="${status}" data-id="${v.id}">
             <span class="name">${escape(v.variant_name)}</span>
-            <span class="num"><i>Остаток</i><b>${v.quantity}</b></span>
-            <span class="num"><i>Резерв</i><b>${v.reserve}</b></span>
-            <span class="num avail"><i>Доступно</i><b>${v.available}</b></span>
+            <span class="num"><i>Stock</i><b>${v.quantity}</b></span>
+            <span class="num"><i>Reserved</i><b>${v.reserve}</b></span>
+            <span class="num avail"><i>Available</i><b>${v.available}</b></span>
           </div>
         `);
       }
@@ -425,19 +473,21 @@
 
   function applyData(data) {
     items = data.items || [];
-    const updated = data.updated_at
-      ? new Date(data.updated_at).toLocaleTimeString('ru-RU')
+    lastUpdatedAt = data.updated_at ? new Date(data.updated_at).getTime() : null;
+    const updated = lastUpdatedAt
+      ? new Date(lastUpdatedAt).toLocaleTimeString('en-US', { hour12: false })
       : '—';
     let suffix = '';
-    if (data.cached) suffix = ` (из кеша, ${Math.round((data.age_ms || 0) / 1000)}с)`;
-    else if (typeof data.took_ms === 'number') suffix = ` (${(data.took_ms / 1000).toFixed(1)}с)`;
+    if (data.cached) suffix = ` (cached, ${Math.round((data.age_ms || 0) / 1000)}s)`;
+    else if (typeof data.took_ms === 'number') suffix = ` (${(data.took_ms / 1000).toFixed(1)}s)`;
     $('#updated').textContent = updated + suffix;
     render();
+    refreshStaleBanner();
   }
 
   async function load({ force = false } = {}) {
     refreshBtn.disabled = true;
-    refreshBtn.textContent = 'Загружаю...';
+    refreshBtn.textContent = 'Loading...';
     showError('');
     try {
       const url = force ? '/api/stocks?fresh=1' : '/api/stocks';
@@ -447,15 +497,17 @@
       applyData(data);
       saveCache(data);
     } catch (e) {
-      showError('Ошибка: ' + e.message);
+      showError('Error: ' + e.message);
     } finally {
       refreshBtn.disabled = false;
-      refreshBtn.textContent = 'Обновить';
+      refreshBtn.textContent = 'Refresh';
     }
   }
 
   const cached = loadCache();
   if (cached) applyData(cached);
+
+  staleTimer = setInterval(refreshStaleBanner, 60_000);
 
   refreshBtn.addEventListener('click', () => load({ force: true }));
 
