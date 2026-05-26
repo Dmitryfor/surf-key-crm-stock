@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KeyCRM — Остатки товаров</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 16px;
+    background: #f7f8fa;
+    color: #1f2937;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  h1 { margin: 0; font-size: 20px; }
+  .meta { color: #6b7280; font-size: 13px; margin-bottom: 12px; }
+  .meta strong { color: #1f2937; }
+  button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  button:hover:not(:disabled) { background: #1d4ed8; }
+  button:disabled { background: #93c5fd; cursor: wait; }
+  input[type="search"] {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+  }
+  #error {
+    margin: 12px 0;
+    padding: 12px 16px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    border-radius: 6px;
+    display: none;
+  }
+  #legend {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  #legend span { display: inline-flex; align-items: center; gap: 5px; }
+  #legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    font-style: normal;
+  }
+  .dot-green { background: #16a34a; }
+  .dot-yellow { background: #eab308; }
+  .dot-red { background: #dc2626; }
+
+  /* ============ GRID TABLE ============ */
+  .table {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 110px 110px 130px;
+    gap: 12px;
+    padding: 10px 16px;
+    align-items: center;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .row .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .row .num i { display: none; font-style: normal; }
+  .totals-mobile { display: none; }
+
+  /* Header row */
+  .row.hdr {
+    background: #f3f4f6;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6b7280;
+  }
+  .row.hdr .arrow { color: #9ca3af; }
+  .row.hdr .sort { cursor: pointer; user-select: none; }
+  .row.hdr .sort:hover { color: #1f2937; }
+
+  /* Group header */
+  .row.group {
+    background: #eef2ff;
+    border-top: 2px solid #c7d2fe;
+    border-bottom: 1px solid #c7d2fe;
+    font-weight: 600;
+    color: #1e3a8a;
+    font-size: 15px;
+  }
+  .row.group .num { color: #1e3a8a; font-weight: 600; }
+
+  /* Variant row */
+  .row.var { cursor: pointer; transition: background 0.1s; }
+  .row.var .name { padding-left: 20px; color: #374151; }
+
+  .row.var[data-status="green"]  { background: #f0fdf4; }
+  .row.var[data-status="yellow"] { background: #fefce8; }
+  .row.var[data-status="red"]    { background: #fef2f2; }
+
+  .row.var[data-status="green"]:hover  { background: #dcfce7; }
+  .row.var[data-status="yellow"]:hover { background: #fef9c3; }
+  .row.var[data-status="red"]:hover    { background: #fee2e2; }
+
+  .row.var.selected,
+  .row.var.selected:hover { background: #dbeafe; }
+
+  .row.var .avail b {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    min-width: 36px;
+    text-align: center;
+  }
+  .row.var[data-status="green"] .avail b {
+    color: #166534;
+    background: #dcfce7;
+  }
+  .row.var[data-status="yellow"] .avail b {
+    color: #854d0e;
+    background: #fef9c3;
+  }
+  .row.var[data-status="red"] .avail b {
+    color: #991b1b;
+    background: #fee2e2;
+  }
+
+  .placeholder {
+    padding: 60px 16px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 14px;
+  }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 720px) {
+    body { padding: 10px; }
+    h1 { font-size: 18px; }
+
+    .row.hdr { display: none; }
+
+    .row {
+      display: block;
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .row.group {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      background: #1e293b;
+      color: #f9fafb;
+      border-top: 0;
+      border-bottom: 0;
+      padding: 14px 16px;
+      margin-top: 4px;
+      font-size: 15px;
+    }
+    .row.group:first-of-type { margin-top: 0; }
+    .row.group .name { color: #f9fafb; }
+    .row.group .num { display: none; }
+    .row.group .totals-mobile {
+      display: inline;
+      font-size: 13px;
+      font-weight: 500;
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+    .row.group .totals-mobile b {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .row.var .name {
+      padding-left: 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: #111827;
+      display: block;
+    }
+    .row.var .num {
+      display: inline-block;
+      text-align: left;
+      margin-top: 10px;
+      margin-right: 18px;
+      font-size: 14px;
+    }
+    .row.var .num i {
+      display: inline;
+      color: #9ca3af;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+    .row.var .num b { font-size: 15px; font-weight: 600; }
+    .row.var .avail b {
+      padding: 3px 12px;
+      font-size: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Остатки KeyCRM</h1>
+  <button id="refresh">Обновить</button>
+  <input type="search" id="search" placeholder="Поиск по названию...">
+</header>
+
+<div class="meta">
+  Товаров: <strong id="group-count">—</strong> •
+  Вариантов: <strong id="count">—</strong> •
+  Обновлено: <strong id="updated">—</strong>
+</div>
+
+<div id="legend">
+  <span><i class="dot-green"></i>В наличии (5+)</span>
+  <span><i class="dot-yellow"></i>Заканчивается (1–4)</span>
+  <span><i class="dot-red"></i>Нет в наличии</span>
+</div>
+
+<div id="error"></div>
+
+<div class="table">
+  <div class="row hdr">
+    <span class="sort" data-sort="variant_name">Название <span class="arrow"></span></span>
+    <span class="num sort" data-sort="quantity">Остаток <span class="arrow"></span></span>
+    <span class="num sort" data-sort="reserve">Резерв <span class="arrow"></span></span>
+    <span class="num sort" data-sort="available">Доступно <span class="arrow"></span></span>
+  </div>
+  <div id="rows">
+    <div class="placeholder">Нажмите «Обновить», чтобы загрузить данные из KeyCRM</div>
+  </div>
+</div>
+
+<script>
+  const $ = (s) => document.querySelector(s);
+  const rowsEl = $('#rows');
+  const refreshBtn = $('#refresh');
+  const searchInput = $('#search');
+  const errorBox = $('#error');
+
+  let items = [];
+  let sortKey = null;
+  let sortDir = 1;
+  const selected = new Set();
+
+  const YELLOW_MAX = 4;
+
+  function statusOf(available) {
+    if (available <= 0) return 'red';
+    if (available <= YELLOW_MAX) return 'yellow';
+    return 'green';
+  }
+
+  function escape(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+  }
+
+  function showError(msg) {
+    if (!msg) { errorBox.style.display = 'none'; return; }
+    errorBox.textContent = msg;
+    errorBox.style.display = 'block';
+  }
+
+  function groupByProduct(list) {
+    const map = new Map();
+    for (const it of list) {
+      const key = it.product_id || it.product_name;
+      if (!map.has(key)) {
+        map.set(key, { product_name: it.product_name, variants: [] });
+      }
+      map.get(key).variants.push(it);
+    }
+    return Array.from(map.values());
+  }
+
+  const LETTER_SIZE_ORDER = [
+    'XXXS', 'XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL',
+    'XXXL', '3XL', '4XL', '5XL', '6XL',
+  ];
+
+  function variantParts(name) {
+    const parts = String(name || '').split('/').map((s) => s.trim()).filter(Boolean);
+    if (parts.length === 0) return { color: '', size: '' };
+    if (parts.length === 1) return { color: parts[0], size: '' };
+    return {
+      color: parts.slice(0, -1).join(' / '),
+      size: parts[parts.length - 1],
+    };
+  }
+
+  function sizeRank(s) {
+    if (!s) return -1;
+    const up = s.trim().toUpperCase();
+    const idx = LETTER_SIZE_ORDER.indexOf(up);
+    if (idx !== -1) return idx;
+    const numMatch = up.match(/^(\d+)/);
+    if (numMatch) return 1000 + Number(numMatch[1]);
+    return 99999;
+  }
+
+  function defaultVariantCompare(a, b) {
+    const pa = variantParts(a.variant_name);
+    const pb = variantParts(b.variant_name);
+    const colorCmp = pa.color.localeCompare(pb.color, 'ru');
+    if (colorCmp !== 0) return colorCmp;
+    const sizeCmp = sizeRank(pa.size) - sizeRank(pb.size);
+    if (sizeCmp !== 0) return sizeCmp;
+    return String(pa.size).localeCompare(String(pb.size), 'ru');
+  }
+
+  function sortVariants(list) {
+    if (!sortKey) return [...list].sort(defaultVariantCompare);
+    return [...list].sort((a, b) => {
+      const va = a[sortKey], vb = b[sortKey];
+      if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * sortDir;
+      return String(va || '').localeCompare(String(vb || '')) * sortDir;
+    });
+  }
+
+  function render() {
+    const q = searchInput.value.trim().toLowerCase();
+    let list = items;
+
+    if (q) {
+      list = list.filter((r) =>
+        (r.product_name || '').toLowerCase().includes(q) ||
+        (r.variant_name || '').toLowerCase().includes(q)
+      );
+    }
+
+    const groups = groupByProduct(list);
+    $('#group-count').textContent = groups.length;
+    $('#count').textContent = list.length;
+
+    if (groups.length === 0) {
+      rowsEl.innerHTML = '<div class="placeholder">Ничего не найдено</div>';
+      return;
+    }
+
+    const html = [];
+    for (const g of groups) {
+      const totalQty = g.variants.reduce((s, v) => s + v.quantity, 0);
+      const totalRes = g.variants.reduce((s, v) => s + v.reserve, 0);
+      const totalAvl = g.variants.reduce((s, v) => s + v.available, 0);
+      html.push(`
+        <div class="row group">
+          <span class="name">${escape(g.product_name)} <span style="opacity:0.65;font-weight:500;">(${g.variants.length})</span></span>
+          <span class="num">${totalQty}</span>
+          <span class="num">${totalRes}</span>
+          <span class="num">${totalAvl}</span>
+          <span class="totals-mobile">Σ <b>${totalQty}</b> / <b>${totalRes}</b> / <b>${totalAvl}</b></span>
+        </div>
+      `);
+      for (const v of sortVariants(g.variants)) {
+        const status = statusOf(v.available);
+        const isSel = selected.has(v.id) ? ' selected' : '';
+        html.push(`
+          <div class="row var${isSel}" data-status="${status}" data-id="${v.id}">
+            <span class="name">${escape(v.variant_name)}</span>
+            <span class="num"><i>Остаток</i><b>${v.quantity}</b></span>
+            <span class="num"><i>Резерв</i><b>${v.reserve}</b></span>
+            <span class="num avail"><i>Доступно</i><b>${v.available}</b></span>
+          </div>
+        `);
+      }
+    }
+    rowsEl.innerHTML = html.join('');
+
+    document.querySelectorAll('.row.hdr .sort').forEach((el) => {
+      const arrow = el.querySelector('.arrow');
+      arrow.textContent = el.dataset.sort === sortKey ? (sortDir === 1 ? ' ↑' : ' ↓') : '';
+    });
+  }
+
+  const CACHE_KEY = 'keycrm-stocks-cache-v1';
+
+  function saveCache(data) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+    } catch (_) { /* quota or private mode — ignore */ }
+  }
+
+  function loadCache() {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (_) { return null; }
+  }
+
+  function applyData(data) {
+    items = data.items || [];
+    $('#updated').textContent = data.updated_at
+      ? new Date(data.updated_at).toLocaleTimeString('ru-RU')
+      : '—';
+    render();
+  }
+
+  async function load() {
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = 'Загружаю...';
+    showError('');
+    try {
+      const res = await fetch('/api/stocks');
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      applyData(data);
+      saveCache(data);
+    } catch (e) {
+      showError('Ошибка: ' + e.message);
+    } finally {
+      refreshBtn.disabled = false;
+      refreshBtn.textContent = 'Обновить';
+    }
+  }
+
+  const cached = loadCache();
+  if (cached) applyData(cached);
+
+  refreshBtn.addEventListener('click', load);
+  searchInput.addEventListener('input', render);
+
+  rowsEl.addEventListener('click', (e) => {
+    const row = e.target.closest('.row.var');
+    if (!row) return;
+    const id = Number(row.dataset.id);
+    const wasSelected = selected.has(id);
+    selected.clear();
+    document.querySelectorAll('.row.var.selected').forEach((el) => el.classList.remove('selected'));
+    if (!wasSelected) {
+      selected.add(id);
+      row.classList.add('selected');
+    }
+  });
+
+  document.querySelectorAll('.row.hdr .sort').forEach((el) => {
+    el.addEventListener('click', () => {
+      const key = el.dataset.sort;
+      if (key === sortKey) sortDir = -sortDir;
+      else { sortKey = key; sortDir = 1; }
+      render();
+    });
+  });
+</script>
+
+</body>
+</html>
