@@ -94,7 +94,7 @@
   }
   .row {
     display: grid;
-    grid-template-columns: 1fr 110px 110px 130px;
+    grid-template-columns: 1fr 110px 130px;
     gap: 12px;
     padding: 10px 16px;
     align-items: center;
@@ -278,7 +278,6 @@
 <div class="table">
   <div class="row hdr">
     <span class="sort" data-sort="variant_name">Название <span class="arrow"></span></span>
-    <span class="num sort" data-sort="quantity">Остаток <span class="arrow"></span></span>
     <span class="num sort" data-sort="reserve">Резерв <span class="arrow"></span></span>
     <span class="num sort" data-sort="available">Доступно <span class="arrow"></span></span>
   </div>
@@ -422,16 +421,14 @@
 
     const html = [];
     for (const g of groups) {
-      const totalQty = g.variants.reduce((s, v) => s + v.quantity, 0);
       const totalRes = g.variants.reduce((s, v) => s + v.reserve, 0);
       const totalAvl = g.variants.reduce((s, v) => s + v.available, 0);
       html.push(`
         <div class="row group">
           <span class="name">${escape(g.product_name)} <span style="opacity:0.65;font-weight:500;">(${g.variants.length})</span></span>
-          <span class="num">${totalQty}</span>
           <span class="num">${totalRes}</span>
           <span class="num">${totalAvl}</span>
-          <span class="totals-mobile">Σ <b>${totalQty}</b> / <b>${totalRes}</b> / <b>${totalAvl}</b></span>
+          <span class="totals-mobile">Σ резерв <b>${totalRes}</b> / доступно <b>${totalAvl}</b></span>
         </div>
       `);
       for (const v of sortVariants(g.variants)) {
@@ -440,7 +437,6 @@
         html.push(`
           <div class="row var${isSel}" data-status="${status}" data-id="${v.id}">
             <span class="name">${escape(v.variant_name)}</span>
-            <span class="num"><i>Остаток</i><b>${v.quantity}</b></span>
             <span class="num"><i>Резерв</i><b>${v.reserve}</b></span>
             <span class="num avail"><i>Доступно</i><b>${v.available}</b></span>
           </div>
