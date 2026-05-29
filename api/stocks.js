@@ -75,11 +75,13 @@ function mapOffer(o) {
 async function fetchStocks() {
   const t0 = Date.now();
   const offers = await paginateAll('/offers', { include: 'product' });
+  const active = offers.filter((o) => !o.is_archived); // hide archived variants
   return {
     updated_at: new Date().toISOString(),
-    count: offers.length,
+    count: active.length,
+    archived_hidden: offers.length - active.length,
     took_ms: Date.now() - t0,
-    items: offers.map(mapOffer),
+    items: active.map(mapOffer),
   };
 }
 
