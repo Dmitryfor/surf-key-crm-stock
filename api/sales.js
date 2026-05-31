@@ -142,7 +142,7 @@ async function fetchPeriod(monthOffset) {
   const closed = updated.filter(
     (o) => o.closed_at && String(o.closed_at).slice(0, 7) === range.ym && o.status_group_id === 5
   );
-  return { label: range.label, ...aggregate(created, closed) };
+  return { label: range.label, ym: range.ym, ...aggregate(created, closed) };
 }
 
 async function fetchSales() {

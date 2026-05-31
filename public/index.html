@@ -174,6 +174,33 @@
   .kpi.danger .value { color: #dc2626; }
   .kpi.danger .label { color: #b91c1c; }
 
+  .kpi .plan { margin-top: 12px; }
+  .plan-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .kpi.accent .plan-lbl { color: #dbeafe; }
+  .kpi.accent .plan-lbl b { color: #fff; font-weight: 700; }
+  .kpi.accent .plan-pct { font-weight: 800; color: #fff; font-size: 14px; }
+  .plan-bar {
+    height: 7px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .plan-bar i {
+    display: block;
+    height: 100%;
+    background: #fff;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+  .plan.over .plan-bar i { background: #4ade80; }
+  .kpi.accent .plan.over .plan-pct { color: #bbf7d0; }
+
   /* ── Status breakdown ── */
   .section-head {
     display: flex;
@@ -524,6 +551,13 @@
       <div class="label">Выручка · <span id="kpi-period-label">Май 2026</span></div>
       <div class="value" id="kpi-revenue">—</div>
       <div class="sub" id="kpi-trend">—</div>
+      <div class="plan" id="kpi-plan" style="display:none">
+        <div class="plan-top">
+          <span class="plan-lbl">План <b id="plan-amount">—</b></span>
+          <span class="plan-pct" id="plan-pct">—</span>
+        </div>
+        <div class="plan-bar"><i id="plan-fill"></i></div>
+      </div>
     </div>
     <div class="kpi">
       <div class="label">Заказов</div>
@@ -550,7 +584,6 @@
 
   <div class="section-head">
     <h2>По менеджерам</h2>
-    <span class="hint">оформление (без отменённых) · закрытие (выполненные)</span>
   </div>
   <div class="mgr-list" id="mgr-list"></div>
 </section>
@@ -815,6 +848,14 @@
      period = { label, statuses:[{cls,name,orders,revenue}], managers:[{name,orders,revenue}] }.
      headline (главная выручка/заказы) = сумма всех статусов КРОМЕ cancelled. */
   const fmtMoney = (n) => Number(n).toLocaleString('ru-RU');
+
+  /* План продаж по месяцам (грн), ключ — YYYY-MM. Считается от Выручки.
+     Чтобы задать план на новый месяц — добавь строку и задеплой. */
+  const MONTHLY_PLANS = {
+    '2026-04': 650000,
+    '2026-05': 650000,
+  };
+
   let salesPeriod = 'current';
   let salesData = null; // { current, previous }
   let salesUpdatedAt = null;
@@ -859,6 +900,20 @@
     }
     $('#kpi-orders-sub').textContent = 'всё кроме отменённых';
     $('#kpi-avg-sub').textContent = 'выручка / заказы';
+
+    // план месяца (от выручки)
+    const plan = MONTHLY_PLANS[d.ym];
+    const planEl = $('#kpi-plan');
+    if (plan && plan > 0) {
+      const pct = (h.revenue / plan) * 100;
+      $('#plan-amount').textContent = `${fmtMoney(plan)} грн`;
+      $('#plan-pct').textContent = `${Math.round(pct)}%`;
+      $('#plan-fill').style.width = `${Math.min(pct, 100)}%`;
+      planEl.classList.toggle('over', pct >= 100);
+      planEl.style.display = 'block';
+    } else {
+      planEl.style.display = 'none';
+    }
 
     // отменённые заказы + процент от всех
     const cancelled = d.statuses.find((s) => s.cls === 'cancelled') || { orders: 0, revenue: 0 };
