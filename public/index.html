@@ -86,6 +86,213 @@
   .dot-yellow { background: #eab308; }
   .dot-red { background: #dc2626; }
 
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .tab {
+    background: none;
+    color: #6b7280;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 0;
+    cursor: pointer;
+    margin-bottom: -1px;
+  }
+  .tab:hover:not(:disabled) { background: none; color: #1f2937; }
+  .tab.active { color: #2563eb; border-bottom-color: #2563eb; }
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ── Sales KPI cards ── */
+  .period-pick {
+    display: inline-flex;
+    background: #eef2ff;
+    border-radius: 8px;
+    padding: 3px;
+    gap: 3px;
+    margin-bottom: 16px;
+  }
+  .period-pick button {
+    background: none;
+    color: #4b5563;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 6px;
+  }
+  .period-pick button:hover:not(:disabled) { background: #e0e7ff; }
+  .period-pick button.active { background: #fff; color: #1e3a8a; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 1000px) and (min-width: 721px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+  }
+  .kpi {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: 16px 18px;
+  }
+  .kpi .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6b7280;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .kpi .value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111827;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .kpi .value .cur { font-size: 16px; font-weight: 600; color: #6b7280; }
+  .kpi .sub { font-size: 13px; color: #6b7280; margin-top: 6px; }
+  .kpi.accent { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+  .kpi.accent .label { color: #bfdbfe; }
+  .kpi.accent .value { color: #fff; }
+  .kpi.accent .value .cur { color: #bfdbfe; }
+  .kpi.accent .sub { color: #dbeafe; }
+  .trend-up { color: #16a34a; font-weight: 700; }
+  .trend-down { color: #dc2626; font-weight: 700; }
+  .kpi.accent .trend-up,
+  .kpi.accent .trend-down { color: #fff; }
+  .kpi.danger .value { color: #dc2626; }
+  .kpi.danger .label { color: #b91c1c; }
+
+  /* ── Status breakdown ── */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 22px 0 10px;
+  }
+  .section-head h2 { margin: 0; font-size: 16px; }
+  .section-head .hint { font-size: 12px; color: #9ca3af; }
+  .status-list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    border-bottom: 1px solid #f3f4f6;
+    border-left: 4px solid transparent;
+  }
+  .status:last-child { border-bottom: none; }
+  .status .st-name { font-weight: 600; font-size: 14px; color: #1f2937; flex: 1; }
+  .status .st-orders {
+    font-size: 13px;
+    color: #6b7280;
+    font-variant-numeric: tabular-nums;
+    min-width: 90px;
+    text-align: right;
+  }
+  .status .st-rev {
+    font-weight: 700;
+    font-size: 15px;
+    color: #111827;
+    font-variant-numeric: tabular-nums;
+    min-width: 120px;
+    text-align: right;
+  }
+  .status .st-rev .cur { font-size: 11px; font-weight: 600; color: #9ca3af; }
+  .status.done      { border-left-color: #16a34a; }
+  .status.shipped   { border-left-color: #2563eb; }
+  .status.pending   { border-left-color: #eab308; }
+  .status.cancelled {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+  }
+  .status.cancelled .st-name,
+  .status.cancelled .st-rev { color: #991b1b; }
+
+  /* ── Manager breakdown ── */
+  .mgr-list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .mgr {
+    padding: 14px 18px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .mgr:last-child { border-bottom: none; }
+  .mgr-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .mgr-name { font-weight: 600; font-size: 15px; color: #1f2937; }
+  .mgr-name .rank {
+    display: inline-block;
+    width: 22px; height: 22px;
+    line-height: 22px;
+    text-align: center;
+    background: #eef2ff;
+    color: #4338ca;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .mgr-top { margin-bottom: 6px; }
+  .mgr-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 5px 0;
+  }
+  .mgr-line.closed { border-top: 1px dashed #e5e7eb; padding-top: 8px; margin-top: 2px; }
+  .mgr-line .ml-lbl {
+    font-size: 13px;
+    color: #6b7280;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .mgr-line .ml-lbl::before {
+    content: '';
+    width: 8px; height: 8px; border-radius: 2px;
+    background: #2563eb;
+    display: inline-block;
+  }
+  .mgr-line.closed .ml-lbl { color: #166534; }
+  .mgr-line.closed .ml-lbl::before { background: #16a34a; }
+  .mgr-line .ml-val {
+    font-weight: 700;
+    font-size: 15px;
+    color: #111827;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .mgr-line.closed .ml-val { color: #166534; }
+  .mgr-line .ml-val .cur { font-size: 11px; font-weight: 600; color: #9ca3af; }
+  .mgr-line .ml-val .o { font-size: 12px; font-weight: 500; color: #9ca3af; }
+
   .table {
     background: white;
     border-radius: 8px;
@@ -172,6 +379,11 @@
     body { padding: 10px; }
     h1 { font-size: 18px; }
 
+    .kpis { grid-template-columns: 1fr; gap: 10px; }
+    .kpi .value { font-size: 24px; }
+    .tab { padding: 10px 12px; font-size: 14px; }
+    .mgr-meta { gap: 14px; }
+
     header {
       gap: 10px;
     }
@@ -251,40 +463,97 @@
 </head>
 <body>
 
-<header>
-  <h1>Остатки KeyCRM</h1>
-  <button id="refresh">Обновить</button>
-  <input type="search" id="search" placeholder="Поиск по названию...">
-</header>
-
-<div class="meta">
-  Товаров: <strong id="group-count">—</strong> •
-  Вариантов: <strong id="count">—</strong> •
-  Обновлено: <strong id="updated">—</strong>
+<div class="tabs">
+  <button class="tab active" data-view="stocks">Остатки</button>
+  <button class="tab" data-view="sales">Продажи</button>
 </div>
 
-<div id="stale">
-  <span>⚠️ Данные обновлялись <b id="stale-age">—</b> назад. Нажмите <b>Обновить</b> для актуальных остатков.</span>
-</div>
+<!-- ══════════ STOCKS VIEW ══════════ -->
+<section id="view-stocks" class="view active">
+  <header>
+    <button id="refresh">Обновить</button>
+    <input type="search" id="search" placeholder="Поиск по названию...">
+  </header>
 
-<div id="legend">
-  <span><i class="dot-green"></i>В наличии (5+)</span>
-  <span><i class="dot-yellow"></i>Заканчивается (1–4)</span>
-  <span><i class="dot-red"></i>Нет в наличии</span>
-</div>
-
-<div id="error"></div>
-
-<div class="table">
-  <div class="row hdr">
-    <span class="sort" data-sort="variant_name">Название <span class="arrow"></span></span>
-    <span class="num sort" data-sort="reserve">Резерв <span class="arrow"></span></span>
-    <span class="num sort" data-sort="available">Доступно <span class="arrow"></span></span>
+  <div class="meta">
+    Товаров: <strong id="group-count">—</strong> •
+    Вариантов: <strong id="count">—</strong> •
+    Обновлено: <strong id="updated">—</strong>
   </div>
-  <div id="rows">
-    <div class="placeholder">Нажмите «Обновить», чтобы загрузить данные из KeyCRM</div>
+
+  <div id="stale">
+    <span>⚠️ Данные обновлялись <b id="stale-age">—</b> назад. Нажмите <b>Обновить</b> для актуальных остатков.</span>
   </div>
-</div>
+
+  <div id="legend">
+    <span><i class="dot-green"></i>В наличии (5+)</span>
+    <span><i class="dot-yellow"></i>Заканчивается (1–4)</span>
+    <span><i class="dot-red"></i>Нет в наличии</span>
+  </div>
+
+  <div id="error"></div>
+
+  <div class="table">
+    <div class="row hdr">
+      <span class="sort" data-sort="variant_name">Название <span class="arrow"></span></span>
+      <span class="num sort" data-sort="reserve">Резерв <span class="arrow"></span></span>
+      <span class="num sort" data-sort="available">Доступно <span class="arrow"></span></span>
+    </div>
+    <div id="rows">
+      <div class="placeholder">Нажмите «Обновить», чтобы загрузить данные из KeyCRM</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SALES VIEW (мокап — данные тестовые) ══════════ -->
+<section id="view-sales" class="view">
+  <header>
+    <button id="sales-refresh">Обновить</button>
+    <span class="meta" style="margin:0">Обновлено: <strong id="sales-updated">—</strong></span>
+  </header>
+
+  <div id="sales-error"></div>
+
+  <div class="period-pick" id="period-pick">
+    <button class="active" data-period="current">Текущий месяц</button>
+    <button data-period="previous">Прошлый месяц</button>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi accent">
+      <div class="label">Выручка · <span id="kpi-period-label">Май 2026</span></div>
+      <div class="value" id="kpi-revenue">—</div>
+      <div class="sub" id="kpi-trend">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Заказов</div>
+      <div class="value" id="kpi-orders">—</div>
+      <div class="sub" id="kpi-orders-sub">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Средний чек</div>
+      <div class="value" id="kpi-avg">—</div>
+      <div class="sub" id="kpi-avg-sub">—</div>
+    </div>
+    <div class="kpi danger">
+      <div class="label">Отменённые заказы</div>
+      <div class="value" id="kpi-cancelled">—</div>
+      <div class="sub" id="kpi-cancelled-sub">—</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <h2>По статусам заказов</h2>
+    <span class="hint">сумма · кол-во</span>
+  </div>
+  <div class="status-list" id="status-list"></div>
+
+  <div class="section-head">
+    <h2>По менеджерам</h2>
+    <span class="hint">оформление (без отменённых) · закрытие (выполненные)</span>
+  </div>
+  <div class="mgr-list" id="mgr-list"></div>
+</section>
 
 <script>
   const $ = (s) => document.querySelector(s);
@@ -538,6 +807,155 @@
       if (key === sortKey) sortDir = -sortDir;
       else { sortKey = key; sortDir = 1; }
       render();
+    });
+  });
+
+  /* ═══════════════════ SALES VIEW ═══════════════════ */
+  /* Данные из /api/sales — { updated_at, current:{...}, previous:{...} }.
+     period = { label, statuses:[{cls,name,orders,revenue}], managers:[{name,orders,revenue}] }.
+     headline (главная выручка/заказы) = сумма всех статусов КРОМЕ cancelled. */
+  const fmtMoney = (n) => Number(n).toLocaleString('ru-RU');
+  let salesPeriod = 'current';
+  let salesData = null; // { current, previous }
+  let salesUpdatedAt = null;
+
+  const salesRefreshBtn = $('#sales-refresh');
+  const salesErrorBox = $('#sales-error');
+
+  function showSalesError(msg) {
+    if (!msg) { salesErrorBox.style.display = 'none'; return; }
+    salesErrorBox.textContent = msg;
+    salesErrorBox.style.display = 'block';
+  }
+
+  // выручка/заказы без отменённых
+  function headline(period) {
+    return period.statuses
+      .filter((s) => s.cls !== 'cancelled')
+      .reduce((acc, s) => ({ orders: acc.orders + s.orders, revenue: acc.revenue + s.revenue }),
+              { orders: 0, revenue: 0 });
+  }
+
+  function renderSales() {
+    if (!salesData) return;
+    const d = salesData[salesPeriod];
+    const h = headline(d);
+    const hPrev = headline(salesData.previous);
+
+    $('#kpi-period-label').textContent = d.label;
+    $('#kpi-revenue').innerHTML = `${fmtMoney(h.revenue)} <span class="cur">грн</span>`;
+    $('#kpi-orders').textContent = h.orders;
+    const avg = h.orders ? Math.round(h.revenue / h.orders) : 0;
+    $('#kpi-avg').innerHTML = `${fmtMoney(avg)} <span class="cur">грн</span>`;
+
+    // тренд относительно прошлого месяца (только для текущего)
+    if (salesPeriod === 'current' && hPrev.revenue) {
+      const diff = ((h.revenue - hPrev.revenue) / hPrev.revenue) * 100;
+      const up = diff >= 0;
+      $('#kpi-trend').innerHTML =
+        `<span class="${up ? 'trend-up' : 'trend-down'}">${up ? '▲' : '▼'} ${Math.abs(diff).toFixed(1)}%</span> к ${salesData.previous.label}`;
+    } else {
+      $('#kpi-trend').textContent = 'всё кроме отменённых';
+    }
+    $('#kpi-orders-sub').textContent = 'всё кроме отменённых';
+    $('#kpi-avg-sub').textContent = 'выручка / заказы';
+
+    // отменённые заказы + процент от всех
+    const cancelled = d.statuses.find((s) => s.cls === 'cancelled') || { orders: 0, revenue: 0 };
+    const totalAll = d.statuses.reduce((s, x) => s + x.orders, 0) || 1;
+    const cancPct = (cancelled.orders / totalAll) * 100;
+    $('#kpi-cancelled').textContent = cancelled.orders;
+    $('#kpi-cancelled-sub').textContent = `${cancPct.toFixed(1)}% от всех · ${fmtMoney(cancelled.revenue)} грн`;
+
+    // блок статусов
+    $('#status-list').innerHTML = d.statuses.map((s) => `
+      <div class="status ${s.cls}">
+        <span class="st-name">${escape(s.name)}</span>
+        <span class="st-orders">${s.orders} зак.</span>
+        <span class="st-rev">${fmtMoney(s.revenue)} <span class="cur">грн</span></span>
+      </div>`).join('');
+
+    const ranked = [...d.managers].sort((a, b) => b.created_revenue - a.created_revenue);
+    $('#mgr-list').innerHTML = ranked.map((m, i) => `
+        <div class="mgr">
+          <div class="mgr-top">
+            <span class="mgr-name"><span class="rank">${i + 1}</span>${escape(m.name)}</span>
+          </div>
+          <div class="mgr-line">
+            <span class="ml-lbl">Сумма продаж</span>
+            <span class="ml-val">${fmtMoney(m.created_revenue)} <span class="cur">грн</span> <span class="o">· ${m.created_orders} зак</span></span>
+          </div>
+          <div class="mgr-line closed">
+            <span class="ml-lbl">Сумма выполненных</span>
+            <span class="ml-val">${fmtMoney(m.closed_revenue)} <span class="cur">грн</span> <span class="o">· ${m.closed_orders} зак</span></span>
+          </div>
+        </div>`).join('');
+  }
+
+  function applySales(data) {
+    salesData = { current: data.current, previous: data.previous };
+    salesUpdatedAt = data.updated_at ? new Date(data.updated_at).getTime() : null;
+    const updated = salesUpdatedAt ? new Date(salesUpdatedAt).toLocaleString('ru-RU') : '—';
+    let suffix = '';
+    if (data.cached) suffix = ` (из кеша, ${Math.round((data.age_ms || 0) / 1000)}с)`;
+    else if (typeof data.took_ms === 'number') suffix = ` (${(data.took_ms / 1000).toFixed(1)}с)`;
+    $('#sales-updated').textContent = updated + suffix;
+    renderSales();
+  }
+
+  const SALES_CACHE_KEY = 'keycrm-sales-cache-v1';
+
+  function saveSalesCache(data) {
+    try { localStorage.setItem(SALES_CACHE_KEY, JSON.stringify(data)); } catch (_) {}
+  }
+  function loadSalesCache() {
+    try {
+      const raw = localStorage.getItem(SALES_CACHE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (_) { return null; }
+  }
+
+  async function loadSales({ force = false } = {}) {
+    salesRefreshBtn.disabled = true;
+    salesRefreshBtn.textContent = 'Загружаю...';
+    showSalesError('');
+    try {
+      const res = await fetch(force ? '/api/sales?fresh=1' : '/api/sales');
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      applySales(data);
+      saveSalesCache(data);
+    } catch (e) {
+      showSalesError('Ошибка: ' + e.message);
+    } finally {
+      salesRefreshBtn.disabled = false;
+      salesRefreshBtn.textContent = 'Обновить';
+    }
+  }
+
+  salesRefreshBtn.addEventListener('click', () => loadSales({ force: true }));
+
+  $('#period-pick').addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    salesPeriod = btn.dataset.period;
+    $('#period-pick').querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === btn));
+    renderSales();
+  });
+
+  /* ═══════════════════ TAB SWITCHING ═══════════════════ */
+  let salesLoaded = false;
+  document.querySelectorAll('.tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const view = tab.dataset.view;
+      document.querySelectorAll('.tab').forEach((t) => t.classList.toggle('active', t === tab));
+      document.querySelectorAll('.view').forEach((v) => v.classList.toggle('active', v.id === `view-${view}`));
+      if (view === 'sales' && !salesLoaded) {
+        salesLoaded = true;
+        const cachedSales = loadSalesCache();
+        if (cachedSales) applySales({ ...cachedSales, cached: true, age_ms: Date.now() - (new Date(cachedSales.updated_at).getTime() || Date.now()) });
+        else loadSales(); // первый заход без кеша — тянем
+      }
     });
   });
 </script>

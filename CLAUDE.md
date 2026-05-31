@@ -28,14 +28,17 @@ keycrm-stocks/
 ├── .env.example        # Template, no secrets
 ├── .gitignore
 ├── package.json
-├── server.js           # Local dev: Express + KeyCRM proxy
+├── server.js           # Local dev: Express + KeyCRM proxy (stocks + sales)
 ├── api/
-│   └── stocks.js       # Vercel serverless function (prod)
+│   ├── stocks.js       # Vercel serverless function — stocks (prod)
+│   └── sales.js        # Vercel serverless function — sales stats (prod)
 ├── middleware.js       # Vercel edge Basic Auth (prod)
 ├── vercel.json         # Vercel config
 └── public/
-    └── index.html      # UI: table + search + sorting + staleness banner
+    └── index.html      # UI: tabs (Остатки + Продажи), table, sales dashboard
 ```
+
+UI has two tabs: **Остатки** (stocks table) and **Продажи** (sales stats: KPI cards, status breakdown, per-manager breakdown). Each tab has its own refresh button + localStorage cache.
 
 **Data flow (prod, Vercel):**
 
@@ -104,6 +107,38 @@ Currently — only `GET /offers?include=product`. A single call returns:
 ```
 
 `buildVariantLabel(o)` joins values from `properties[]` with ` / `.
+
+### Orders endpoint (`/order`) — sales tab
+
+`GET /order?include=manager&filter[created_between]=FROM,TO` — used by `/api/sales`.
+
+Verified live (do not trust spec):
+- **Total orders is large** (~3500+), so ALWAYS filter by date. One month ≈ 480 orders ≈ 10 pages (limit=50). Two months (current + previous) ≈ 20 requests ≈ 1.5 sec.
+- **Date filter**: `filter[created_between]=2026-05-01 00:00:00,2026-05-31 23:59:59` (comma-separated FROM,TO). `URLSearchParams` encodes the space as `+` and KeyCRM accepts it — the existing `keycrmGet` code path works as-is.
+- **Revenue** = `grand_total` (order total). `payments_total` = actually paid (less for partial payments). We use `grand_total`.
+- **Manager**: `o.manager.full_name` (requires `include=manager`). May be null → fallback `'Без менеджера'`.
+- **Status**: `o.status_group_id` (NOT `status_id` — group is the stable bucket). Fetch the map from `GET /order/status` (`id`, `group_id`, `name`, `alias`).
+
+Status `group_id` → UI bucket (see `GROUP_BUCKET` in `api/sales.js` / `server.js`):
+
+| group_id | meaning | bucket | color |
+|---|---|---|---|
+| 1 | new | pending | yellow |
+| 2 | принято / waiting_for_prepayment | pending | yellow |
+| 3 | бронь | pending | yellow |
+| 4 | доставка (відділення / в дорозі / повернення / платіж отримано) | shipped | blue |
+| 5 | completed | done | green |
+| 6 | canceled / повернути / обмін | cancelled | red |
+
+Headline KPI (revenue, orders, avg check) + status block = **all buckets except cancelled (group 6)**, by **creation date** (`created_between`).
+
+**Per-manager breakdown shows two sums** (mirrors KeyCRM's "Дата оформлення / Дата закриття" grouping):
+- `created_revenue` / `created_orders` — orders **created** in the period (excl. cancelled).
+- `closed_revenue` / `closed_orders` — orders **closed** in the period (completed, group 5).
+
+⚠️ KeyCRM allows NO closed-date filter. Allowed order filters: `status_id, source_id, buyer_email, buyer_phone, has_tracking_code, created_between, updated_between, payment_status, source_uuid, shipping_between`. So "closed in period" is computed: fetch `updated_between=period` candidates (closing updates the order), then keep those with `closed_at` in the period AND `status_group_id===5`. This doubles the fetches → `fetchPeriod` does 2 paginations (created + updated) × 2 months ≈ 35 requests/refresh. `closed_at` format is `"YYYY-MM-DD HH:MM:SS"` (space, NOT ISO — unlike `created_at`); compare via `.slice(0,7)` against `ym`.
+
+`/api/sales` returns `{ updated_at, took_ms, current:{label,statuses,managers}, previous:{...} }`. Managers sorted by `created_revenue` desc.
 
 ## Configuration (`.env`)
 

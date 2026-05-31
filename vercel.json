@@ -3,6 +3,9 @@
   "functions": {
     "api/stocks.js": {
       "maxDuration": 10
+    },
+    "api/sales.js": {
+      "maxDuration": 30
     }
   }
 }

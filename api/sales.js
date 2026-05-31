@@ -1,21 +1,9 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-
-const app = express();
-const PORT = Number(process.env.PORT) || 3000;
 const API_KEY = process.env.KEYCRM_API_KEY;
 const BASE_URL = 'https://openapi.keycrm.app/v1';
 const PAGE_LIMIT = 50;
 const CONCURRENCY = 4;
 const BATCH_DELAY_MS = 200;
 const REQUEST_TIMEOUT_MS = 15_000;
-const CACHE_TTL_MS = 30_000;
-
-if (!API_KEY || API_KEY === 'your-api-key-here') {
-  console.error('FATAL: KEYCRM_API_KEY not set in .env');
-  process.exit(1);
-}
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -62,28 +50,6 @@ async function paginateAll(pathname, extraParams = {}) {
   return items;
 }
 
-function buildVariantLabel(offer) {
-  const props = Array.isArray(offer.properties) ? offer.properties : [];
-  const label = props.map((p) => p.value).filter(Boolean).join(' / ');
-  return label || '-';
-}
-
-function mapOffer(o) {
-  const quantity = Number(o.quantity) || 0;
-  const reserve = Number(o.in_reserve) || 0;
-  return {
-    id: o.id,
-    sku: o.sku || '-',
-    product_id: o.product_id || 0,
-    product_name: (o.product && o.product.name) || 'No product',
-    variant_name: buildVariantLabel(o),
-    price: o.price != null ? o.price : null,
-    quantity,
-    reserve,
-    available: quantity - reserve,
-  };
-}
-
 // ── Sales aggregation ──
 
 const RU_MONTHS = [
@@ -107,7 +73,9 @@ const pad = (n) => String(n).padStart(2, '0');
 // monthOffset: 0 = current month, -1 = previous
 function monthRange(monthOffset) {
   const now = new Date();
-  const d = new Date(now.getFullYear(), now.getMonth() + monthOffset, 1);
+  const y0 = now.getFullYear();
+  const m0 = now.getMonth() + monthOffset; // can go negative
+  const d = new Date(y0, m0, 1);
   const year = d.getFullYear();
   const month = d.getMonth() + 1; // 1-12
   const days = new Date(year, month, 0).getDate();
@@ -121,7 +89,7 @@ function monthRange(monthOffset) {
 
 // created  — orders created in the period (filter[created_between])
 // closed   — orders whose closed_at falls in the period AND status is completed (g5)
-function aggregateSales(created, closed) {
+function aggregate(created, closed) {
   const status = { done: { orders: 0, revenue: 0 }, shipped: { orders: 0, revenue: 0 }, pending: { orders: 0, revenue: 0 }, cancelled: { orders: 0, revenue: 0 } };
   const mgr = new Map();
   const ensure = (name) => {
@@ -130,13 +98,13 @@ function aggregateSales(created, closed) {
     return m;
   };
 
-  // by creation date — status block + KPI + manager "Дата оформлення"
+  // by creation date — drives the status block + KPI + manager "Дата оформлення"
   for (const o of created) {
     const rev = Number(o.grand_total) || 0;
     const bucket = GROUP_BUCKET[o.status_group_id] || 'pending';
     status[bucket].orders += 1;
     status[bucket].revenue += rev;
-    if (bucket !== 'cancelled') {
+    if (bucket !== 'cancelled') { // managers: всё кроме отменённых
       const m = ensure((o.manager && o.manager.full_name) || 'Без менеджера');
       m.created_orders += 1;
       m.created_revenue += rev;
@@ -174,7 +142,7 @@ async function fetchPeriod(monthOffset) {
   const closed = updated.filter(
     (o) => o.closed_at && String(o.closed_at).slice(0, 7) === range.ym && o.status_group_id === 5
   );
-  return { label: range.label, ...aggregateSales(created, closed) };
+  return { label: range.label, ...aggregate(created, closed) };
 }
 
 async function fetchSales() {
@@ -188,84 +156,28 @@ async function fetchSales() {
   };
 }
 
-let cache = null;
-let inflight = null;
-let salesCache = null;
-let salesInflight = null;
-const SALES_CACHE_TTL_MS = 300_000;
-
-async function fetchStocks() {
-  const t0 = Date.now();
-  const offers = await paginateAll('/offers', { include: 'product' });
-  const active = offers.filter((o) => !o.is_archived); // hide archived variants
-  return {
-    updated_at: new Date().toISOString(),
-    count: active.length,
-    archived_hidden: offers.length - active.length,
-    took_ms: Date.now() - t0,
-    items: active.map(mapOffer),
-  };
-}
-
-app.get('/api/stocks', async (req, res) => {
-  res.set('Cache-Control', 'no-store');
-  const now = Date.now();
-  const force = req.query.fresh === '1';
-
-  if (!force && cache && now - cache.ts < CACHE_TTL_MS) {
-    return res.json({ ...cache.payload, cached: true, age_ms: now - cache.ts });
+export default async function handler(req, res) {
+  if (!API_KEY) {
+    res.status(500).json({ error: 'KEYCRM_API_KEY not set in env' });
+    return;
   }
 
+  const force = req.query?.fresh === '1';
+  res.setHeader(
+    'Cache-Control',
+    force ? 'no-store' : 'public, s-maxage=300, stale-while-revalidate=600'
+  );
+
   try {
-    if (!inflight) {
-      inflight = fetchStocks().finally(() => { inflight = null; });
-    }
-    const payload = await inflight;
-    cache = { ts: Date.now(), payload };
-    res.json(payload);
+    const payload = await fetchSales();
+    res.status(200).json(payload);
   } catch (e) {
     const status = e.status || (e.name === 'TimeoutError' ? 504 : 500);
     let hint = '';
-    if (status === 401) hint = ' — check KEYCRM_API_KEY in .env';
-    else if (status === 429) hint = ' — KeyCRM API rate limit exceeded (60 req/min)';
-    else if (status === 504) hint = ' — request to KeyCRM timed out';
-    console.error(`[/api/stocks] ${status}: ${e.message}`);
-    res.status(status).json({ error: `${e.message}${hint}` });
-  }
-});
-
-app.get('/api/sales', async (req, res) => {
-  res.set('Cache-Control', 'no-store');
-  const now = Date.now();
-  const force = req.query.fresh === '1';
-
-  if (!force && salesCache && now - salesCache.ts < SALES_CACHE_TTL_MS) {
-    return res.json({ ...salesCache.payload, cached: true, age_ms: now - salesCache.ts });
-  }
-
-  try {
-    if (!salesInflight) {
-      salesInflight = fetchSales().finally(() => { salesInflight = null; });
-    }
-    const payload = await salesInflight;
-    salesCache = { ts: Date.now(), payload };
-    res.json(payload);
-  } catch (e) {
-    const status = e.status || (e.name === 'TimeoutError' ? 504 : 500);
-    let hint = '';
-    if (status === 401) hint = ' — check KEYCRM_API_KEY in .env';
+    if (status === 401) hint = ' — check KEYCRM_API_KEY';
     else if (status === 429) hint = ' — KeyCRM API rate limit exceeded (60 req/min)';
     else if (status === 504) hint = ' — request to KeyCRM timed out';
     console.error(`[/api/sales] ${status}: ${e.message}`);
     res.status(status).json({ error: `${e.message}${hint}` });
   }
-});
-
-app.use(express.static(path.join(__dirname, 'public'), {
-  maxAge: '1h',
-  etag: true,
-}));
-
-app.listen(PORT, () => {
-  console.log(`KeyCRM stocks dashboard → http://localhost:${PORT}`);
-});
+}
