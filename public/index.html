@@ -513,8 +513,7 @@
   </div>
 
   <div id="legend">
-    <span><i class="dot-green"></i>В наличии (5+)</span>
-    <span><i class="dot-yellow"></i>Заканчивается (1–4)</span>
+    <span><i class="dot-green"></i>В наличии</span>
     <span><i class="dot-red"></i>Нет в наличии</span>
   </div>
 
@@ -606,12 +605,8 @@
   let staleTimer = null;
   const selected = new Set();
 
-  const YELLOW_MAX = 4;
-
   function statusOf(available) {
-    if (available <= 0) return 'red';
-    if (available <= YELLOW_MAX) return 'yellow';
-    return 'green';
+    return available <= 0 ? 'red' : 'green';
   }
 
   function escape(s) {
