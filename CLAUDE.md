@@ -28,17 +28,26 @@ keycrm-stocks/
 ├── .env.example        # Template, no secrets
 ├── .gitignore
 ├── package.json
-├── server.js           # Local dev: Express + KeyCRM proxy (stocks + sales)
+├── server.js           # Local dev: Express + KeyCRM proxy (stocks + sales + geo)
+├── lib/
+│   ├── geo.js          # Shared geography helpers (region label map, bucketing) — CJS
+│   └── auth.js         # Role-aware auth: signed surf_auth cookie, roleFromCookie/isAdmin — CJS
 ├── api/
 │   ├── stocks.js       # Vercel serverless function — stocks (prod)
-│   └── sales.js        # Vercel serverless function — sales stats (prod)
+│   ├── sales.js        # Vercel serverless function — sales stats (prod)
+│   ├── geo.js          # Vercel serverless function — geography (prod, admin-only)
+│   └── role.js         # Vercel serverless function — { role, admin } from cookie (prod)
+├── scripts/
+│   └── geo-backfill.js # One-time/periodic full-history geo snapshot generator
+├── data/
+│   └── geo-snapshot.json # Per-month region aggregates (committed; read by geo endpoint)
 ├── middleware.js       # Vercel edge Basic Auth (prod)
 ├── vercel.json         # Vercel config
 └── public/
-    └── index.html      # UI: tabs (Остатки + Продажи), table, sales dashboard
+    └── index.html      # UI: tabs (Остатки + Продажи + География), table, dashboards
 ```
 
-UI has two tabs: **Остатки** (stocks table) and **Продажи** (sales stats: KPI cards, status breakdown, per-manager breakdown). Each tab has its own refresh button + localStorage cache.
+UI has three tabs: **Остатки** (stocks table), **Продажи** (sales stats: KPI cards, status breakdown, per-manager breakdown), and **География** (orders by delivery region, bar chart, month dropdown + overall). Each tab has its own refresh button + localStorage cache.
 
 **Data flow (prod, Vercel):**
 
@@ -140,13 +149,51 @@ Headline KPI (revenue, orders, avg check) + status block = **all buckets except 
 
 `/api/sales` returns `{ updated_at, took_ms, current:{label,statuses,managers}, previous:{...} }`. Managers sorted by `created_revenue` desc.
 
+### Geography (`/order` + `shipping`) — geography tab
+
+`GET /order?include=shipping` — orders by delivery region. Used by `/api/geo`.
+
+Verified live:
+- **Region field**: `o.shipping.shipping_address_region` → oblast adjective, Ukrainian (`"Київська"`, `"Львівська"`, `"Закарпатська"`). Well-populated (~1% empty). `lib/geo.js` `REGION_SHORT` maps oblast → short label as on Dmitry's screenshot (`"Київська"→"Київ"`, `"Закарпатська"→"Закарпаття (Ужгород)"`, `"Волинська"→"Луцьк"`, …). Unknown regions fall through to the raw value.
+- **Foreign orders**: no region, only `shipping_address_country` → `COUNTRY_SHORT` (`"Poland"→"Польща"`). Else `"Не указано"`.
+- **Counts exclude cancelled** (`status_group_id===6`) — not real demand, mirrors the sales tab.
+- Each region row carries `orders` (primary, drives bar width) + `revenue` (`grand_total` sum, muted).
+
+**The all-time problem & the snapshot fix.** Total orders ≈ 3800 = 77 pages. The 60 req/min limit makes a full all-time scan impossible inside one serverless request (77 req can't fit in <77s; also blows maxDuration). So:
+
+1. **`scripts/geo-backfill.js`** paginates the WHOLE history ONCE, slowly (sequential, ~1.1s/page → ~54 req/min, ~100s), and writes per-month region aggregates to **`data/geo-snapshot.json`** (committed to the repo).
+2. **`/api/geo`** reads the snapshot (historical months, immutable enough) and re-fetches only **current + previous month live** (~20 req, ~1.7s), overlaying them on top. `lib/geo.buildGeoResponse` merges + computes the **overall** = sum across all months.
+3. To refresh older months: re-run `node scripts/geo-backfill.js`, commit `data/geo-snapshot.json`, redeploy.
+
+⚠️ Past months in the snapshot are frozen at backfill time — only current+previous refresh live. Re-run the backfill periodically. On Vercel the snapshot is bundled into the function via `vercel.json` → `functions["api/geo.js"].includeFiles`.
+
+`/api/geo` returns `{ updated_at, took_ms, snapshot_generated_at, overall:{label,total_orders,total_revenue,regions:[{name,orders,revenue,pct}]}, months:[{ym,label,...,regions}] }`. Regions sorted by `orders` desc. UI: dropdown «Общая» + each month, horizontal bar chart.
+
+`lib/geo.js` is **CommonJS** (single source of truth). `server.js`/backfill `require` it; `api/geo.js` (ESM) uses `import geo from '../lib/geo.js'` (default import of CJS) then destructures.
+
+**GEO is admin-only, gated by the Basic Auth ACCOUNT (role).** There are **two** Basic Auth accounts:
+- **manager** (`AUTH_USER` / `AUTH_PASS`) — normal access, GEO hidden.
+- **admin** (`ADMIN_USER` / `ADMIN_PASS`) — sees the GEO tab + `/api/geo`.
+
+The role is whichever account you typed at the browser's Basic Auth prompt. `middleware.js` (edge) validates either account and sets a signed cookie `surf_auth = HMAC(secret, "v1:<role>")` (base64url, no padding; secret = `AUTH_SECRET` || `AUTH_PASS`). `lib/auth.js` (CJS) re-derives & verifies that SAME token with **Node** crypto — middleware (Web Crypto) and the API (Node crypto) produce identical tokens (verified: HMAC-SHA256, same string, base64url no-pad). Admin is checked first so it wins on credential overlap.
+
+- `GET /api/role` → `{ role, admin }` from the cookie. The UI reveals the GEO tab only when `admin:true`.
+- `GET /api/geo` returns **403** unless the cookie proves admin (checked in both `server.js` and `api/geo.js`). 500 if `ADMIN_USER`/`ADMIN_PASS` unset.
+- UI: GEO tab is `display:none` until `/api/role` says admin. GEO data is **not** cached in `localStorage` (admin-only section). The signed cookie remembers the role for 30 days.
+- ⚠️ Switching manager↔admin needs a fresh Basic Auth login (browsers cache credentials; clear them or use a different browser/profile).
+
+**Local dev** (`npm run dev`) has no edge middleware. If `AUTH_USER`/`AUTH_PASS` are unset in `.env` (the default), `server.js` runs in **open dev mode** → treated as admin, GEO visible. Set the accounts in `.env` to exercise the real role rules locally.
+
 ## Configuration (`.env`)
 
 | Variable | Description | Default |
 |---|---|---|
 | `KEYCRM_API_KEY` | KeyCRM API key | — (required) |
-| `AUTH_USER` | Basic Auth login (prod) | — (required for Vercel) |
-| `AUTH_PASS` | Basic Auth password (prod) | — (required for Vercel) |
+| `AUTH_USER` | Basic Auth login — MANAGER account (prod) | — (required for Vercel) |
+| `AUTH_PASS` | Basic Auth password — manager | — (required for Vercel) |
+| `ADMIN_USER` | Basic Auth login — ADMIN account (reveals GEO) | — (required for GEO) |
+| `ADMIN_PASS` | Basic Auth password — admin | — (required for GEO) |
+| `AUTH_SECRET` | Secret for signing the `surf_auth` role cookie | (falls back to `AUTH_PASS`) |
 | `PORT` | Local server port | 3000 |
 
 ## Security
@@ -155,7 +202,7 @@ Headline KPI (revenue, orders, avg check) + status block = **all buckets except 
 - The KeyCRM key **must never** end up in HTML or client JS — the browser must not see it; everything is proxied through `server.js` (local) or `api/stocks.js` (prod)
 - If the key leaks (in chat, in a screenshot, in logs) — **rotate** it in KeyCRM immediately
 - Local server only listens on `localhost:3000` — not accessible from outside (good)
-- Prod (Vercel) is protected by Basic Auth — single shared login/password for managers
+- Prod (Vercel) is protected by Basic Auth — two accounts: manager (`AUTH_*`) and admin (`ADMIN_*`). GEO is admin-only, enforced server-side on `/api/geo` (not just hidden in the UI)
 
 ## Common tasks
 
@@ -241,13 +288,13 @@ Prod — Vercel (Hobby plan), repo https://github.com/Dmitryfor/surf-key-crm-sto
 
 ```
 /api/stocks.js     — serverless function (Node runtime, maxDuration 10s)
-/middleware.js     — edge Basic Auth (AUTH_USER / AUTH_PASS)
+/middleware.js     — edge Basic Auth, 2 accounts (AUTH_* manager, ADMIN_* admin) → signed role cookie
 /public/index.html — static (frontend, no changes)
 /server.js         — local dev mode (npm run dev)
 /vercel.json       — config
 ```
 
-**Env vars in Vercel UI**: `KEYCRM_API_KEY`, `AUTH_USER`, `AUTH_PASS`.
+**Env vars in Vercel UI**: `KEYCRM_API_KEY`, `AUTH_USER`, `AUTH_PASS` (manager), `ADMIN_USER`, `ADMIN_PASS` (admin) (+ optional `AUTH_SECRET`). Without `ADMIN_USER`/`ADMIN_PASS` GEO returns 500 "not configured".
 
 **CDN cache**: `/api/stocks` returns `Cache-Control: s-maxage=30, stale-while-revalidate=60`. The `?fresh=1` query bypasses the cache.
 

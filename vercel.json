@@ -6,6 +6,10 @@
     },
     "api/sales.js": {
       "maxDuration": 30
+    },
+    "api/geo.js": {
+      "maxDuration": 30,
+      "includeFiles": "data/geo-snapshot.json"
     }
   }
 }

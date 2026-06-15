@@ -320,6 +320,87 @@
   .mgr-line .ml-val .cur { font-size: 11px; font-weight: 600; color: #9ca3af; }
   .mgr-line .ml-val .o { font-size: 12px; font-weight: 500; color: #9ca3af; }
 
+  /* ── Geography ── */
+  .geo-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  select#geo-period {
+    padding: 9px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    background: #fff;
+    cursor: pointer;
+    min-width: 200px;
+  }
+  .geo-summary {
+    font-size: 14px;
+    color: #6b7280;
+  }
+  .geo-summary b { color: #111827; font-variant-numeric: tabular-nums; }
+  .geo-chart {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: 14px 18px;
+  }
+  .geo-row {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 5px 0;
+  }
+  .geo-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .geo-label .geo-val { color: #6b7280; font-weight: 500; }
+  .geo-track {
+    position: relative;
+    background: #f3f4f6;
+    border-radius: 5px;
+    height: 22px;
+    overflow: hidden;
+  }
+  .geo-track i {
+    display: block;
+    height: 100%;
+    border-radius: 5px;
+    min-width: 2px;
+    transition: width 0.3s;
+  }
+  .geo-track .geo-rev {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 11px;
+    color: #9ca3af;
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+  }
+  @media (max-width: 720px) {
+    .geo-row {
+      grid-template-columns: 1fr;
+      gap: 3px;
+      padding: 8px 0;
+    }
+    .geo-label { text-align: left; white-space: normal; }
+  }
+
   .table {
     background: white;
     border-radius: 8px;
@@ -493,6 +574,7 @@
 <div class="tabs">
   <button class="tab active" data-view="stocks">Остатки</button>
   <button class="tab" data-view="sales">Продажи</button>
+  <button class="tab" data-view="geo" id="tab-geo" style="display:none">GEO</button>
 </div>
 
 <!-- ══════════ STOCKS VIEW ══════════ -->
@@ -585,6 +667,25 @@
     <h2>По менеджерам</h2>
   </div>
   <div class="mgr-list" id="mgr-list"></div>
+</section>
+
+<!-- ══════════ GEOGRAPHY VIEW (admin only) ══════════ -->
+<section id="view-geo" class="view">
+  <header>
+    <button id="geo-refresh">Обновить</button>
+    <span class="meta" style="margin:0">Обновлено: <strong id="geo-updated">—</strong></span>
+  </header>
+
+  <div id="geo-error" style="margin:12px 0;padding:12px 16px;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:6px;display:none"></div>
+
+  <div class="geo-controls">
+    <select id="geo-period"></select>
+    <span class="geo-summary" id="geo-summary">—</span>
+  </div>
+
+  <div class="geo-chart" id="geo-chart">
+    <div class="placeholder">Загрузка…</div>
+  </div>
 </section>
 
 <script>
@@ -993,8 +1094,116 @@
     renderSales();
   });
 
+  /* ═══════════════════ GEOGRAPHY VIEW ═══════════════════ */
+  /* Данные из /api/geo — { updated_at, overall:{...}, months:[{...}] }.
+     period = { ym, label, total_orders, total_revenue, regions:[{name,orders,revenue,pct}] }.
+     Заказы по области доставки (shipping_address_region), без отменённых.
+     "Общая" — сумма всех месяцев из снапшота; текущий+прошлый месяц подтягиваются вживую. */
+  const GEO_COLORS = [
+    '#c0504d', '#4f81bd', '#9bbb59', '#c0883f', '#8064a2',
+    '#4bacc6', '#7f9a3c', '#d99694', '#6b8cbe', '#9e7fb0',
+    '#5aa0a8', '#bf8f3f', '#7eaa55', '#b05a78', '#5b6e9e',
+  ];
+
+  let geoData = null; // { overall, months:[] }
+  let geoSelected = 'all';
+
+  const geoRefreshBtn = $('#geo-refresh');
+  const geoErrorBox = $('#geo-error');
+  const geoPeriodSel = $('#geo-period');
+
+  function showGeoError(msg) {
+    if (!msg) { geoErrorBox.style.display = 'none'; return; }
+    geoErrorBox.textContent = msg;
+    geoErrorBox.style.display = 'block';
+  }
+
+  function geoPeriodByKey(key) {
+    if (!geoData) return null;
+    if (key === 'all') return geoData.overall;
+    return geoData.months.find((m) => m.ym === key) || geoData.overall;
+  }
+
+  function renderGeo() {
+    const p = geoPeriodByKey(geoSelected);
+    const chart = $('#geo-chart');
+    if (!p) { chart.innerHTML = '<div class="placeholder">Нет данных</div>'; $('#geo-summary').textContent = '—'; return; }
+
+    $('#geo-summary').innerHTML =
+      `<b>${p.total_orders}</b> заказов · <b>${fmtMoney(p.total_revenue)}</b> грн`;
+
+    if (!p.regions.length) { chart.innerHTML = '<div class="placeholder">Нет заказов за период</div>'; return; }
+
+    const max = p.regions[0].orders || 1;
+    chart.innerHTML = p.regions.map((r, i) => {
+      const w = Math.max((r.orders / max) * 100, 1.5);
+      const color = GEO_COLORS[i % GEO_COLORS.length];
+      return `
+        <div class="geo-row">
+          <div class="geo-label">${escape(r.name)} <span class="geo-val">${r.orders} (${r.pct}%)</span></div>
+          <div class="geo-track">
+            <i style="width:${w}%;background:${color}"></i>
+            <span class="geo-rev">${fmtMoney(r.revenue)} грн</span>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function buildGeoPeriodOptions() {
+    if (!geoData) return;
+    const opts = [`<option value="all">All</option>`]
+      .concat(geoData.months.map((m) => `<option value="${m.ym}">${escape(m.label)}</option>`));
+    geoPeriodSel.innerHTML = opts.join('');
+    if (!geoPeriodByKey(geoSelected)) geoSelected = 'all';
+    geoPeriodSel.value = geoSelected;
+  }
+
+  function applyGeo(data) {
+    geoData = { overall: data.overall, months: data.months || [] };
+    const upd = data.updated_at ? new Date(data.updated_at).getTime() : null;
+    const updated = upd ? new Date(upd).toLocaleString('ru-RU') : '—';
+    let suffix = '';
+    if (data.cached) suffix = ` (из кеша, ${Math.round((data.age_ms || 0) / 1000)}с)`;
+    else if (typeof data.took_ms === 'number') suffix = ` (${(data.took_ms / 1000).toFixed(1)}с)`;
+    $('#geo-updated').textContent = updated + suffix;
+    buildGeoPeriodOptions();
+    renderGeo();
+  }
+
+  /* Данные GEO не кэшируем в localStorage — это админ-раздел, не оставляем след в браузере. */
+  async function loadGeo({ force = false } = {}) {
+    geoRefreshBtn.disabled = true;
+    geoRefreshBtn.textContent = 'Загружаю...';
+    showGeoError('');
+    try {
+      const res = await fetch(force ? '/api/geo?fresh=1' : '/api/geo');
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      applyGeo(data);
+    } catch (e) {
+      showGeoError('Ошибка: ' + e.message);
+    } finally {
+      geoRefreshBtn.disabled = false;
+      geoRefreshBtn.textContent = 'Обновить';
+    }
+  }
+
+  geoRefreshBtn.addEventListener('click', () => loadGeo({ force: true }));
+  geoPeriodSel.addEventListener('change', () => { geoSelected = geoPeriodSel.value; renderGeo(); });
+
+  /* GEO виден только админу. Роль определяется аккаунтом Basic Auth (через /api/role).
+     Сервер всё равно проверяет роль на /api/geo — это лишь показ/скрытие вкладки. */
+  (async function revealGeoIfAdmin() {
+    try {
+      const res = await fetch('/api/role');
+      const data = await res.json().catch(() => ({}));
+      if (data && data.admin) $('#tab-geo').style.display = '';
+    } catch (_) { /* нет доступа — вкладка остаётся скрытой */ }
+  })();
+
   /* ═══════════════════ TAB SWITCHING ═══════════════════ */
   let salesLoaded = false;
+  let geoLoaded = false;
   document.querySelectorAll('.tab').forEach((tab) => {
     tab.addEventListener('click', () => {
       const view = tab.dataset.view;
@@ -1005,6 +1214,10 @@
         const cachedSales = loadSalesCache();
         if (cachedSales) applySales({ ...cachedSales, cached: true, age_ms: Date.now() - (new Date(cachedSales.updated_at).getTime() || Date.now()) });
         else loadSales(); // первый заход без кеша — тянем
+      }
+      if (view === 'geo' && !geoLoaded) {
+        geoLoaded = true;
+        loadGeo(); // 401 → покажет форму входа, 200 → данные
       }
     });
   });

@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",
+    "geo:backfill": "node scripts/geo-backfill.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {

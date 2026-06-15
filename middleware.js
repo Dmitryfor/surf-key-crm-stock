@@ -29,13 +29,14 @@ function base64url(buf) {
   return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
-// Deterministic token proving the holder once knew the password.
-// Cannot be forged without the secret; rotating AUTH_PASS invalidates old cookies.
-async function makeToken(user, secret) {
+// Deterministic token proving the holder logged in as <role>. Mirrors lib/auth.js roleToken()
+// (HMAC-SHA256 over "v1:<role>", base64url, no padding) so the Node API can verify it.
+// Cannot be forged without the secret; rotating the secret invalidates old cookies.
+async function roleToken(role, secret) {
   const key = await crypto.subtle.importKey(
     'raw', enc(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'],
   );
-  const sig = await crypto.subtle.sign('HMAC', key, enc(`v1:${user}`));
+  const sig = await crypto.subtle.sign('HMAC', key, enc(`v1:${role}`));
   return base64url(sig);
 }
 
@@ -49,30 +50,43 @@ function readCookie(req, name) {
   return '';
 }
 
-export default async function middleware(req) {
-  const user = process.env.AUTH_USER;
-  const pass = process.env.AUTH_PASS;
+function setCookie(token) {
+  return `${COOKIE_NAME}=${token}; Path=/; Max-Age=${COOKIE_MAX_AGE}; HttpOnly; Secure; SameSite=Lax`;
+}
 
-  if (!user || !pass) {
+export default async function middleware(req) {
+  const managerUser = process.env.AUTH_USER;
+  const managerPass = process.env.AUTH_PASS;
+
+  if (!managerUser || !managerPass) {
     return new Response('Auth not configured', { status: 500 });
   }
 
-  const secret = process.env.AUTH_SECRET || pass;
-  const token = await makeToken(user, secret);
+  const adminUser = process.env.ADMIN_USER;
+  const adminPass = process.env.ADMIN_PASS;
+  const adminConfigured = Boolean(adminUser && adminPass);
 
-  // 1) Already logged in once → cookie present, no prompt.
-  if (timingSafeEqual(readCookie(req, COOKIE_NAME), token)) {
-    return; // continue
-  }
+  const secret = process.env.AUTH_SECRET || managerPass;
+  const managerToken = await roleToken('manager', secret);
+  const adminToken = adminConfigured ? await roleToken('admin', secret) : null;
 
-  // 2) First time → validate Basic Auth, then remember via cookie (redirect to self).
+  // 1) Already logged in once → cookie present (either role), no prompt.
+  const cookie = readCookie(req, COOKIE_NAME);
+  if (adminToken && timingSafeEqual(cookie, adminToken)) return; // continue (admin)
+  if (timingSafeEqual(cookie, managerToken)) return; // continue (manager)
+
+  // 2) First time → validate Basic Auth (admin first so it wins on overlap), remember via cookie.
   const header = req.headers.get('authorization') || '';
-  if (timingSafeEqual(header, encodeBasic(user, pass))) {
-    const cookie = `${COOKIE_NAME}=${token}; Path=/; Max-Age=${COOKIE_MAX_AGE}; `
-      + 'HttpOnly; Secure; SameSite=Lax';
+  if (adminConfigured && timingSafeEqual(header, encodeBasic(adminUser, adminPass))) {
     return new Response(null, {
       status: 302,
-      headers: { Location: req.url, 'Set-Cookie': cookie, 'Cache-Control': 'no-store' },
+      headers: { Location: req.url, 'Set-Cookie': setCookie(adminToken), 'Cache-Control': 'no-store' },
+    });
+  }
+  if (timingSafeEqual(header, encodeBasic(managerUser, managerPass))) {
+    return new Response(null, {
+      status: 302,
+      headers: { Location: req.url, 'Set-Cookie': setCookie(managerToken), 'Cache-Control': 'no-store' },
     });
   }
 
