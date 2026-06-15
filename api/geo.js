@@ -1,8 +1,7 @@
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
 import geo from '../lib/geo.js';
 import auth from '../lib/auth.js';
+// Bundled into the function by esbuild (no runtime fs / import.meta — those break the CJS bundle on Vercel).
+import snapshot from '../data/geo-snapshot.json';
 
 const { bucketOrders, buildGeoResponse } = geo;
 
@@ -12,9 +11,6 @@ const PAGE_LIMIT = 50;
 const CONCURRENCY = 4;
 const BATCH_DELAY_MS = 200;
 const REQUEST_TIMEOUT_MS = 15_000;
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const SNAPSHOT_PATH = join(__dirname, '..', 'data', 'geo-snapshot.json');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -77,11 +73,7 @@ function monthRange(monthOffset) {
 }
 
 function loadSnapshot() {
-  try {
-    return JSON.parse(readFileSync(SNAPSHOT_PATH, 'utf8'));
-  } catch {
-    return { months: {} };
-  }
+  return snapshot && snapshot.months ? snapshot : { months: {} };
 }
 
 // Re-fetch current + previous month live, bucket by region.
@@ -101,13 +93,13 @@ async function fetchLiveMonths() {
 
 async function fetchGeo() {
   const t0 = Date.now();
-  const snapshot = loadSnapshot();
+  const snap = loadSnapshot();
   const live = await fetchLiveMonths();
-  const { overall, months } = buildGeoResponse(snapshot.months || {}, live);
+  const { overall, months } = buildGeoResponse(snap.months || {}, live);
   return {
     updated_at: new Date().toISOString(),
     took_ms: Date.now() - t0,
-    snapshot_generated_at: snapshot.generated_at || null,
+    snapshot_generated_at: snap.generated_at || null,
     overall,
     months,
   };
