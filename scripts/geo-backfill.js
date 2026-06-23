@@ -47,7 +47,7 @@ async function keycrmGet(params) {
 
 function addOrders(months, orders) {
   for (const o of orders) {
-    if (o.status_group_id === 6) continue; // exclude cancelled
+    // Count ALL orders incl. cancelled — matches KeyCRM's geography report.
     const ym = String(o.created_at).slice(0, 7); // "2026-06"
     if (!/^\d{4}-\d{2}$/.test(ym)) continue;
     if (!months[ym]) months[ym] = { label: ymLabel(ym), regions: {} };

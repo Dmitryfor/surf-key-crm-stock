@@ -156,7 +156,7 @@ Headline KPI (revenue, orders, avg check) + status block = **all buckets except 
 Verified live:
 - **Region field**: `o.shipping.shipping_address_region` → oblast adjective, Ukrainian (`"Київська"`, `"Львівська"`, `"Закарпатська"`). Well-populated (~1% empty). `lib/geo.js` `REGION_SHORT` maps oblast → short label as on Dmitry's screenshot (`"Київська"→"Київ"`, `"Закарпатська"→"Закарпаття (Ужгород)"`, `"Волинська"→"Луцьк"`, …). Unknown regions fall through to the raw value.
 - **Foreign orders**: no region, only `shipping_address_country` → `COUNTRY_SHORT` (`"Poland"→"Польща"`). Else `"Не указано"`.
-- **Counts exclude cancelled** (`status_group_id===6`) — not real demand, mirrors the sales tab.
+- **Counts include ALL orders, incl. cancelled** — matches KeyCRM's own "Замовлення по регіонах" report (Dmitry's source of truth). The sales tab still excludes cancelled (that's about revenue; this is about order geography). Verified 2026-06-23: excluding cancelled made regions read LOWER than KeyCRM (e.g. Вінниця 154 vs KeyCRM 165); KeyCRM counts cancelled too.
 - Each region row carries `orders` (primary, drives bar width) + `revenue` (`grand_total` sum, muted).
 
 **The all-time problem & the snapshot fix.** Total orders ≈ 3800 = 77 pages. The 60 req/min limit makes a full all-time scan impossible inside one serverless request (77 req can't fit in <77s; also blows maxDuration). So:
