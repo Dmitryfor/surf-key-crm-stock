@@ -1130,7 +1130,7 @@
     if (!p) { chart.innerHTML = '<div class="placeholder">Нет данных</div>'; $('#geo-summary').textContent = '—'; return; }
 
     $('#geo-summary').innerHTML =
-      `<b>${p.total_orders}</b> заказов · <b>${fmtMoney(p.total_revenue)}</b> грн`;
+      `<b>${p.total_orders}</b> заказов · <b>${p.total_cancelled || 0}</b> отменённых · <b>${fmtMoney(p.total_revenue)}</b> грн`;
 
     if (!p.regions.length) { chart.innerHTML = '<div class="placeholder">Нет заказов за период</div>'; return; }
 
@@ -1143,7 +1143,7 @@
           <div class="geo-label">${escape(r.name)} <span class="geo-val">${r.orders} (${r.pct}%)</span></div>
           <div class="geo-track">
             <i style="width:${w}%;background:${color}"></i>
-            <span class="geo-rev">${fmtMoney(r.revenue)} грн</span>
+            <span class="geo-rev">${r.cancelled ? `отм. ${r.cancelled} · ` : ''}${fmtMoney(r.revenue)} грн</span>
           </div>
         </div>`;
     }).join('');

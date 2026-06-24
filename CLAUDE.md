@@ -157,7 +157,7 @@ Verified live:
 - **Region field**: `o.shipping.shipping_address_region` → oblast adjective, Ukrainian (`"Київська"`, `"Львівська"`, `"Закарпатська"`). Well-populated (~1% empty). `lib/geo.js` `REGION_SHORT` maps oblast → short label as on Dmitry's screenshot (`"Київська"→"Київ"`, `"Закарпатська"→"Закарпаття (Ужгород)"`, `"Волинська"→"Луцьк"`, …). Unknown regions fall through to the raw value.
 - **Foreign orders**: no region, only `shipping_address_country` → `COUNTRY_SHORT` (`"Poland"→"Польща"`). Else `"Не указано"`.
 - **Counts include ALL orders, incl. cancelled** — matches KeyCRM's own "Замовлення по регіонах" report (Dmitry's source of truth). The sales tab still excludes cancelled (that's about revenue; this is about order geography). Verified 2026-06-23: excluding cancelled made regions read LOWER than KeyCRM (e.g. Вінниця 154 vs KeyCRM 165); KeyCRM counts cancelled too.
-- Each region row carries `orders` (primary, drives bar width) + `revenue` (`grand_total` sum, muted).
+- Each region row carries `orders` (total, drives bar width), `cancelled` (how many of those are cancelled, shown muted), and `revenue` (`grand_total` sum, muted). Period header shows total orders + total cancelled + revenue.
 
 **The all-time problem & the snapshot fix.** Total orders ≈ 3800 = 77 pages. The 60 req/min limit makes a full all-time scan impossible inside one serverless request (77 req can't fit in <77s; also blows maxDuration). So:
 
@@ -167,7 +167,7 @@ Verified live:
 
 ⚠️ Past months in the snapshot are frozen at backfill time — only current+previous refresh live. Re-run the backfill periodically. On Vercel the snapshot is bundled into the function via `vercel.json` → `functions["api/geo.js"].includeFiles`.
 
-`/api/geo` returns `{ updated_at, took_ms, snapshot_generated_at, overall:{label,total_orders,total_revenue,regions:[{name,orders,revenue,pct}]}, months:[{ym,label,...,regions}] }`. Regions sorted by `orders` desc. UI: dropdown «Общая» + each month, horizontal bar chart.
+`/api/geo` returns `{ updated_at, took_ms, snapshot_generated_at, overall:{label,total_orders,total_cancelled,total_revenue,regions:[{name,orders,cancelled,revenue,pct}]}, months:[{ym,label,...,regions}] }`. Regions sorted by `orders` desc. UI: dropdown «Общая» + each month, horizontal bar chart.
 
 `lib/geo.js` is **CommonJS** (single source of truth). `server.js`/backfill `require` it; `api/geo.js` (ESM) uses `import geo from '../lib/geo.js'` (default import of CJS) then destructures.
 

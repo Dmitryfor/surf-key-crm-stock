@@ -54,9 +54,10 @@ function addOrders(months, orders) {
     const label = geoLabelOf(o);
     const rev = Number(o.grand_total) || 0;
     const r = months[ym].regions;
-    if (!r[label]) r[label] = { orders: 0, revenue: 0 };
+    if (!r[label]) r[label] = { orders: 0, revenue: 0, cancelled: 0 };
     r[label].orders += 1;
     r[label].revenue += rev;
+    if (o.status_group_id === 6) r[label].cancelled += 1;
   }
 }
 

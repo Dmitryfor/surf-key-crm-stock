@@ -1,106 +1,130 @@
 {
-  "generated_at": "2026-06-23T20:34:55.736Z",
-  "source_total": 3929,
+  "generated_at": "2026-06-24T10:25:04.378Z",
+  "source_total": 3930,
   "pages": 79,
   "months": {
     "2026-06": {
       "label": "Июнь 2026",
       "regions": {
+        "Харків": {
+          "orders": 17,
+          "revenue": 28343,
+          "cancelled": 2
+        },
         "Одеса": {
           "orders": 27,
-          "revenue": 46280
+          "revenue": 46280,
+          "cancelled": 3
         },
         "Київ": {
           "orders": 72,
-          "revenue": 122750
+          "revenue": 122750,
+          "cancelled": 10
         },
         "Львів": {
           "orders": 29,
-          "revenue": 46130
+          "revenue": 46130,
+          "cancelled": 5
         },
         "Не указано": {
           "orders": 3,
-          "revenue": 8000
+          "revenue": 8000,
+          "cancelled": 0
         },
         "Кропивницький": {
           "orders": 5,
-          "revenue": 7740
+          "revenue": 7740,
+          "cancelled": 1
         },
         "Хмельницький": {
           "orders": 8,
-          "revenue": 14250
+          "revenue": 14250,
+          "cancelled": 2
         },
         "Тернопіль": {
           "orders": 12,
-          "revenue": 19400
+          "revenue": 19400,
+          "cancelled": 1
         },
         "Вінниця": {
           "orders": 22,
-          "revenue": 34550
+          "revenue": 34550,
+          "cancelled": 2
         },
         "Закарпаття (Ужгород)": {
           "orders": 31,
-          "revenue": 55410
-        },
-        "Харків": {
-          "orders": 16,
-          "revenue": 27893
+          "revenue": 55410,
+          "cancelled": 3
         },
         "Суми": {
           "orders": 5,
-          "revenue": 7900
+          "revenue": 7900,
+          "cancelled": 0
         },
         "Полтава": {
           "orders": 9,
-          "revenue": 12200
+          "revenue": 12200,
+          "cancelled": 1
         },
         "Дніпро": {
           "orders": 21,
-          "revenue": 36050
+          "revenue": 36050,
+          "cancelled": 1
         },
         "Миколаїв": {
           "orders": 6,
-          "revenue": 12800
+          "revenue": 12800,
+          "cancelled": 2
         },
         "Луцьк": {
           "orders": 18,
-          "revenue": 27708
+          "revenue": 27708,
+          "cancelled": 4
         },
         "Івано-Франківськ": {
           "orders": 13,
-          "revenue": 20950
+          "revenue": 20950,
+          "cancelled": 1
         },
         "Рівне": {
           "orders": 14,
-          "revenue": 24800
+          "revenue": 24800,
+          "cancelled": 2
         },
         "Черкаси": {
           "orders": 8,
-          "revenue": 14100
+          "revenue": 14100,
+          "cancelled": 2
         },
         "Херсон": {
           "orders": 1,
-          "revenue": 1500
+          "revenue": 1500,
+          "cancelled": 0
         },
         "Чернівці": {
           "orders": 10,
-          "revenue": 18150
+          "revenue": 18150,
+          "cancelled": 1
         },
         "Чернігів": {
           "orders": 5,
-          "revenue": 7550
+          "revenue": 7550,
+          "cancelled": 3
         },
         "Житомир": {
           "orders": 6,
-          "revenue": 9300
+          "revenue": 9300,
+          "cancelled": 1
         },
         "Україна (інше)": {
           "orders": 1,
-          "revenue": 700
+          "revenue": 700,
+          "cancelled": 0
         },
         "Запоріжжя": {
           "orders": 2,
-          "revenue": 3150
+          "revenue": 3150,
+          "cancelled": 0
         }
       }
     },
@@ -109,95 +133,118 @@
       "regions": {
         "Київ": {
           "orders": 102,
-          "revenue": 175130
+          "revenue": 175130,
+          "cancelled": 25
         },
         "Закарпаття (Ужгород)": {
           "orders": 34,
-          "revenue": 55500
+          "revenue": 55500,
+          "cancelled": 6
         },
         "Луцьк": {
           "orders": 15,
-          "revenue": 26760
+          "revenue": 26760,
+          "cancelled": 2
         },
         "Дніпро": {
           "orders": 21,
-          "revenue": 31130
+          "revenue": 31130,
+          "cancelled": 3
         },
         "Тернопіль": {
           "orders": 22,
-          "revenue": 43150
+          "revenue": 43150,
+          "cancelled": 4
         },
         "Полтава": {
           "orders": 17,
-          "revenue": 26390
+          "revenue": 26390,
+          "cancelled": 5
         },
         "Вінниця": {
           "orders": 27,
-          "revenue": 48670
+          "revenue": 48670,
+          "cancelled": 5
         },
         "Запоріжжя": {
           "orders": 9,
-          "revenue": 17600
+          "revenue": 17600,
+          "cancelled": 1
         },
         "Івано-Франківськ": {
           "orders": 19,
-          "revenue": 29630
+          "revenue": 29630,
+          "cancelled": 2
         },
         "Чернівці": {
           "orders": 14,
-          "revenue": 26700
+          "revenue": 26700,
+          "cancelled": 2
         },
         "Одеса": {
           "orders": 33,
-          "revenue": 56700
+          "revenue": 56700,
+          "cancelled": 4
         },
         "Львів": {
           "orders": 66,
-          "revenue": 109170
+          "revenue": 109170,
+          "cancelled": 16
         },
         "Кропивницький": {
           "orders": 7,
-          "revenue": 11800
+          "revenue": 11800,
+          "cancelled": 1
         },
         "Суми": {
           "orders": 11,
-          "revenue": 17100
+          "revenue": 17100,
+          "cancelled": 2
         },
         "Миколаїв": {
           "orders": 10,
-          "revenue": 15300
+          "revenue": 15300,
+          "cancelled": 0
         },
         "Рівне": {
           "orders": 31,
-          "revenue": 51172
+          "revenue": 51172,
+          "cancelled": 6
         },
         "Не указано": {
           "orders": 5,
-          "revenue": 10350
+          "revenue": 10350,
+          "cancelled": 1
         },
         "Житомир": {
           "orders": 10,
-          "revenue": 14150
+          "revenue": 14150,
+          "cancelled": 4
         },
         "Хмельницький": {
           "orders": 15,
-          "revenue": 25113
+          "revenue": 25113,
+          "cancelled": 2
         },
         "Харків": {
           "orders": 17,
-          "revenue": 22750
+          "revenue": 22750,
+          "cancelled": 7
         },
         "Черкаси": {
           "orders": 7,
-          "revenue": 11250
+          "revenue": 11250,
+          "cancelled": 1
         },
         "Херсон": {
           "orders": 1,
-          "revenue": 1800
+          "revenue": 1800,
+          "cancelled": 0
         },
         "Чернігів": {
           "orders": 7,
-          "revenue": 9700
+          "revenue": 9700,
+          "cancelled": 1
         }
       }
     },
@@ -206,91 +253,113 @@
       "regions": {
         "Рівне": {
           "orders": 20,
-          "revenue": 37720
+          "revenue": 37720,
+          "cancelled": 1
         },
         "Закарпаття (Ужгород)": {
           "orders": 18,
-          "revenue": 36000
+          "revenue": 36000,
+          "cancelled": 4
         },
         "Полтава": {
           "orders": 5,
-          "revenue": 8650
+          "revenue": 8650,
+          "cancelled": 0
         },
         "Івано-Франківськ": {
           "orders": 13,
-          "revenue": 23950
+          "revenue": 23950,
+          "cancelled": 3
         },
         "Київ": {
           "orders": 55,
-          "revenue": 96635
+          "revenue": 96635,
+          "cancelled": 9
         },
         "Луцьк": {
           "orders": 18,
-          "revenue": 31318
+          "revenue": 31318,
+          "cancelled": 2
         },
         "Одеса": {
           "orders": 15,
-          "revenue": 27900
+          "revenue": 27900,
+          "cancelled": 3
         },
         "Дніпро": {
           "orders": 10,
-          "revenue": 17635
+          "revenue": 17635,
+          "cancelled": 2
         },
         "Тернопіль": {
           "orders": 13,
-          "revenue": 22650
+          "revenue": 22650,
+          "cancelled": 1
         },
         "Львів": {
           "orders": 41,
-          "revenue": 74750
+          "revenue": 74750,
+          "cancelled": 5
         },
         "Кропивницький": {
           "orders": 5,
-          "revenue": 8350
+          "revenue": 8350,
+          "cancelled": 0
         },
         "Вінниця": {
           "orders": 16,
-          "revenue": 32690
+          "revenue": 32690,
+          "cancelled": 2
         },
         "Черкаси": {
           "orders": 3,
-          "revenue": 4950
+          "revenue": 4950,
+          "cancelled": 2
         },
         "Хмельницький": {
           "orders": 20,
-          "revenue": 34113
+          "revenue": 34113,
+          "cancelled": 3
         },
         "Миколаїв": {
           "orders": 4,
-          "revenue": 10750
+          "revenue": 10750,
+          "cancelled": 0
         },
         "Житомир": {
           "orders": 4,
-          "revenue": 5900
+          "revenue": 5900,
+          "cancelled": 1
         },
         "Чернівці": {
           "orders": 10,
-          "revenue": 15750
+          "revenue": 15750,
+          "cancelled": 2
         },
         "Запоріжжя": {
           "orders": 2,
-          "revenue": 5050
+          "revenue": 5050,
+          "cancelled": 0
         },
         "Чернігів": {
           "orders": 5,
-          "revenue": 9050
+          "revenue": 9050,
+          "cancelled": 1
         },
         "Суми": {
           "orders": 2,
-          "revenue": 4850
+          "revenue": 4850,
+          "cancelled": 2
         },
         "Не указано": {
           "orders": 5,
-          "revenue": 9565
+          "revenue": 9565,
+          "cancelled": 1
         },
         "Харків": {
           "orders": 5,
-          "revenue": 10150
+          "revenue": 10150,
+          "cancelled": 0
         }
       }
     },
@@ -299,87 +368,108 @@
       "regions": {
         "Львів": {
           "orders": 30,
-          "revenue": 64400
+          "revenue": 64400,
+          "cancelled": 1
         },
         "Хмельницький": {
           "orders": 11,
-          "revenue": 21375
+          "revenue": 21375,
+          "cancelled": 2
         },
         "Житомир": {
           "orders": 15,
-          "revenue": 30310
+          "revenue": 30310,
+          "cancelled": 1
         },
         "Київ": {
           "orders": 80,
-          "revenue": 168867
+          "revenue": 168867,
+          "cancelled": 19
         },
         "Вінниця": {
           "orders": 19,
-          "revenue": 40605
+          "revenue": 40605,
+          "cancelled": 0
         },
         "Тернопіль": {
           "orders": 13,
-          "revenue": 27980
+          "revenue": 27980,
+          "cancelled": 2
         },
         "Івано-Франківськ": {
           "orders": 15,
-          "revenue": 34600
+          "revenue": 34600,
+          "cancelled": 3
         },
         "Чернівці": {
           "orders": 14,
-          "revenue": 32350
+          "revenue": 32350,
+          "cancelled": 1
         },
         "Одеса": {
           "orders": 17,
-          "revenue": 32885
+          "revenue": 32885,
+          "cancelled": 0
         },
         "Закарпаття (Ужгород)": {
           "orders": 9,
-          "revenue": 16650
+          "revenue": 16650,
+          "cancelled": 0
         },
         "Дніпро": {
           "orders": 22,
-          "revenue": 47050
+          "revenue": 47050,
+          "cancelled": 2
         },
         "Рівне": {
           "orders": 17,
-          "revenue": 32360
+          "revenue": 32360,
+          "cancelled": 1
         },
         "Суми": {
           "orders": 10,
-          "revenue": 22950
+          "revenue": 22950,
+          "cancelled": 2
         },
         "Луцьк": {
           "orders": 13,
-          "revenue": 26625
+          "revenue": 26625,
+          "cancelled": 0
         },
         "Черкаси": {
           "orders": 10,
-          "revenue": 21450
+          "revenue": 21450,
+          "cancelled": 2
         },
         "Харків": {
           "orders": 14,
-          "revenue": 31900
+          "revenue": 31900,
+          "cancelled": 1
         },
         "Полтава": {
           "orders": 11,
-          "revenue": 21850
+          "revenue": 21850,
+          "cancelled": 2
         },
         "Миколаїв": {
           "orders": 5,
-          "revenue": 10800
+          "revenue": 10800,
+          "cancelled": 2
         },
         "Запоріжжя": {
           "orders": 4,
-          "revenue": 7600
+          "revenue": 7600,
+          "cancelled": 1
         },
         "Кропивницький": {
           "orders": 3,
-          "revenue": 5950
+          "revenue": 5950,
+          "cancelled": 1
         },
         "Чернігів": {
           "orders": 6,
-          "revenue": 12400
+          "revenue": 12400,
+          "cancelled": 1
         }
       }
     },
@@ -388,91 +478,113 @@
       "regions": {
         "Київ": {
           "orders": 51,
-          "revenue": 104180
+          "revenue": 104180,
+          "cancelled": 10
         },
         "Чернівці": {
           "orders": 5,
-          "revenue": 10350
+          "revenue": 10350,
+          "cancelled": 1
         },
         "Житомир": {
           "orders": 4,
-          "revenue": 7330
+          "revenue": 7330,
+          "cancelled": 1
         },
         "Луцьк": {
           "orders": 11,
-          "revenue": 24270
+          "revenue": 24270,
+          "cancelled": 2
         },
         "Запоріжжя": {
           "orders": 4,
-          "revenue": 6750
+          "revenue": 6750,
+          "cancelled": 1
         },
         "Харків": {
           "orders": 9,
-          "revenue": 14558
+          "revenue": 14558,
+          "cancelled": 0
         },
         "Полтава": {
           "orders": 7,
-          "revenue": 15850
+          "revenue": 15850,
+          "cancelled": 0
         },
         "Вінниця": {
           "orders": 5,
-          "revenue": 10550
+          "revenue": 10550,
+          "cancelled": 0
         },
         "Івано-Франківськ": {
           "orders": 12,
-          "revenue": 24730
+          "revenue": 24730,
+          "cancelled": 1
         },
         "Львів": {
           "orders": 19,
-          "revenue": 45915
+          "revenue": 45915,
+          "cancelled": 5
         },
         "Дніпро": {
           "orders": 16,
-          "revenue": 33898
+          "revenue": 33898,
+          "cancelled": 2
         },
         "Не указано": {
           "orders": 1,
-          "revenue": 2650
+          "revenue": 2650,
+          "cancelled": 1
         },
         "Суми": {
           "orders": 5,
-          "revenue": 11850
+          "revenue": 11850,
+          "cancelled": 0
         },
         "Закарпаття (Ужгород)": {
           "orders": 9,
-          "revenue": 19950
+          "revenue": 19950,
+          "cancelled": 3
         },
         "Черкаси": {
           "orders": 8,
-          "revenue": 17350
+          "revenue": 17350,
+          "cancelled": 2
         },
         "Хмельницький": {
           "orders": 6,
-          "revenue": 14800
+          "revenue": 14800,
+          "cancelled": 0
         },
         "Одеса": {
           "orders": 9,
-          "revenue": 20900
+          "revenue": 20900,
+          "cancelled": 1
         },
         "Рівне": {
           "orders": 9,
-          "revenue": 19350
+          "revenue": 19350,
+          "cancelled": 0
         },
         "Миколаїв": {
           "orders": 1,
-          "revenue": 1550
+          "revenue": 1550,
+          "cancelled": 0
         },
         "Тернопіль": {
           "orders": 5,
-          "revenue": 9300
+          "revenue": 9300,
+          "cancelled": 0
         },
         "Кропивницький": {
           "orders": 2,
-          "revenue": 2080
+          "revenue": 2080,
+          "cancelled": 0
         },
         "Чернігів": {
           "orders": 2,
-          "revenue": 5300
+          "revenue": 5300,
+          "cancelled": 0
         }
       }
     },
@@ -481,87 +593,108 @@
       "regions": {
         "Хмельницький": {
           "orders": 8,
-          "revenue": 14800
+          "revenue": 14800,
+          "cancelled": 1
         },
         "Одеса": {
           "orders": 18,
-          "revenue": 39688
+          "revenue": 39688,
+          "cancelled": 3
         },
         "Суми": {
           "orders": 4,
-          "revenue": 8500
+          "revenue": 8500,
+          "cancelled": 0
         },
         "Київ": {
           "orders": 47,
-          "revenue": 98400
+          "revenue": 98400,
+          "cancelled": 14
         },
         "Рівне": {
           "orders": 18,
-          "revenue": 33700
+          "revenue": 33700,
+          "cancelled": 1
         },
         "Івано-Франківськ": {
           "orders": 9,
-          "revenue": 16658
+          "revenue": 16658,
+          "cancelled": 1
         },
         "Львів": {
           "orders": 15,
-          "revenue": 26223
+          "revenue": 26223,
+          "cancelled": 1
         },
         "Закарпаття (Ужгород)": {
           "orders": 14,
-          "revenue": 31930
+          "revenue": 31930,
+          "cancelled": 4
         },
         "Миколаїв": {
           "orders": 6,
-          "revenue": 11300
+          "revenue": 11300,
+          "cancelled": 1
         },
         "Луцьк": {
           "orders": 10,
-          "revenue": 18250
+          "revenue": 18250,
+          "cancelled": 0
         },
         "Чернігів": {
           "orders": 3,
-          "revenue": 4800
+          "revenue": 4800,
+          "cancelled": 0
         },
         "Харків": {
           "orders": 6,
-          "revenue": 9965
+          "revenue": 9965,
+          "cancelled": 0
         },
         "Черкаси": {
           "orders": 6,
-          "revenue": 11850
+          "revenue": 11850,
+          "cancelled": 2
         },
         "Вінниця": {
           "orders": 5,
-          "revenue": 9150
+          "revenue": 9150,
+          "cancelled": 1
         },
         "Полтава": {
           "orders": 3,
-          "revenue": 4725
+          "revenue": 4725,
+          "cancelled": 0
         },
         "Чернівці": {
           "orders": 9,
-          "revenue": 18360
+          "revenue": 18360,
+          "cancelled": 0
         },
         "Житомир": {
           "orders": 8,
-          "revenue": 16800
+          "revenue": 16800,
+          "cancelled": 3
         },
         "Дніпро": {
           "orders": 9,
-          "revenue": 21050
+          "revenue": 21050,
+          "cancelled": 3
         },
         "Тернопіль": {
           "orders": 4,
-          "revenue": 6500
+          "revenue": 6500,
+          "cancelled": 0
         },
         "Кропивницький": {
           "orders": 2,
-          "revenue": 2250
+          "revenue": 2250,
+          "cancelled": 0
         },
         "Запоріжжя": {
           "orders": 2,
-          "revenue": 4000
+          "revenue": 4000,
+          "cancelled": 0
         }
       }
     },
@@ -570,91 +703,113 @@
       "regions": {
         "Харків": {
           "orders": 12,
-          "revenue": 25880
+          "revenue": 25880,
+          "cancelled": 2
         },
         "Рівне": {
           "orders": 37,
-          "revenue": 80893
+          "revenue": 80893,
+          "cancelled": 10
         },
         "Івано-Франківськ": {
           "orders": 14,
-          "revenue": 33800
+          "revenue": 33800,
+          "cancelled": 7
         },
         "Вінниця": {
           "orders": 13,
-          "revenue": 33440
+          "revenue": 33440,
+          "cancelled": 4
         },
         "Тернопіль": {
           "orders": 7,
-          "revenue": 14785
+          "revenue": 14785,
+          "cancelled": 1
         },
         "Чернівці": {
           "orders": 9,
-          "revenue": 17085
+          "revenue": 17085,
+          "cancelled": 1
         },
         "Не указано": {
           "orders": 9,
-          "revenue": 20300
+          "revenue": 20300,
+          "cancelled": 2
         },
         "Хмельницький": {
           "orders": 6,
-          "revenue": 11700
+          "revenue": 11700,
+          "cancelled": 2
         },
         "Луцьк": {
           "orders": 20,
-          "revenue": 43650
+          "revenue": 43650,
+          "cancelled": 6
         },
         "Суми": {
           "orders": 2,
-          "revenue": 5400
+          "revenue": 5400,
+          "cancelled": 1
         },
         "Миколаїв": {
           "orders": 6,
-          "revenue": 11845
+          "revenue": 11845,
+          "cancelled": 0
         },
         "Львів": {
           "orders": 29,
-          "revenue": 69770
+          "revenue": 69770,
+          "cancelled": 10
         },
         "Закарпаття (Ужгород)": {
           "orders": 24,
-          "revenue": 57390
+          "revenue": 57390,
+          "cancelled": 5
         },
         "Київ": {
           "orders": 66,
-          "revenue": 159325
+          "revenue": 159325,
+          "cancelled": 16
         },
         "Кропивницький": {
           "orders": 2,
-          "revenue": 3300
+          "revenue": 3300,
+          "cancelled": 0
         },
         "Запоріжжя": {
           "orders": 5,
-          "revenue": 11325
+          "revenue": 11325,
+          "cancelled": 1
         },
         "Чернігів": {
           "orders": 5,
-          "revenue": 9055
+          "revenue": 9055,
+          "cancelled": 1
         },
         "Житомир": {
           "orders": 4,
-          "revenue": 10150
+          "revenue": 10150,
+          "cancelled": 2
         },
         "Одеса": {
           "orders": 14,
-          "revenue": 31293
+          "revenue": 31293,
+          "cancelled": 2
         },
         "Дніпро": {
           "orders": 20,
-          "revenue": 46665
+          "revenue": 46665,
+          "cancelled": 8
         },
         "Полтава": {
           "orders": 7,
-          "revenue": 14970
+          "revenue": 14970,
+          "cancelled": 4
         },
         "Черкаси": {
           "orders": 3,
-          "revenue": 5353
+          "revenue": 5353,
+          "cancelled": 0
         }
       }
     },
@@ -663,95 +818,118 @@
       "regions": {
         "Київ": {
           "orders": 54,
-          "revenue": 114623
+          "revenue": 114623,
+          "cancelled": 18
         },
         "Вінниця": {
           "orders": 10,
-          "revenue": 19500
+          "revenue": 19500,
+          "cancelled": 1
         },
         "Рівне": {
           "orders": 24,
-          "revenue": 47260
+          "revenue": 47260,
+          "cancelled": 1
         },
         "Чернівці": {
           "orders": 9,
-          "revenue": 18123
+          "revenue": 18123,
+          "cancelled": 1
         },
         "Дніпро": {
           "orders": 13,
-          "revenue": 28685
+          "revenue": 28685,
+          "cancelled": 3
         },
         "Одеса": {
           "orders": 17,
-          "revenue": 34950
+          "revenue": 34950,
+          "cancelled": 1
         },
         "Хмельницький": {
           "orders": 12,
-          "revenue": 25658
+          "revenue": 25658,
+          "cancelled": 1
         },
         "Львів": {
           "orders": 15,
-          "revenue": 29635
+          "revenue": 29635,
+          "cancelled": 3
         },
         "Івано-Франківськ": {
           "orders": 11,
-          "revenue": 24010
+          "revenue": 24010,
+          "cancelled": 2
         },
         "Закарпаття (Ужгород)": {
           "orders": 13,
-          "revenue": 27508
+          "revenue": 27508,
+          "cancelled": 2
         },
         "Миколаїв": {
           "orders": 5,
-          "revenue": 9400
+          "revenue": 9400,
+          "cancelled": 1
         },
         "Луцьк": {
           "orders": 12,
-          "revenue": 23970
+          "revenue": 23970,
+          "cancelled": 1
         },
         "Харків": {
           "orders": 7,
-          "revenue": 15010
+          "revenue": 15010,
+          "cancelled": 1
         },
         "Тернопіль": {
           "orders": 4,
-          "revenue": 7450
+          "revenue": 7450,
+          "cancelled": 1
         },
         "Запоріжжя": {
           "orders": 3,
-          "revenue": 8600
+          "revenue": 8600,
+          "cancelled": 1
         },
         "Кропивницький": {
           "orders": 6,
-          "revenue": 13350
+          "revenue": 13350,
+          "cancelled": 2
         },
         "Чернігів": {
           "orders": 3,
-          "revenue": 5700
+          "revenue": 5700,
+          "cancelled": 0
         },
         "Житомир": {
           "orders": 4,
-          "revenue": 8180
+          "revenue": 8180,
+          "cancelled": 1
         },
         "Не указано": {
           "orders": 4,
-          "revenue": 8500
+          "revenue": 8500,
+          "cancelled": 0
         },
         "Україна (інше)": {
           "orders": 1,
-          "revenue": 2050
+          "revenue": 2050,
+          "cancelled": 0
         },
         "Полтава": {
           "orders": 4,
-          "revenue": 8700
+          "revenue": 8700,
+          "cancelled": 0
         },
         "Суми": {
           "orders": 2,
-          "revenue": 3600
+          "revenue": 3600,
+          "cancelled": 1
         },
         "Черкаси": {
           "orders": 6,
-          "revenue": 11400
+          "revenue": 11400,
+          "cancelled": 3
         }
       }
     },
@@ -760,91 +938,113 @@
       "regions": {
         "Чернігів": {
           "orders": 9,
-          "revenue": 18500
+          "revenue": 18500,
+          "cancelled": 1
         },
         "Хмельницький": {
           "orders": 16,
-          "revenue": 28912
+          "revenue": 28912,
+          "cancelled": 0
         },
         "Київ": {
           "orders": 84,
-          "revenue": 162680
+          "revenue": 162680,
+          "cancelled": 15
         },
         "Суми": {
           "orders": 5,
-          "revenue": 9010
+          "revenue": 9010,
+          "cancelled": 0
         },
         "Луцьк": {
           "orders": 30,
-          "revenue": 53650
+          "revenue": 53650,
+          "cancelled": 1
         },
         "Рівне": {
           "orders": 39,
-          "revenue": 70900
+          "revenue": 70900,
+          "cancelled": 9
         },
         "Закарпаття (Ужгород)": {
           "orders": 26,
-          "revenue": 48430
+          "revenue": 48430,
+          "cancelled": 1
         },
         "Львів": {
           "orders": 40,
-          "revenue": 75810
+          "revenue": 75810,
+          "cancelled": 3
         },
         "Одеса": {
           "orders": 36,
-          "revenue": 67550
+          "revenue": 67550,
+          "cancelled": 4
         },
         "Івано-Франківськ": {
           "orders": 17,
-          "revenue": 30333
+          "revenue": 30333,
+          "cancelled": 0
         },
         "Чернівці": {
           "orders": 24,
-          "revenue": 46450
+          "revenue": 46450,
+          "cancelled": 6
         },
         "Кропивницький": {
           "orders": 7,
-          "revenue": 12100
+          "revenue": 12100,
+          "cancelled": 1
         },
         "Вінниця": {
           "orders": 21,
-          "revenue": 36900
+          "revenue": 36900,
+          "cancelled": 7
         },
         "Житомир": {
           "orders": 12,
-          "revenue": 20725
+          "revenue": 20725,
+          "cancelled": 2
         },
         "Миколаїв": {
           "orders": 7,
-          "revenue": 13700
+          "revenue": 13700,
+          "cancelled": 1
         },
         "Дніпро": {
           "orders": 33,
-          "revenue": 59380
+          "revenue": 59380,
+          "cancelled": 4
         },
         "Тернопіль": {
           "orders": 14,
-          "revenue": 27400
+          "revenue": 27400,
+          "cancelled": 2
         },
         "Запоріжжя": {
           "orders": 7,
-          "revenue": 14000
+          "revenue": 14000,
+          "cancelled": 1
         },
         "Черкаси": {
           "orders": 12,
-          "revenue": 21677
+          "revenue": 21677,
+          "cancelled": 3
         },
         "Харків": {
           "orders": 14,
-          "revenue": 24820
+          "revenue": 24820,
+          "cancelled": 0
         },
         "Полтава": {
           "orders": 12,
-          "revenue": 21450
+          "revenue": 21450,
+          "cancelled": 0
         },
         "Не указано": {
           "orders": 2,
-          "revenue": 3000
+          "revenue": 3000,
+          "cancelled": 0
         }
       }
     },
@@ -853,99 +1053,123 @@
       "regions": {
         "Тернопіль": {
           "orders": 16,
-          "revenue": 31550
+          "revenue": 31550,
+          "cancelled": 2
         },
         "Львів": {
           "orders": 52,
-          "revenue": 100193
+          "revenue": 100193,
+          "cancelled": 7
         },
         "Київ": {
           "orders": 125,
-          "revenue": 243287
+          "revenue": 243287,
+          "cancelled": 17
         },
         "Рівне": {
           "orders": 46,
-          "revenue": 89973
+          "revenue": 89973,
+          "cancelled": 5
         },
         "Харків": {
           "orders": 20,
-          "revenue": 41140
+          "revenue": 41140,
+          "cancelled": 3
         },
         "Не указано": {
           "orders": 11,
-          "revenue": 19300
+          "revenue": 19300,
+          "cancelled": 3
         },
         "Закарпаття (Ужгород)": {
           "orders": 18,
-          "revenue": 33650
+          "revenue": 33650,
+          "cancelled": 2
         },
         "Дніпро": {
           "orders": 29,
-          "revenue": 51840
+          "revenue": 51840,
+          "cancelled": 2
         },
         "Чернівці": {
           "orders": 22,
-          "revenue": 39615
+          "revenue": 39615,
+          "cancelled": 1
         },
         "Луцьк": {
           "orders": 25,
-          "revenue": 56155
+          "revenue": 56155,
+          "cancelled": 4
         },
         "Хмельницький": {
           "orders": 21,
-          "revenue": 41630
+          "revenue": 41630,
+          "cancelled": 4
         },
         "Житомир": {
           "orders": 13,
-          "revenue": 24450
+          "revenue": 24450,
+          "cancelled": 3
         },
         "Полтава": {
           "orders": 21,
-          "revenue": 36600
+          "revenue": 36600,
+          "cancelled": 3
         },
         "Миколаїв": {
           "orders": 6,
-          "revenue": 10750
+          "revenue": 10750,
+          "cancelled": 1
         },
         "Івано-Франківськ": {
           "orders": 17,
-          "revenue": 32900
+          "revenue": 32900,
+          "cancelled": 1
         },
         "Вінниця": {
           "orders": 19,
-          "revenue": 34550
+          "revenue": 34550,
+          "cancelled": 5
         },
         "Одеса": {
           "orders": 31,
-          "revenue": 57800
+          "revenue": 57800,
+          "cancelled": 3
         },
         "Чернігів": {
           "orders": 7,
-          "revenue": 13900
+          "revenue": 13900,
+          "cancelled": 0
         },
         "Черкаси": {
           "orders": 8,
-          "revenue": 16300
+          "revenue": 16300,
+          "cancelled": 0
         },
         "Суми": {
           "orders": 7,
-          "revenue": 13450
+          "revenue": 13450,
+          "cancelled": 0
         },
         "Запоріжжя": {
           "orders": 5,
-          "revenue": 9700
+          "revenue": 9700,
+          "cancelled": 0
         },
         "Кропивницький": {
           "orders": 5,
-          "revenue": 8183
+          "revenue": 8183,
+          "cancelled": 0
         },
         "Донецьк": {
           "orders": 1,
-          "revenue": 1950
+          "revenue": 1950,
+          "cancelled": 0
         },
         "Україна (інше)": {
           "orders": 1,
-          "revenue": 1450
+          "revenue": 1450,
+          "cancelled": 0
         }
       }
     },
@@ -954,95 +1178,118 @@
       "regions": {
         "Дніпро": {
           "orders": 22,
-          "revenue": 33610
+          "revenue": 33610,
+          "cancelled": 6
         },
         "Київ": {
           "orders": 105,
-          "revenue": 175130
+          "revenue": 175130,
+          "cancelled": 17
         },
         "Харків": {
           "orders": 21,
-          "revenue": 35325
+          "revenue": 35325,
+          "cancelled": 1
         },
         "Рівне": {
           "orders": 35,
-          "revenue": 57850
+          "revenue": 57850,
+          "cancelled": 0
         },
         "Вінниця": {
           "orders": 25,
-          "revenue": 40430
+          "revenue": 40430,
+          "cancelled": 2
         },
         "Кропивницький": {
           "orders": 9,
-          "revenue": 12070
+          "revenue": 12070,
+          "cancelled": 1
         },
         "Івано-Франківськ": {
           "orders": 30,
-          "revenue": 50200
+          "revenue": 50200,
+          "cancelled": 5
         },
         "Чернігів": {
           "orders": 8,
-          "revenue": 12760
+          "revenue": 12760,
+          "cancelled": 0
         },
         "Полтава": {
           "orders": 19,
-          "revenue": 29942
+          "revenue": 29942,
+          "cancelled": 2
         },
         "Одеса": {
           "orders": 28,
-          "revenue": 42420
+          "revenue": 42420,
+          "cancelled": 5
         },
         "Чернівці": {
           "orders": 27,
-          "revenue": 40755
+          "revenue": 40755,
+          "cancelled": 0
         },
         "Черкаси": {
           "orders": 8,
-          "revenue": 12320
+          "revenue": 12320,
+          "cancelled": 1
         },
         "Львів": {
           "orders": 44,
-          "revenue": 70920
+          "revenue": 70920,
+          "cancelled": 2
         },
         "Закарпаття (Ужгород)": {
           "orders": 29,
-          "revenue": 43683
+          "revenue": 43683,
+          "cancelled": 4
         },
         "Хмельницький": {
           "orders": 13,
-          "revenue": 19550
+          "revenue": 19550,
+          "cancelled": 2
         },
         "Херсон": {
           "orders": 1,
-          "revenue": 1950
+          "revenue": 1950,
+          "cancelled": 0
         },
         "Тернопіль": {
           "orders": 12,
-          "revenue": 20107
+          "revenue": 20107,
+          "cancelled": 3
         },
         "Миколаїв": {
           "orders": 12,
-          "revenue": 20600
+          "revenue": 20600,
+          "cancelled": 1
         },
         "Луцьк": {
           "orders": 26,
-          "revenue": 43620
+          "revenue": 43620,
+          "cancelled": 3
         },
         "Не указано": {
           "orders": 12,
-          "revenue": 19370
+          "revenue": 19370,
+          "cancelled": 1
         },
         "Запоріжжя": {
           "orders": 7,
-          "revenue": 13300
+          "revenue": 13300,
+          "cancelled": 2
         },
         "Суми": {
           "orders": 5,
-          "revenue": 7255
+          "revenue": 7255,
+          "cancelled": 0
         },
         "Житомир": {
           "orders": 6,
-          "revenue": 10850
+          "revenue": 10850,
+          "cancelled": 1
         }
       }
     },
@@ -1051,11 +1298,13 @@
       "regions": {
         "Чернівці": {
           "orders": 1,
-          "revenue": 1100
+          "revenue": 1100,
+          "cancelled": 0
         },
         "Вінниця": {
           "orders": 1,
-          "revenue": 1800
+          "revenue": 1800,
+          "cancelled": 0
         }
       }
     }
