@@ -1,3 +1,5 @@
+import { next } from '@vercel/edge';
+
 export const config = {
   matcher: '/((?!_next/static|_vercel|favicon.ico).*)',
 };
@@ -76,18 +78,14 @@ export default async function middleware(req) {
   if (timingSafeEqual(cookie, managerToken)) return; // continue (manager)
 
   // 2) First time → validate Basic Auth (admin first so it wins on overlap), remember via cookie.
+  // Set the cookie on a pass-through (next) response, NOT a redirect: Safari silently drops
+  // Set-Cookie on 3xx responses, which re-prompted Basic Auth on every visit. A 200 sticks.
   const header = req.headers.get('authorization') || '';
   if (adminConfigured && timingSafeEqual(header, encodeBasic(adminUser, adminPass))) {
-    return new Response(null, {
-      status: 302,
-      headers: { Location: req.url, 'Set-Cookie': setCookie(adminToken), 'Cache-Control': 'no-store' },
-    });
+    return next({ headers: { 'Set-Cookie': setCookie(adminToken) } });
   }
   if (timingSafeEqual(header, encodeBasic(managerUser, managerPass))) {
-    return new Response(null, {
-      status: 302,
-      headers: { Location: req.url, 'Set-Cookie': setCookie(managerToken), 'Cache-Control': 'no-store' },
-    });
+    return next({ headers: { 'Set-Cookie': setCookie(managerToken) } });
   }
 
   // 3) No cookie, no valid credentials → challenge.
