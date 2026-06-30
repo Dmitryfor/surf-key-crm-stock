@@ -1,115 +1,120 @@
 {
-  "generated_at": "2026-06-24T10:25:04.378Z",
-  "source_total": 3930,
-  "pages": 79,
+  "generated_at": "2026-06-30T17:38:30.067Z",
+  "source_total": 4016,
+  "pages": 81,
   "months": {
     "2026-06": {
       "label": "Июнь 2026",
       "regions": {
-        "Харків": {
-          "orders": 17,
-          "revenue": 28343,
-          "cancelled": 2
-        },
-        "Одеса": {
-          "orders": 27,
-          "revenue": 46280,
-          "cancelled": 3
-        },
-        "Київ": {
-          "orders": 72,
-          "revenue": 122750,
-          "cancelled": 10
-        },
-        "Львів": {
-          "orders": 29,
-          "revenue": 46130,
-          "cancelled": 5
-        },
-        "Не указано": {
-          "orders": 3,
-          "revenue": 8000,
+        "Запоріжжя": {
+          "orders": 4,
+          "revenue": 6980,
           "cancelled": 0
         },
-        "Кропивницький": {
-          "orders": 5,
-          "revenue": 7740,
+        "Івано-Франківськ": {
+          "orders": 19,
+          "revenue": 30400,
           "cancelled": 1
         },
-        "Хмельницький": {
+        "Київ": {
+          "orders": 88,
+          "revenue": 144210,
+          "cancelled": 14
+        },
+        "Львів": {
+          "orders": 34,
+          "revenue": 51330,
+          "cancelled": 6
+        },
+        "Миколаїв": {
           "orders": 8,
-          "revenue": 14250,
+          "revenue": 16400,
+          "cancelled": 2
+        },
+        "Чернівці": {
+          "orders": 12,
+          "revenue": 21150,
           "cancelled": 2
         },
         "Тернопіль": {
-          "orders": 12,
-          "revenue": 19400,
-          "cancelled": 1
-        },
-        "Вінниця": {
-          "orders": 22,
-          "revenue": 34550,
+          "orders": 16,
+          "revenue": 23450,
           "cancelled": 2
         },
         "Закарпаття (Ужгород)": {
-          "orders": 31,
-          "revenue": 55410,
+          "orders": 36,
+          "revenue": 62810,
+          "cancelled": 4
+        },
+        "Вінниця": {
+          "orders": 26,
+          "revenue": 41150,
+          "cancelled": 4
+        },
+        "Черкаси": {
+          "orders": 11,
+          "revenue": 18550,
+          "cancelled": 4
+        },
+        "Одеса": {
+          "orders": 35,
+          "revenue": 64980,
           "cancelled": 3
+        },
+        "Харків": {
+          "orders": 19,
+          "revenue": 27993,
+          "cancelled": 3
+        },
+        "Дніпро": {
+          "orders": 29,
+          "revenue": 47800,
+          "cancelled": 1
+        },
+        "Кропивницький": {
+          "orders": 8,
+          "revenue": 11940,
+          "cancelled": 2
+        },
+        "Полтава": {
+          "orders": 13,
+          "revenue": 18700,
+          "cancelled": 2
+        },
+        "Чернігів": {
+          "orders": 7,
+          "revenue": 9400,
+          "cancelled": 4
+        },
+        "Луцьк": {
+          "orders": 23,
+          "revenue": 34908,
+          "cancelled": 5
+        },
+        "Рівне": {
+          "orders": 17,
+          "revenue": 30950,
+          "cancelled": 3
+        },
+        "Хмельницький": {
+          "orders": 9,
+          "revenue": 15750,
+          "cancelled": 2
+        },
+        "Херсон": {
+          "orders": 2,
+          "revenue": 2200,
+          "cancelled": 0
+        },
+        "Не указано": {
+          "orders": 3,
+          "revenue": 6550,
+          "cancelled": 0
         },
         "Суми": {
           "orders": 5,
           "revenue": 7900,
-          "cancelled": 0
-        },
-        "Полтава": {
-          "orders": 9,
-          "revenue": 12200,
           "cancelled": 1
-        },
-        "Дніпро": {
-          "orders": 21,
-          "revenue": 36050,
-          "cancelled": 1
-        },
-        "Миколаїв": {
-          "orders": 6,
-          "revenue": 12800,
-          "cancelled": 2
-        },
-        "Луцьк": {
-          "orders": 18,
-          "revenue": 27708,
-          "cancelled": 4
-        },
-        "Івано-Франківськ": {
-          "orders": 13,
-          "revenue": 20950,
-          "cancelled": 1
-        },
-        "Рівне": {
-          "orders": 14,
-          "revenue": 24800,
-          "cancelled": 2
-        },
-        "Черкаси": {
-          "orders": 8,
-          "revenue": 14100,
-          "cancelled": 2
-        },
-        "Херсон": {
-          "orders": 1,
-          "revenue": 1500,
-          "cancelled": 0
-        },
-        "Чернівці": {
-          "orders": 10,
-          "revenue": 18150,
-          "cancelled": 1
-        },
-        "Чернігів": {
-          "orders": 5,
-          "revenue": 7550,
-          "cancelled": 3
         },
         "Житомир": {
           "orders": 6,
@@ -120,12 +125,513 @@
           "orders": 1,
           "revenue": 700,
           "cancelled": 0
-        },
-        "Запоріжжя": {
-          "orders": 2,
-          "revenue": 3150,
-          "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 66,
+        "revenue": 103110,
+        "items": [
+          {
+            "name": "Сукня - 10301",
+            "qty": 18,
+            "orders": 18,
+            "total_orders": 88,
+            "pct": 20.5,
+            "revenue": 27000,
+            "variants": [
+              {
+                "label": "Мокко",
+                "sku": "10301-01",
+                "qty": 8,
+                "orders": 8,
+                "total_orders": 40,
+                "pct": 20,
+                "revenue": 12000
+              },
+              {
+                "label": "Білий",
+                "sku": "10301-02",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 19,
+                "pct": 21.1,
+                "revenue": 6000
+              },
+              {
+                "label": "Чорний",
+                "sku": "10301-03",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 11,
+                "pct": 27.3,
+                "revenue": 4500
+              },
+              {
+                "label": "Лимонний",
+                "sku": "10301-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 12,
+                "pct": 25,
+                "revenue": 4500
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 1026",
+            "qty": 17,
+            "orders": 17,
+            "total_orders": 114,
+            "pct": 14.9,
+            "revenue": 24650,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "1026-01",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 35,
+                "pct": 14.3,
+                "revenue": 7250
+              },
+              {
+                "label": "Блакитний",
+                "sku": "1026-05",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 11,
+                "pct": 36.4,
+                "revenue": 5800
+              },
+              {
+                "label": "Лимонний",
+                "sku": "1026-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 24,
+                "pct": 12.5,
+                "revenue": 4350
+              },
+              {
+                "label": "Чорний",
+                "sku": "1026-02",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 21,
+                "pct": 14.3,
+                "revenue": 4350
+              },
+              {
+                "label": "Шоколадний",
+                "sku": "1026-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 26,
+                "pct": 3.8,
+                "revenue": 1450
+              },
+              {
+                "label": "Рожевий",
+                "sku": "1026-06",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Футболка 1750",
+            "qty": 8,
+            "orders": 5,
+            "total_orders": 25,
+            "pct": 20,
+            "revenue": 5600,
+            "variants": [
+              {
+                "label": "Беж / L",
+                "sku": "1750-18",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 5,
+                "pct": 40,
+                "revenue": 1400
+              },
+              {
+                "label": "Молочний / L",
+                "sku": "1750-06",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 6,
+                "pct": 33.3,
+                "revenue": 1400
+              },
+              {
+                "label": "Беж / M",
+                "sku": "1750-17",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 700
+              },
+              {
+                "label": "Шоколад / M",
+                "sku": "1750-14",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 700
+              },
+              {
+                "label": "Молочний / M",
+                "sku": "1750-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 700
+              },
+              {
+                "label": "Чорний / M",
+                "sku": "1750-08",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 700
+              }
+            ]
+          },
+          {
+            "name": "Костюм - 8117",
+            "qty": 6,
+            "orders": 6,
+            "total_orders": 59,
+            "pct": 10.2,
+            "revenue": 9000,
+            "variants": [
+              {
+                "label": "Лимонний",
+                "sku": "8117-04",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 15,
+                "pct": 13.3,
+                "revenue": 3000
+              },
+              {
+                "label": "Бежевий",
+                "sku": "8117-05",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 13,
+                "pct": 15.4,
+                "revenue": 3000
+              },
+              {
+                "label": "Рожевий",
+                "sku": "8117-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1500
+              },
+              {
+                "label": "Білий",
+                "sku": "8117-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 11,
+                "pct": 9.1,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8032",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 18,
+            "pct": 27.8,
+            "revenue": 8000,
+            "variants": [
+              {
+                "label": "Лимонний",
+                "sku": "8032-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 3200
+              },
+              {
+                "label": "Корал",
+                "sku": "8032-06",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 6,
+                "pct": 33.3,
+                "revenue": 3200
+              },
+              {
+                "label": "Рожевий",
+                "sku": "8032-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1600
+              }
+            ]
+          },
+          {
+            "name": "Сукня Гвен",
+            "qty": 4,
+            "orders": 4,
+            "total_orders": 21,
+            "pct": 19,
+            "revenue": 6600,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "гвен-06",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 4,
+                "pct": 75,
+                "revenue": 4950
+              },
+              {
+                "label": "Білий",
+                "sku": "гвен-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 7,
+                "pct": 14.3,
+                "revenue": 1650
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 8021",
+            "qty": 4,
+            "orders": 4,
+            "total_orders": 45,
+            "pct": 8.9,
+            "revenue": 6000,
+            "variants": [
+              {
+                "label": "Жовтий",
+                "sku": "8021-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 12,
+                "pct": 8.3,
+                "revenue": 1500
+              },
+              {
+                "label": "Блакитний",
+                "sku": "8021-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 11,
+                "pct": 9.1,
+                "revenue": 1500
+              },
+              {
+                "label": "Молочний шоколад тонка смужка",
+                "sku": "8021-18",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1500
+              },
+              {
+                "label": "Кавовий",
+                "sku": "8021-17",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 4303",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 17,
+            "pct": 17.6,
+            "revenue": 5250,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "4303-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 3,
+                "pct": 66.7,
+                "revenue": 3500
+              },
+              {
+                "label": "Білий",
+                "sku": "4303-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1750
+              }
+            ]
+          },
+          {
+            "name": "Сукня 2419",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 6,
+            "pct": 33.3,
+            "revenue": 4400,
+            "variants": [
+              {
+                "label": "Молочний /   S",
+                "sku": "2419-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2200
+              },
+              {
+                "label": "Лимон / M",
+                "sku": "2419-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2200
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8061",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 8,
+            "pct": 25,
+            "revenue": 3300,
+            "variants": [
+              {
+                "label": "Рожевий",
+                "sku": "8061-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1650
+              },
+              {
+                "label": "Мокко",
+                "sku": "8061-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1650
+              }
+            ]
+          },
+          {
+            "name": "Топ 3187",
+            "qty": 2,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 1400,
+            "variants": [
+              {
+                "label": "Рожевий / S",
+                "sku": "3187-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 700
+              },
+              {
+                "label": "Лимон / S",
+                "sku": "3187-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 700
+              }
+            ]
+          },
+          {
+            "name": "Ремінець перлина 305",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 19,
+            "pct": 5.3,
+            "revenue": 450,
+            "variants": [
+              {
+                "label": "—",
+                "sku": "",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 19,
+                "pct": 5.3,
+                "revenue": 450
+              }
+            ]
+          },
+          {
+            "name": "Футболка 2295",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 5,
+            "pct": 20,
+            "revenue": 800,
+            "variants": [
+              {
+                "label": "Лимон / L",
+                "sku": "2295-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 800
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8116",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 15,
+            "pct": 6.7,
+            "revenue": 1500,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "8116-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1500
+              }
+            ]
+          }
+        ]
       }
     },
     "2026-05": {
@@ -246,6 +752,555 @@
           "revenue": 9700,
           "cancelled": 1
         }
+      },
+      "cancelled": {
+        "orders": 100,
+        "revenue": 165300,
+        "items": [
+          {
+            "name": "Костюм - 8117",
+            "qty": 23,
+            "orders": 22,
+            "total_orders": 96,
+            "pct": 22.9,
+            "revenue": 34500,
+            "variants": [
+              {
+                "label": "Шоколадний",
+                "sku": "8117-02",
+                "qty": 8,
+                "orders": 8,
+                "total_orders": 28,
+                "pct": 28.6,
+                "revenue": 12000
+              },
+              {
+                "label": "Білий",
+                "sku": "8117-01",
+                "qty": 6,
+                "orders": 6,
+                "total_orders": 20,
+                "pct": 30,
+                "revenue": 9000
+              },
+              {
+                "label": "Лимонний",
+                "sku": "8117-04",
+                "qty": 6,
+                "orders": 6,
+                "total_orders": 23,
+                "pct": 26.1,
+                "revenue": 9000
+              },
+              {
+                "label": "Бежевий",
+                "sku": "8117-05",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 15,
+                "pct": 13.3,
+                "revenue": 3000
+              },
+              {
+                "label": "Рожевий",
+                "sku": "8117-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 11,
+                "pct": 9.1,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 1026",
+            "qty": 18,
+            "orders": 18,
+            "total_orders": 92,
+            "pct": 19.6,
+            "revenue": 26100,
+            "variants": [
+              {
+                "label": "Шоколадний",
+                "sku": "1026-03",
+                "qty": 8,
+                "orders": 8,
+                "total_orders": 32,
+                "pct": 25,
+                "revenue": 11600
+              },
+              {
+                "label": "Молочний",
+                "sku": "1026-01",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 25,
+                "pct": 16,
+                "revenue": 5800
+              },
+              {
+                "label": "Лимонний",
+                "sku": "1026-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 15,
+                "pct": 20,
+                "revenue": 4350
+              },
+              {
+                "label": "Чорний",
+                "sku": "1026-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 13,
+                "pct": 15.4,
+                "revenue": 2900
+              },
+              {
+                "label": "Рожевий",
+                "sku": "1026-06",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Футболка 1750",
+            "qty": 18,
+            "orders": 8,
+            "total_orders": 41,
+            "pct": 19.5,
+            "revenue": 12600,
+            "variants": [
+              {
+                "label": "Рожевий / L",
+                "sku": "1750-12",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 4,
+                "pct": 75,
+                "revenue": 2100
+              },
+              {
+                "label": "Чорний / L",
+                "sku": "1750-09",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 7,
+                "pct": 42.9,
+                "revenue": 2100
+              },
+              {
+                "label": "Молочний / L",
+                "sku": "1750-06",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 6,
+                "pct": 50,
+                "revenue": 2100
+              },
+              {
+                "label": "Шоколад / L",
+                "sku": "1750-15",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 8,
+                "pct": 37.5,
+                "revenue": 2100
+              },
+              {
+                "label": "Беж / S",
+                "sku": "1750-16",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 700
+              },
+              {
+                "label": "Беж / M",
+                "sku": "1750-17",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 700
+              },
+              {
+                "label": "Шоколад / M",
+                "sku": "1750-14",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 700
+              },
+              {
+                "label": "Беж / L",
+                "sku": "1750-18",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 700
+              },
+              {
+                "label": "Шоколад / S",
+                "sku": "1750-13",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 700
+              },
+              {
+                "label": "Рожевий / S",
+                "sku": "1750-10",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 700
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 10301",
+            "qty": 17,
+            "orders": 16,
+            "total_orders": 72,
+            "pct": 22.2,
+            "revenue": 25500,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "10301-02",
+                "qty": 11,
+                "orders": 11,
+                "total_orders": 31,
+                "pct": 35.5,
+                "revenue": 16500
+              },
+              {
+                "label": "Мокко",
+                "sku": "10301-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 21,
+                "pct": 14.3,
+                "revenue": 4500
+              },
+              {
+                "label": "Чорний",
+                "sku": "10301-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 19,
+                "pct": 10.5,
+                "revenue": 3000
+              },
+              {
+                "label": "Лимонний",
+                "sku": "10301-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 8021",
+            "qty": 13,
+            "orders": 13,
+            "total_orders": 82,
+            "pct": 15.9,
+            "revenue": 19500,
+            "variants": [
+              {
+                "label": "Жовтий",
+                "sku": "8021-03",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 18,
+                "pct": 16.7,
+                "revenue": 4500
+              },
+              {
+                "label": "Молочний чорна тонка смужка",
+                "sku": "8021-15",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 3000
+              },
+              {
+                "label": "Молочний шоколадна широка смужка",
+                "sku": "8021-16",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 3000
+              },
+              {
+                "label": "Мокко",
+                "sku": "8021-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1500
+              },
+              {
+                "label": "Чорний",
+                "sku": "8021-10",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1500
+              },
+              {
+                "label": "Кавовий",
+                "sku": "8021-17",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 10,
+                "pct": 10,
+                "revenue": 1500
+              },
+              {
+                "label": "Блакитний",
+                "sku": "8021-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1500
+              },
+              {
+                "label": "Рожевий",
+                "sku": "8021-11",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1500
+              },
+              {
+                "label": "Шоколадний",
+                "sku": "8021-06",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 11,
+                "pct": 9.1,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 2525",
+            "qty": 6,
+            "orders": 6,
+            "total_orders": 38,
+            "pct": 15.8,
+            "revenue": 15000,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "2525-03",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 7,
+                "pct": 42.9,
+                "revenue": 7500
+              },
+              {
+                "label": "Бежевий",
+                "sku": "2525-04",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 5,
+                "pct": 40,
+                "revenue": 5000
+              },
+              {
+                "label": "Молочний",
+                "sku": "2525-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 19,
+                "pct": 5.3,
+                "revenue": 2500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 4303",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 14,
+            "pct": 35.7,
+            "revenue": 8750,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "4303-01",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 9,
+                "pct": 44.4,
+                "revenue": 7000
+              },
+              {
+                "label": "Чорний",
+                "sku": "4303-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1750
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8116",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 42,
+            "pct": 11.9,
+            "revenue": 7500,
+            "variants": [
+              {
+                "label": "Жовтий",
+                "sku": "8116-02",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 11,
+                "pct": 27.3,
+                "revenue": 4500
+              },
+              {
+                "label": "Білий",
+                "sku": "8116-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1500
+              },
+              {
+                "label": "Шоколад",
+                "sku": "8116-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 2419",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 8,
+            "pct": 62.5,
+            "revenue": 11000,
+            "variants": [
+              {
+                "label": "Блакитний / M",
+                "sku": "2419-08",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 4,
+                "pct": 75,
+                "revenue": 6600
+              },
+              {
+                "label": "Блакитний / L",
+                "sku": "2419-09",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 2,
+                "pct": 100,
+                "revenue": 4400
+              }
+            ]
+          },
+          {
+            "name": "Сукня Гвен",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 10,
+            "pct": 30,
+            "revenue": 4950,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "гвен-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 5,
+                "pct": 60,
+                "revenue": 4950
+              }
+            ]
+          },
+          {
+            "name": "Футболка 1720",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 15,
+            "pct": 13.3,
+            "revenue": 1400,
+            "variants": [
+              {
+                "label": "Шоколад / S",
+                "sku": "1720-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 700
+              },
+              {
+                "label": "Білий / M",
+                "sku": "1720-08",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 700
+              }
+            ]
+          },
+          {
+            "name": "Сукня 1028",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 3,
+            "pct": 33.3,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Беж",
+                "sku": "1028-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1550
+              }
+            ]
+          }
+        ]
       }
     },
     "2026-04": {
@@ -361,6 +1416,441 @@
           "revenue": 10150,
           "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 44,
+        "revenue": 84970,
+        "items": [
+          {
+            "name": "Кардиган - 2068",
+            "qty": 10,
+            "orders": 10,
+            "total_orders": 55,
+            "pct": 18.2,
+            "revenue": 21000,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "2068-002",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 32,
+                "pct": 15.6,
+                "revenue": 10500
+              },
+              {
+                "label": "Бежевий",
+                "sku": "2068-001",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 16,
+                "pct": 31.3,
+                "revenue": 10500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 2419",
+            "qty": 8,
+            "orders": 8,
+            "total_orders": 15,
+            "pct": 53.3,
+            "revenue": 17600,
+            "variants": [
+              {
+                "label": "Блакитний / L",
+                "sku": "2419-09",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 2,
+                "pct": 100,
+                "revenue": 4400
+              },
+              {
+                "label": "Блакитний / M",
+                "sku": "2419-08",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 3,
+                "pct": 66.7,
+                "revenue": 4400
+              },
+              {
+                "label": "Молочний / L",
+                "sku": "2419-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 2200
+              },
+              {
+                "label": "Молочний / M",
+                "sku": "2419-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2200
+              },
+              {
+                "label": "Блакитний /   S",
+                "sku": "2419-07",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 2200
+              },
+              {
+                "label": "Лимон /   S",
+                "sku": "2419-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 2200
+              }
+            ]
+          },
+          {
+            "name": "Пальто 5462",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 29,
+            "pct": 17.2,
+            "revenue": 9750,
+            "variants": [
+              {
+                "label": "Шоколад / 42-44",
+                "sku": "5462-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 9,
+                "pct": 33.3,
+                "revenue": 5850
+              },
+              {
+                "label": "Чорний / 42-44",
+                "sku": "0142",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1950
+              },
+              {
+                "label": "Бежевий / 42-44",
+                "sku": "0242",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 8021",
+            "qty": 4,
+            "orders": 4,
+            "total_orders": 74,
+            "pct": 5.4,
+            "revenue": 6000,
+            "variants": [
+              {
+                "label": "Беж широка смужка",
+                "sku": "8021-14",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              },
+              {
+                "label": "Блакитний",
+                "sku": "8021-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1500
+              },
+              {
+                "label": "Бежевий",
+                "sku": "8021-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1500
+              },
+              {
+                "label": "Чорний",
+                "sku": "8021-10",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 2525",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 39,
+            "pct": 7.7,
+            "revenue": 6750,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "2525-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 20,
+                "pct": 5,
+                "revenue": 2250
+              },
+              {
+                "label": "Бежевий",
+                "sku": "2525-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 11,
+                "pct": 9.1,
+                "revenue": 2250
+              },
+              {
+                "label": "Блакитний",
+                "sku": "2525-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 2250
+              }
+            ]
+          },
+          {
+            "name": "Футболка 1750",
+            "qty": 3,
+            "orders": 2,
+            "total_orders": 5,
+            "pct": 40,
+            "revenue": 2100,
+            "variants": [
+              {
+                "label": "Бордо / L",
+                "sku": "1750-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 700
+              },
+              {
+                "label": "Чорний / L",
+                "sku": "1750-09",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 700
+              },
+              {
+                "label": "Молочний / L",
+                "sku": "1750-06",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 700
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 10301",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 6,
+            "pct": 33.3,
+            "revenue": 3000,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "10301-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 4,
+                "pct": 50,
+                "revenue": 3000
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 1026",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 15,
+            "pct": 13.3,
+            "revenue": 2900,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "1026-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 6,
+                "pct": 33.3,
+                "revenue": 2900
+              }
+            ]
+          },
+          {
+            "name": "Костюм - 8117",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 7,
+            "pct": 28.6,
+            "revenue": 3000,
+            "variants": [
+              {
+                "label": "Лимонний",
+                "sku": "8117-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              },
+              {
+                "label": "Рожевий",
+                "sku": "8117-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Кардиган 205",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 11,
+            "pct": 18.2,
+            "revenue": 4600,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "205-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 6,
+                "pct": 33.3,
+                "revenue": 4600
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8116",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 3,
+            "pct": 33.3,
+            "revenue": 1300,
+            "variants": [
+              {
+                "label": "Жовтий",
+                "sku": "8116-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1300
+              }
+            ]
+          },
+          {
+            "name": "Лонг ажурний 6424",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 1150,
+            "variants": [
+              {
+                "label": "Молочний / L",
+                "sku": "6424-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1150
+              }
+            ]
+          },
+          {
+            "name": "Корсет 3336",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 1900,
+            "variants": [
+              {
+                "label": "Молочний / S",
+                "sku": "3336-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1900
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8127",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 1800,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "8127-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Пальто 3535",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 2650,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3535-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 2650
+              }
+            ]
+          }
+        ]
       }
     },
     "2026-03": {
@@ -471,6 +1961,348 @@
           "revenue": 12400,
           "cancelled": 1
         }
+      },
+      "cancelled": {
+        "orders": 44,
+        "revenue": 99630,
+        "items": [
+          {
+            "name": "Пальто 3535",
+            "qty": 14,
+            "orders": 14,
+            "total_orders": 61,
+            "pct": 23,
+            "revenue": 37100,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3535-02",
+                "qty": 9,
+                "orders": 9,
+                "total_orders": 44,
+                "pct": 20.5,
+                "revenue": 23850
+              },
+              {
+                "label": "Чорний",
+                "sku": "3535-01",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 17,
+                "pct": 29.4,
+                "revenue": 13250
+              }
+            ]
+          },
+          {
+            "name": "Кардиган - 2068",
+            "qty": 10,
+            "orders": 10,
+            "total_orders": 43,
+            "pct": 23.3,
+            "revenue": 21000,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "2068-002",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 18,
+                "pct": 22.2,
+                "revenue": 8400
+              },
+              {
+                "label": "Графіт",
+                "sku": "2068-07",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 5,
+                "pct": 60,
+                "revenue": 6300
+              },
+              {
+                "label": "Черний",
+                "sku": "2068-003",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 3,
+                "pct": 66.7,
+                "revenue": 4200
+              },
+              {
+                "label": "Бежевий",
+                "sku": "2068-001",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 13,
+                "pct": 7.7,
+                "revenue": 2100
+              }
+            ]
+          },
+          {
+            "name": "Пальто 5462",
+            "qty": 10,
+            "orders": 10,
+            "total_orders": 132,
+            "pct": 7.6,
+            "revenue": 19500,
+            "variants": [
+              {
+                "label": "Чорний / 42-44",
+                "sku": "0142",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 41,
+                "pct": 7.3,
+                "revenue": 5850
+              },
+              {
+                "label": "Бежевий / 42-44",
+                "sku": "0242",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 25,
+                "pct": 8,
+                "revenue": 3900
+              },
+              {
+                "label": "Бежевий / 46-48",
+                "sku": "0246",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 9,
+                "pct": 22.2,
+                "revenue": 3900
+              },
+              {
+                "label": "Шоколад / 42-44",
+                "sku": "5462-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 18,
+                "pct": 5.6,
+                "revenue": 1950
+              },
+              {
+                "label": "Шоколад / 46-48",
+                "sku": "5462-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 16,
+                "pct": 6.3,
+                "revenue": 1950
+              },
+              {
+                "label": "Шоколад / 50-52",
+                "sku": "5462-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 8021",
+            "qty": 5,
+            "orders": 3,
+            "total_orders": 25,
+            "pct": 12,
+            "revenue": 7500,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "8021-07",
+                "qty": 3,
+                "orders": 2,
+                "total_orders": 10,
+                "pct": 20,
+                "revenue": 4500
+              },
+              {
+                "label": "Блакитний",
+                "sku": "8021-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1500
+              },
+              {
+                "label": "Чорний",
+                "sku": "8021-10",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Джинси 805",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 3,
+            "pct": 66.7,
+            "revenue": 3500,
+            "variants": [
+              {
+                "label": "Блакитний / 36",
+                "sku": "805-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1750
+              },
+              {
+                "label": "Блакитний / 40",
+                "sku": "805-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1750
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8023",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 7,
+            "pct": 14.3,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "8023-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Ремінь ткань 306",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 200,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "306-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 200
+              }
+            ]
+          },
+          {
+            "name": "Кардиган 205",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 2,
+            "pct": 50,
+            "revenue": 2300,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "205-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 2300
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 1026",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 15,
+            "pct": 6.7,
+            "revenue": 1350,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "1026-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1350
+              }
+            ]
+          },
+          {
+            "name": "Сукня 5011",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 8,
+            "pct": 12.5,
+            "revenue": 1500,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "5011-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Пальто Тренч 3540",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 15,
+            "pct": 6.7,
+            "revenue": 2750,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "002",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 12,
+                "pct": 8.3,
+                "revenue": 2750
+              }
+            ]
+          },
+          {
+            "name": "Сукня 5865",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 1380,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "5865-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1380
+              }
+            ]
+          }
+        ]
       }
     },
     "2026-02": {
@@ -586,6 +2418,246 @@
           "revenue": 5300,
           "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 30,
+        "revenue": 62383,
+        "items": [
+          {
+            "name": "Пальто 3535",
+            "qty": 9,
+            "orders": 9,
+            "total_orders": 53,
+            "pct": 17,
+            "revenue": 23850,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3535-02",
+                "qty": 9,
+                "orders": 9,
+                "total_orders": 45,
+                "pct": 20,
+                "revenue": 23850
+              }
+            ]
+          },
+          {
+            "name": "Пальто 5462",
+            "qty": 8,
+            "orders": 8,
+            "total_orders": 55,
+            "pct": 14.5,
+            "revenue": 15600,
+            "variants": [
+              {
+                "label": "Бежевий / 42-44",
+                "sku": "0242",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 8,
+                "pct": 37.5,
+                "revenue": 5850
+              },
+              {
+                "label": "Чорний / 42-44",
+                "sku": "0142",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 10,
+                "pct": 20,
+                "revenue": 3900
+              },
+              {
+                "label": "Шоколад / 50-52",
+                "sku": "5462-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1950
+              },
+              {
+                "label": "Бежевий / 46-48",
+                "sku": "0246",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1950
+              },
+              {
+                "label": "Бежевий / 50-52",
+                "sku": "0250",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8004",
+            "qty": 4,
+            "orders": 4,
+            "total_orders": 14,
+            "pct": 28.6,
+            "revenue": 8200,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "8004-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 5,
+                "pct": 60,
+                "revenue": 6150
+              },
+              {
+                "label": "Чорний",
+                "sku": "8004-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 2050
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 1026",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 22,
+            "pct": 13.6,
+            "revenue": 4050,
+            "variants": [
+              {
+                "label": "Шоколадний",
+                "sku": "1026-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 2700
+              },
+              {
+                "label": "Лимонний",
+                "sku": "1026-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1350
+              }
+            ]
+          },
+          {
+            "name": "Пальто вкорочене 903",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 2,
+            "pct": 100,
+            "revenue": 3500,
+            "variants": [
+              {
+                "label": "Сірий / S",
+                "sku": "903-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1750
+              },
+              {
+                "label": "Чорний / S",
+                "sku": "903-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1750
+              }
+            ]
+          },
+          {
+            "name": "Сукня 5865",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 2,
+            "pct": 50,
+            "revenue": 1380,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "5865-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1380
+              }
+            ]
+          },
+          {
+            "name": "Пальто Тренч 3540",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 12,
+            "pct": 8.3,
+            "revenue": 2750,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "002",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 10,
+                "pct": 10,
+                "revenue": 2750
+              }
+            ]
+          },
+          {
+            "name": "Пальто Мадрід 5428",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 2700,
+            "variants": [
+              {
+                "label": "Шоколад / 48-52",
+                "sku": "5428-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2700
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8023",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 3,
+            "pct": 33.3,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "8023-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1550
+              }
+            ]
+          }
+        ]
       }
     },
     "2026-01": {
@@ -696,6 +2768,274 @@
           "revenue": 4000,
           "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 35,
+        "revenue": 76750,
+        "items": [
+          {
+            "name": "Костюм 8004",
+            "qty": 14,
+            "orders": 14,
+            "total_orders": 50,
+            "pct": 28,
+            "revenue": 28700,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "8004-03",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 11,
+                "pct": 45.5,
+                "revenue": 10250
+              },
+              {
+                "label": "Кавовий",
+                "sku": "8004-06",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 9,
+                "pct": 44.4,
+                "revenue": 8200
+              },
+              {
+                "label": "Бежевий",
+                "sku": "8004-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 13,
+                "pct": 23.1,
+                "revenue": 6150
+              },
+              {
+                "label": "Чорний",
+                "sku": "8004-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 4,
+                "pct": 50,
+                "revenue": 4100
+              }
+            ]
+          },
+          {
+            "name": "Пальто Мадрід 5428",
+            "qty": 11,
+            "orders": 11,
+            "total_orders": 44,
+            "pct": 25,
+            "revenue": 29700,
+            "variants": [
+              {
+                "label": "Шоколад / 42-46",
+                "sku": "5428-04",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 18,
+                "pct": 27.8,
+                "revenue": 13500
+              },
+              {
+                "label": "Шоколад / 48-52",
+                "sku": "5428-05",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 11,
+                "pct": 27.3,
+                "revenue": 8100
+              },
+              {
+                "label": "Чорний / 42-46",
+                "sku": "5428-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 9,
+                "pct": 22.2,
+                "revenue": 5400
+              },
+              {
+                "label": "Чорний / 48-52",
+                "sku": "5428-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 2700
+              }
+            ]
+          },
+          {
+            "name": "Пальто 5462",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 27,
+            "pct": 7.4,
+            "revenue": 3900,
+            "variants": [
+              {
+                "label": "Шоколад / 50-52",
+                "sku": "5462-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1950
+              },
+              {
+                "label": "Чорний / 46-48",
+                "sku": "0146",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3909",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 28,
+            "pct": 7.1,
+            "revenue": 3200,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "3909-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1600
+              },
+              {
+                "label": "Бордо",
+                "sku": "3909-06",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 10,
+                "pct": 10,
+                "revenue": 1600
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8023",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 3,
+            "pct": 33.3,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "8023-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Сукня 9004",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 5,
+            "pct": 20,
+            "revenue": 1500,
+            "variants": [
+              {
+                "label": "Мокко",
+                "sku": "9004-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8022",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 9,
+            "pct": 11.1,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "8022-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8127",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 1800,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "8127-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "5352 чорний 42-44",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 1350,
+            "variants": [
+              {
+                "label": "—",
+                "sku": "",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1350
+              }
+            ]
+          },
+          {
+            "name": "Пальто Шарм 6314",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 2,
+            "pct": 50,
+            "revenue": 3500,
+            "variants": [
+              {
+                "label": "Беж / S",
+                "sku": "6314-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 3500
+              }
+            ]
+          }
+        ]
       }
     },
     "2025-12": {
@@ -811,6 +3151,385 @@
           "revenue": 5353,
           "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 85,
+        "revenue": 208105,
+        "items": [
+          {
+            "name": "Пальто Мадрід 5428",
+            "qty": 50,
+            "orders": 50,
+            "total_orders": 119,
+            "pct": 42,
+            "revenue": 135000,
+            "variants": [
+              {
+                "label": "Шоколад / 42-46",
+                "sku": "5428-04",
+                "qty": 16,
+                "orders": 16,
+                "total_orders": 41,
+                "pct": 39,
+                "revenue": 43200
+              },
+              {
+                "label": "Чорний / 42-46",
+                "sku": "5428-01",
+                "qty": 14,
+                "orders": 14,
+                "total_orders": 34,
+                "pct": 41.2,
+                "revenue": 37800
+              },
+              {
+                "label": "Шоколад / 48-52",
+                "sku": "5428-05",
+                "qty": 11,
+                "orders": 11,
+                "total_orders": 24,
+                "pct": 45.8,
+                "revenue": 29700
+              },
+              {
+                "label": "Чорний / 48-52",
+                "sku": "5428-02",
+                "qty": 9,
+                "orders": 9,
+                "total_orders": 19,
+                "pct": 47.4,
+                "revenue": 24300
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8004",
+            "qty": 11,
+            "orders": 11,
+            "total_orders": 56,
+            "pct": 19.6,
+            "revenue": 22550,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "8004-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 18,
+                "pct": 16.7,
+                "revenue": 6150
+              },
+              {
+                "label": "Кавовий",
+                "sku": "8004-06",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 8,
+                "pct": 37.5,
+                "revenue": 6150
+              },
+              {
+                "label": "Чорний",
+                "sku": "8004-02",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 7,
+                "pct": 42.9,
+                "revenue": 6150
+              },
+              {
+                "label": "Молочний",
+                "sku": "8004-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 17,
+                "pct": 11.8,
+                "revenue": 4100
+              }
+            ]
+          },
+          {
+            "name": "Пальто 5462",
+            "qty": 6,
+            "orders": 6,
+            "total_orders": 33,
+            "pct": 18.2,
+            "revenue": 10800,
+            "variants": [
+              {
+                "label": "Бежевий / 42-44",
+                "sku": "0242",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 7,
+                "pct": 28.6,
+                "revenue": 3600
+              },
+              {
+                "label": "Чорний / 46-48",
+                "sku": "0146",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 4,
+                "pct": 50,
+                "revenue": 3600
+              },
+              {
+                "label": "Чорний / 42-44",
+                "sku": "0142",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 14,
+                "pct": 7.1,
+                "revenue": 1800
+              },
+              {
+                "label": "Чорний / 50-52",
+                "sku": "0150",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3660",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 15,
+            "pct": 33.3,
+            "revenue": 6750,
+            "variants": [
+              {
+                "label": "Чорний / L",
+                "sku": "3660-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 3,
+                "pct": 66.7,
+                "revenue": 2700
+              },
+              {
+                "label": "Беж / S",
+                "sku": "3660-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1350
+              },
+              {
+                "label": "Чорний / S",
+                "sku": "3660-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1350
+              },
+              {
+                "label": "Чорний / M",
+                "sku": "3660-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1350
+              }
+            ]
+          },
+          {
+            "name": "Пальто 1010",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 5,
+            "pct": 60,
+            "revenue": 11550,
+            "variants": [
+              {
+                "label": "Чорний / S",
+                "sku": "1010-05",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 3,
+                "pct": 66.7,
+                "revenue": 7700
+              },
+              {
+                "label": "Сірий / S",
+                "sku": "1010-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 3850
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3909",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 12,
+            "pct": 16.7,
+            "revenue": 3200,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "3909-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1600
+              },
+              {
+                "label": "Молочний",
+                "sku": "3909-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1600
+              }
+            ]
+          },
+          {
+            "name": "Пальто Шарм 6314",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 10,
+            "pct": 20,
+            "revenue": 7000,
+            "variants": [
+              {
+                "label": "Беж / S",
+                "sku": "6314-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 3,
+                "pct": 66.7,
+                "revenue": 7000
+              }
+            ]
+          },
+          {
+            "name": "Сукня 9004",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 3,
+            "pct": 33.3,
+            "revenue": 1500,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "9004-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Пальто 3535",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 8,
+            "pct": 12.5,
+            "revenue": 2500,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3535-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 2500
+              }
+            ]
+          },
+          {
+            "name": "Кардиган - 2068",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 1950,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "2068-002",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Пальто Тренч 3540",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 3,
+            "pct": 33.3,
+            "revenue": 2700,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "002",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 2700
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8024",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "8024-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Комплект 10117",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 2,
+            "pct": 50,
+            "revenue": 2550,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "10117-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2550
+              }
+            ]
+          }
+        ]
       }
     },
     "2025-11": {
@@ -931,6 +3650,423 @@
           "revenue": 11400,
           "cancelled": 3
         }
+      },
+      "cancelled": {
+        "orders": 45,
+        "revenue": 94280,
+        "items": [
+          {
+            "name": "Пальто 5462",
+            "qty": 11,
+            "orders": 11,
+            "total_orders": 69,
+            "pct": 15.9,
+            "revenue": 19800,
+            "variants": [
+              {
+                "label": "Чорний / 42-44",
+                "sku": "0142",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 20,
+                "pct": 20,
+                "revenue": 7200
+              },
+              {
+                "label": "Шоколад / 46-48",
+                "sku": "5462-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 3600
+              },
+              {
+                "label": "Шоколад / 42-44",
+                "sku": "5462-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 11,
+                "pct": 18.2,
+                "revenue": 3600
+              },
+              {
+                "label": "Бежевий / 42-44",
+                "sku": "0242",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 11,
+                "pct": 9.1,
+                "revenue": 1800
+              },
+              {
+                "label": "Чорний / 46-48",
+                "sku": "0146",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1800
+              },
+              {
+                "label": "Шоколад / 50-52",
+                "sku": "5462-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Пальто Мадрід 5428",
+            "qty": 9,
+            "orders": 9,
+            "total_orders": 23,
+            "pct": 39.1,
+            "revenue": 24300,
+            "variants": [
+              {
+                "label": "Чорний / 48-52",
+                "sku": "5428-02",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 9,
+                "pct": 44.4,
+                "revenue": 10800
+              },
+              {
+                "label": "Чорний / 42-46",
+                "sku": "5428-01",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 13,
+                "pct": 30.8,
+                "revenue": 10800
+              },
+              {
+                "label": "Шоколад / 48-52",
+                "sku": "5428-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2700
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8004",
+            "qty": 9,
+            "orders": 9,
+            "total_orders": 38,
+            "pct": 23.7,
+            "revenue": 18450,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "8004-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 20,
+                "pct": 15,
+                "revenue": 6150
+              },
+              {
+                "label": "Чорний",
+                "sku": "8004-02",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 10,
+                "pct": 30,
+                "revenue": 6150
+              },
+              {
+                "label": "Кавовий",
+                "sku": "8004-06",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2050
+              },
+              {
+                "label": "Шоколад",
+                "sku": "8004-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2050
+              },
+              {
+                "label": "Мокко",
+                "sku": "8004-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 7,
+                "pct": 14.3,
+                "revenue": 2050
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8023",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 13,
+            "pct": 23.1,
+            "revenue": 4650,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "8023-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 3100
+              },
+              {
+                "label": "Чорний",
+                "sku": "8023-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 5,
+                "pct": 20,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8127",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 7,
+            "pct": 28.6,
+            "revenue": 3600,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "8127-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1800
+              },
+              {
+                "label": "Шоколад",
+                "sku": "8127-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3008",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 6,
+            "pct": 33.3,
+            "revenue": 3000,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3008-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              },
+              {
+                "label": "Чорний",
+                "sku": "3008-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3363",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 17,
+            "pct": 11.8,
+            "revenue": 2900,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "3363-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 11,
+                "pct": 18.2,
+                "revenue": 2900
+              }
+            ]
+          },
+          {
+            "name": "Пальто 1010",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 3850,
+            "variants": [
+              {
+                "label": "Сірий / S",
+                "sku": "1010-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 3850
+              }
+            ]
+          },
+          {
+            "name": "Пальто-тренч 5853.2",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 2,
+            "pct": 50,
+            "revenue": 3700,
+            "variants": [
+              {
+                "label": "Чорний / ХС-С",
+                "sku": "5853.2-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 3700
+              }
+            ]
+          },
+          {
+            "name": "Светр коса 4252",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 10,
+            "pct": 10,
+            "revenue": 1480,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "4252-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1480
+              }
+            ]
+          },
+          {
+            "name": "Дублянка (карамель)",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "—",
+                "sku": "",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Сукня 1222",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 1450,
+            "variants": [
+              {
+                "label": "Сірий",
+                "sku": "1222-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8024",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Мокко",
+                "sku": "8024-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Кардиган - 2068",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 7,
+            "pct": 14.3,
+            "revenue": 1950,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "2068-07",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Шубка лоліта 2058",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 2650,
+            "variants": [
+              {
+                "label": "Білий / L",
+                "sku": "2058-06",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2650
+              }
+            ]
+          }
+        ]
       }
     },
     "2025-10": {
@@ -1046,6 +4182,554 @@
           "revenue": 3000,
           "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 61,
+        "revenue": 115477,
+        "items": [
+          {
+            "name": "Пальто 5462",
+            "qty": 18,
+            "orders": 18,
+            "total_orders": 163,
+            "pct": 11,
+            "revenue": 32400,
+            "variants": [
+              {
+                "label": "Чорний / 42-44",
+                "sku": "0142",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 49,
+                "pct": 8.2,
+                "revenue": 7200
+              },
+              {
+                "label": "Бежевий / 46-48",
+                "sku": "0246",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 15,
+                "pct": 26.7,
+                "revenue": 7200
+              },
+              {
+                "label": "Чорний / 46-48",
+                "sku": "0146",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 23,
+                "pct": 13,
+                "revenue": 5400
+              },
+              {
+                "label": "Бежевий / 42-44",
+                "sku": "0242",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 31,
+                "pct": 6.5,
+                "revenue": 3600
+              },
+              {
+                "label": "Шоколад / 46-48",
+                "sku": "5462-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 10,
+                "pct": 20,
+                "revenue": 3600
+              },
+              {
+                "label": "Чорний / 50-52",
+                "sku": "0150",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 12,
+                "pct": 16.7,
+                "revenue": 3600
+              },
+              {
+                "label": "Шоколад / 42-44",
+                "sku": "5462-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 19,
+                "pct": 5.3,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3363",
+            "qty": 7,
+            "orders": 7,
+            "total_orders": 46,
+            "pct": 15.2,
+            "revenue": 10150,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "3363-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 13,
+                "pct": 23.1,
+                "revenue": 4350
+              },
+              {
+                "label": "Шоколадний",
+                "sku": "3363-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 11,
+                "pct": 18.2,
+                "revenue": 2900
+              },
+              {
+                "label": "Молочний",
+                "sku": "3363-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 17,
+                "pct": 5.9,
+                "revenue": 1450
+              },
+              {
+                "label": "Беж",
+                "sku": "3363-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8022",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 25,
+            "pct": 20,
+            "revenue": 7750,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "8022-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 11,
+                "pct": 18.2,
+                "revenue": 3100
+              },
+              {
+                "label": "Чорний",
+                "sku": "8022-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 3100
+              },
+              {
+                "label": "Шоколад",
+                "sku": "8022-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8023",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 30,
+            "pct": 16.7,
+            "revenue": 7750,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "8023-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 15,
+                "pct": 20,
+                "revenue": 4650
+              },
+              {
+                "label": "Молочний",
+                "sku": "8023-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 7,
+                "pct": 28.6,
+                "revenue": 3100
+              }
+            ]
+          },
+          {
+            "name": "Сукня 9004",
+            "qty": 4,
+            "orders": 4,
+            "total_orders": 7,
+            "pct": 57.1,
+            "revenue": 6000,
+            "variants": [
+              {
+                "label": "Мокко",
+                "sku": "9004-04",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 4,
+                "pct": 75,
+                "revenue": 4500
+              },
+              {
+                "label": "Бежевий",
+                "sku": "9004-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Кардиган - 2068",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 24,
+            "pct": 12.5,
+            "revenue": 5850,
+            "variants": [
+              {
+                "label": "Мокко",
+                "sku": "2068-006",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1950
+              },
+              {
+                "label": "Черний",
+                "sku": "2068-003",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1950
+              },
+              {
+                "label": "Кремовий",
+                "sku": "2068-10",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Пальто 1010",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 5,
+            "pct": 60,
+            "revenue": 11550,
+            "variants": [
+              {
+                "label": "Беж / M",
+                "sku": "1010-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 2,
+                "pct": 100,
+                "revenue": 7700
+              },
+              {
+                "label": "Сірий / S",
+                "sku": "1010-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 3850
+              }
+            ]
+          },
+          {
+            "name": "Костюм рюши 3802",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 5,
+            "pct": 60,
+            "revenue": 5100,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "3802-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 5,
+                "pct": 60,
+                "revenue": 5100
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8127",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 6,
+            "pct": 33.3,
+            "revenue": 3600,
+            "variants": [
+              {
+                "label": "Беж",
+                "sku": "8127-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1800
+              },
+              {
+                "label": "Мокко",
+                "sku": "8127-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Сукня 1222",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 26,
+            "pct": 7.7,
+            "revenue": 2900,
+            "variants": [
+              {
+                "label": "Сірий",
+                "sku": "1222-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 9,
+                "pct": 22.2,
+                "revenue": 2900
+              }
+            ]
+          },
+          {
+            "name": "Костюм 3463",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 23,
+            "pct": 8.7,
+            "revenue": 3200,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "3463-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 12,
+                "pct": 16.7,
+                "revenue": 3200
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8055",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 20,
+            "pct": 10,
+            "revenue": 3900,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "8055-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1950
+              },
+              {
+                "label": "Молочний",
+                "sku": "8055-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3008",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 6,
+            "pct": 16.7,
+            "revenue": 1500,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "3008-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Пальто кармани 574",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 12,
+            "pct": 8.3,
+            "revenue": 1800,
+            "variants": [
+              {
+                "label": "Шоколадний / M",
+                "sku": "574-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Пальто 3535",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 19,
+            "pct": 5.3,
+            "revenue": 2500,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "3535-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 9,
+                "pct": 11.1,
+                "revenue": 2500
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8024",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 5,
+            "pct": 20,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "8024-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Кардиган короткий 8539",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 1400,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "8539-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1400
+              }
+            ]
+          },
+          {
+            "name": "Костюм 8004",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 11,
+            "pct": 9.1,
+            "revenue": 2050,
+            "variants": [
+              {
+                "label": "Мокко",
+                "sku": "8004-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 2050
+              }
+            ]
+          },
+          {
+            "name": "Пальто-тренч 5853.2",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 3700,
+            "variants": [
+              {
+                "label": "Чорний / ХС-С",
+                "sku": "5853.2-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 3700
+              }
+            ]
+          },
+          {
+            "name": "Светр 8080",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 3,
+            "pct": 33.3,
+            "revenue": 1300,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "8080-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1300
+              }
+            ]
+          }
+        ]
       }
     },
     "2025-09": {
@@ -1171,6 +4855,536 @@
           "revenue": 1450,
           "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 66,
+        "revenue": 129235,
+        "items": [
+          {
+            "name": "Кардиган - 2068",
+            "qty": 26,
+            "orders": 26,
+            "total_orders": 173,
+            "pct": 15,
+            "revenue": 50700,
+            "variants": [
+              {
+                "label": "Сірий",
+                "sku": "2068-005",
+                "qty": 9,
+                "orders": 9,
+                "total_orders": 52,
+                "pct": 17.3,
+                "revenue": 17550
+              },
+              {
+                "label": "Білий",
+                "sku": "2068-002",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 57,
+                "pct": 8.8,
+                "revenue": 9750
+              },
+              {
+                "label": "Графіт",
+                "sku": "2068-07",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 24,
+                "pct": 16.7,
+                "revenue": 7800
+              },
+              {
+                "label": "Мокко",
+                "sku": "2068-006",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 10,
+                "pct": 30,
+                "revenue": 5850
+              },
+              {
+                "label": "Бежевий",
+                "sku": "2068-001",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 16,
+                "pct": 12.5,
+                "revenue": 3900
+              },
+              {
+                "label": "Черний",
+                "sku": "2068-003",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 9,
+                "pct": 11.1,
+                "revenue": 1950
+              },
+              {
+                "label": "Меланж",
+                "sku": "2068-11",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1950
+              },
+              {
+                "label": "Кремовий",
+                "sku": "2068-10",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Пальто 5462",
+            "qty": 12,
+            "orders": 12,
+            "total_orders": 59,
+            "pct": 20.3,
+            "revenue": 21600,
+            "variants": [
+              {
+                "label": "Бежевий / 42-44",
+                "sku": "0242",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 14,
+                "pct": 28.6,
+                "revenue": 7200
+              },
+              {
+                "label": "Бежевий / 46-48",
+                "sku": "0246",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 10,
+                "pct": 30,
+                "revenue": 5400
+              },
+              {
+                "label": "Чорний / 46-48",
+                "sku": "0146",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 9,
+                "pct": 22.2,
+                "revenue": 3600
+              },
+              {
+                "label": "Чорний / 50-52",
+                "sku": "0150",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 7,
+                "pct": 14.3,
+                "revenue": 1800
+              },
+              {
+                "label": "Чорний / 42-44",
+                "sku": "0142",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 14,
+                "pct": 7.1,
+                "revenue": 1800
+              },
+              {
+                "label": "Бежевий / 50-52",
+                "sku": "0250",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1800
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3363",
+            "qty": 4,
+            "orders": 4,
+            "total_orders": 63,
+            "pct": 6.3,
+            "revenue": 5800,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "3363-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 12,
+                "pct": 25,
+                "revenue": 4350
+              },
+              {
+                "label": "Шоколадний",
+                "sku": "3363-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 29,
+                "pct": 3.4,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Пальто Тренч 3540",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 9,
+            "pct": 33.3,
+            "revenue": 8100,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "002",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 7,
+                "pct": 42.9,
+                "revenue": 8100
+              }
+            ]
+          },
+          {
+            "name": "Сукня 1222",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 23,
+            "pct": 13,
+            "revenue": 4350,
+            "variants": [
+              {
+                "label": "Сірий",
+                "sku": "1222-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 12,
+                "pct": 16.7,
+                "revenue": 2900
+              },
+              {
+                "label": "Шоколад",
+                "sku": "1222-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Костюм смужка 66017",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 4,
+            "pct": 75,
+            "revenue": 6600,
+            "variants": [
+              {
+                "label": "Сірий з рожевим",
+                "sku": "66017-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 4,
+                "pct": 75,
+                "revenue": 6600
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 8021",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 30,
+            "pct": 10,
+            "revenue": 4500,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "8021-04",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 15,
+                "pct": 13.3,
+                "revenue": 3000
+              },
+              {
+                "label": "Молочний",
+                "sku": "8021-07",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Бомбер 1997",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 15,
+            "pct": 20,
+            "revenue": 6150,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "1997-01",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 7,
+                "pct": 42.9,
+                "revenue": 6150
+              }
+            ]
+          },
+          {
+            "name": "Костюм 3463",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 31,
+            "pct": 6.5,
+            "revenue": 3200,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "3463-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 15,
+                "pct": 13.3,
+                "revenue": 3200
+              }
+            ]
+          },
+          {
+            "name": "Костюм рюши 3802",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 9,
+            "pct": 22.2,
+            "revenue": 3400,
+            "variants": [
+              {
+                "label": "Молочний",
+                "sku": "3802-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1700
+              },
+              {
+                "label": "Шоколад",
+                "sku": "3802-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1700
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3008",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 11,
+            "pct": 18.2,
+            "revenue": 3000,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3008-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 5,
+                "pct": 40,
+                "revenue": 3000
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 10301",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 12,
+            "pct": 16.7,
+            "revenue": 2800,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "10301-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 12,
+                "pct": 16.7,
+                "revenue": 2800
+              }
+            ]
+          },
+          {
+            "name": "Пальто 3535",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 39,
+            "pct": 2.6,
+            "revenue": 2500,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3535-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 28,
+                "pct": 3.6,
+                "revenue": 2500
+              }
+            ]
+          },
+          {
+            "name": "Ремінець 302",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 7,
+            "pct": 14.3,
+            "revenue": 250,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "302-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 250
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8022",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 10,
+            "pct": 10,
+            "revenue": 1550,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "8022-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1550
+              }
+            ]
+          },
+          {
+            "name": "Лонг 25015 оконтовка",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 7,
+            "pct": 14.3,
+            "revenue": 850,
+            "variants": [
+              {
+                "label": "Блакитний",
+                "sku": "25015-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 850
+              }
+            ]
+          },
+          {
+            "name": "Ремінець 301",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 5,
+            "pct": 20,
+            "revenue": 300,
+            "variants": [
+              {
+                "label": "Шоколад",
+                "sku": "301-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 300
+              }
+            ]
+          },
+          {
+            "name": "Сукня 1038",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 1650,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1650
+              }
+            ]
+          },
+          {
+            "name": "Жилетка 9001",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 1980,
+            "variants": [
+              {
+                "label": "Шоколад матовий",
+                "sku": "9001-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1980
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 1026",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 4,
+            "pct": 25,
+            "revenue": 1350,
+            "variants": [
+              {
+                "label": "Лимонний",
+                "sku": "1026-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 3,
+                "pct": 33.3,
+                "revenue": 1350
+              }
+            ]
+          }
+        ]
       }
     },
     "2025-08": {
@@ -1291,6 +5505,411 @@
           "revenue": 10850,
           "cancelled": 1
         }
+      },
+      "cancelled": {
+        "orders": 59,
+        "revenue": 100510,
+        "items": [
+          {
+            "name": "Сукня - 8021",
+            "qty": 14,
+            "orders": 14,
+            "total_orders": 139,
+            "pct": 10.1,
+            "revenue": 21000,
+            "variants": [
+              {
+                "label": "Світлий Шоколад",
+                "sku": "8021-05",
+                "qty": 7,
+                "orders": 7,
+                "total_orders": 50,
+                "pct": 14,
+                "revenue": 10500
+              },
+              {
+                "label": "Бежевий",
+                "sku": "8021-04",
+                "qty": 4,
+                "orders": 4,
+                "total_orders": 31,
+                "pct": 12.9,
+                "revenue": 6000
+              },
+              {
+                "label": "Мокко",
+                "sku": "8021-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 23,
+                "pct": 4.3,
+                "revenue": 1500
+              },
+              {
+                "label": "Блакитний",
+                "sku": "8021-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1500
+              },
+              {
+                "label": "Білий",
+                "sku": "8021-08",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 4,
+                "pct": 25,
+                "revenue": 1500
+              }
+            ]
+          },
+          {
+            "name": "Костюм - 8117",
+            "qty": 14,
+            "orders": 14,
+            "total_orders": 110,
+            "pct": 12.7,
+            "revenue": 20300,
+            "variants": [
+              {
+                "label": "Лимонний",
+                "sku": "8117-04",
+                "qty": 5,
+                "orders": 5,
+                "total_orders": 26,
+                "pct": 19.2,
+                "revenue": 7250
+              },
+              {
+                "label": "Чорний",
+                "sku": "8117-06",
+                "qty": 3,
+                "orders": 3,
+                "total_orders": 18,
+                "pct": 16.7,
+                "revenue": 4350
+              },
+              {
+                "label": "Бежевий",
+                "sku": "8117-05",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 17,
+                "pct": 11.8,
+                "revenue": 2900
+              },
+              {
+                "label": "Білий",
+                "sku": "8117-01",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 15,
+                "pct": 13.3,
+                "revenue": 2900
+              },
+              {
+                "label": "Блакитний",
+                "sku": "8117-07",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1450
+              },
+              {
+                "label": "Рожевий",
+                "sku": "8117-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 13,
+                "pct": 7.7,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Кардиган - 2068",
+            "qty": 12,
+            "orders": 12,
+            "total_orders": 85,
+            "pct": 14.1,
+            "revenue": 23400,
+            "variants": [
+              {
+                "label": "Сірий",
+                "sku": "2068-005",
+                "qty": 6,
+                "orders": 6,
+                "total_orders": 25,
+                "pct": 24,
+                "revenue": 11700
+              },
+              {
+                "label": "Білий",
+                "sku": "2068-002",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 31,
+                "pct": 6.5,
+                "revenue": 3900
+              },
+              {
+                "label": "Бежевий",
+                "sku": "2068-001",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 11,
+                "pct": 18.2,
+                "revenue": 3900
+              },
+              {
+                "label": "Графіт",
+                "sku": "2068-07",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1950
+              },
+              {
+                "label": "Мокко",
+                "sku": "2068-006",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 11,
+                "pct": 9.1,
+                "revenue": 1950
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 10301",
+            "qty": 7,
+            "orders": 7,
+            "total_orders": 49,
+            "pct": 14.3,
+            "revenue": 9800,
+            "variants": [
+              {
+                "label": "Білий",
+                "sku": "10301-02",
+                "qty": 6,
+                "orders": 6,
+                "total_orders": 22,
+                "pct": 27.3,
+                "revenue": 8400
+              },
+              {
+                "label": "Чорний",
+                "sku": "10301-03",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 12,
+                "pct": 8.3,
+                "revenue": 1400
+              }
+            ]
+          },
+          {
+            "name": "Сукня - 1026",
+            "qty": 5,
+            "orders": 5,
+            "total_orders": 57,
+            "pct": 8.8,
+            "revenue": 6750,
+            "variants": [
+              {
+                "label": "Шоколадний",
+                "sku": "1026-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 21,
+                "pct": 9.5,
+                "revenue": 2700
+              },
+              {
+                "label": "Лимонний",
+                "sku": "1026-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 7,
+                "pct": 14.3,
+                "revenue": 1350
+              },
+              {
+                "label": "Молочний",
+                "sku": "1026-01",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 17,
+                "pct": 5.9,
+                "revenue": 1350
+              },
+              {
+                "label": "Чорний",
+                "sku": "1026-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 12,
+                "pct": 8.3,
+                "revenue": 1350
+              }
+            ]
+          },
+          {
+            "name": "Сукня 3363",
+            "qty": 3,
+            "orders": 3,
+            "total_orders": 18,
+            "pct": 16.7,
+            "revenue": 4350,
+            "variants": [
+              {
+                "label": "Шоколадний",
+                "sku": "3363-03",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 8,
+                "pct": 25,
+                "revenue": 2900
+              },
+              {
+                "label": "Молочний",
+                "sku": "3363-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 8,
+                "pct": 12.5,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Кардиган 2067",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 7,
+            "pct": 28.6,
+            "revenue": 4760,
+            "variants": [
+              {
+                "label": "Чорний",
+                "sku": "2067-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2380
+              },
+              {
+                "label": "Графіт",
+                "sku": "2067-04",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 2380
+              }
+            ]
+          },
+          {
+            "name": "Пальто 3535",
+            "qty": 2,
+            "orders": 2,
+            "total_orders": 7,
+            "pct": 28.6,
+            "revenue": 5000,
+            "variants": [
+              {
+                "label": "Графіт",
+                "sku": "3535-02",
+                "qty": 2,
+                "orders": 2,
+                "total_orders": 4,
+                "pct": 50,
+                "revenue": 5000
+              }
+            ]
+          },
+          {
+            "name": "Кардиган 205",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 13,
+            "pct": 7.7,
+            "revenue": 1900,
+            "variants": [
+              {
+                "label": "Бежевий",
+                "sku": "205-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 7,
+                "pct": 14.3,
+                "revenue": 1900
+              }
+            ]
+          },
+          {
+            "name": "Сукня 1222",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 10,
+            "pct": 10,
+            "revenue": 1450,
+            "variants": [
+              {
+                "label": "Сірий",
+                "sku": "1222-02",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 6,
+                "pct": 16.7,
+                "revenue": 1450
+              }
+            ]
+          },
+          {
+            "name": "Сукня 8116",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 11,
+            "pct": 9.1,
+            "revenue": 1300,
+            "variants": [
+              {
+                "label": "Рожевий",
+                "sku": "8116-05",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 2,
+                "pct": 50,
+                "revenue": 1300
+              }
+            ]
+          },
+          {
+            "name": "кардиган харків",
+            "qty": 1,
+            "orders": 1,
+            "total_orders": 1,
+            "pct": 100,
+            "revenue": 1900,
+            "variants": [
+              {
+                "label": "шоколад",
+                "sku": "",
+                "qty": 1,
+                "orders": 1,
+                "total_orders": 1,
+                "pct": 100,
+                "revenue": 1900
+              }
+            ]
+          }
+        ]
       }
     },
     "2025-04": {
@@ -1306,6 +5925,11 @@
           "revenue": 1800,
           "cancelled": 0
         }
+      },
+      "cancelled": {
+        "orders": 0,
+        "revenue": 0,
+        "items": []
       }
     }
   }

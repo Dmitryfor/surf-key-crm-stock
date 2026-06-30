@@ -3,7 +3,7 @@ import auth from '../lib/auth.js';
 // Bundled into the function by esbuild (no runtime fs / import.meta — those break the CJS bundle on Vercel).
 import snapshot from '../data/geo-snapshot.json';
 
-const { bucketOrders, buildGeoResponse } = geo;
+const { bucketOrders, buildGeoResponse, aggregateCancelled } = geo;
 
 const API_KEY = process.env.KEYCRM_API_KEY;
 const BASE_URL = 'https://openapi.keycrm.app/v1';
@@ -76,17 +76,18 @@ function loadSnapshot() {
   return snapshot && snapshot.months ? snapshot : { months: {} };
 }
 
-// Re-fetch current + previous month live, bucket by region.
+// Re-fetch current + previous month live, bucket by region + cancelled-item breakdown.
+// include=products is needed for the cancelled line-item detail (only live months have it).
 async function fetchLiveMonths() {
   const ranges = [monthRange(0), monthRange(-1)];
   const fetched = await Promise.all(
     ranges.map((r) =>
-      paginateAll('/order', { 'filter[created_between]': `${r.from},${r.to}`, include: 'shipping' })
+      paginateAll('/order', { 'filter[created_between]': `${r.from},${r.to}`, include: 'shipping,products' })
     )
   );
   const live = {};
   ranges.forEach((r, i) => {
-    live[r.ym] = { label: r.label, regions: bucketOrders(fetched[i]) };
+    live[r.ym] = { label: r.label, regions: bucketOrders(fetched[i]), cancelled: aggregateCancelled(fetched[i]) };
   });
   return live;
 }

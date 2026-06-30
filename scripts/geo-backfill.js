@@ -15,7 +15,7 @@
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
-const { ymLabel, geoLabelOf } = require('../lib/geo');
+const { ymLabel, geoLabelOf, aggregateCancelled } = require('../lib/geo');
 
 const API_KEY = process.env.KEYCRM_API_KEY;
 const BASE_URL = 'https://openapi.keycrm.app/v1';
@@ -45,7 +45,9 @@ async function keycrmGet(params) {
   return res.json();
 }
 
-function addOrders(months, orders) {
+// Accumulates region aggregates AND stashes the raw orders per month so the cancelled
+// per-position breakdown (needs all line items) can be computed once at the end.
+function addOrders(months, ordersByMonth, orders) {
   for (const o of orders) {
     // Count ALL orders incl. cancelled — matches KeyCRM's geography report.
     const ym = String(o.created_at).slice(0, 7); // "2026-06"
@@ -58,29 +60,32 @@ function addOrders(months, orders) {
     r[label].orders += 1;
     r[label].revenue += rev;
     if (o.status_group_id === 6) r[label].cancelled += 1;
+    (ordersByMonth[ym] || (ordersByMonth[ym] = [])).push(o);
   }
 }
 
 async function main() {
   const t0 = Date.now();
   const months = {};
+  const ordersByMonth = {};
 
-  const first = await keycrmGet({ include: 'shipping', limit: PAGE_LIMIT, page: 1 });
+  const first = await keycrmGet({ include: 'shipping,products', limit: PAGE_LIMIT, page: 1 });
   const lastPage = Number(first.last_page) || 1;
   const total = Number(first.total) || 0;
-  addOrders(months, first.data || []);
+  addOrders(months, ordersByMonth, first.data || []);
   console.log(`Total orders: ${total} · pages: ${lastPage} · est. ~${Math.ceil((lastPage * DELAY_MS) / 1000)}s`);
 
   for (let p = 2; p <= lastPage; p++) {
     await sleep(DELAY_MS);
-    const res = await keycrmGet({ include: 'shipping', limit: PAGE_LIMIT, page: p });
-    addOrders(months, res.data || []);
+    const res = await keycrmGet({ include: 'shipping,products', limit: PAGE_LIMIT, page: p });
+    addOrders(months, ordersByMonth, res.data || []);
     process.stdout.write(`\r  page ${p}/${lastPage}`);
   }
   process.stdout.write('\n');
 
-  for (const v of Object.values(months)) {
+  for (const [ym, v] of Object.entries(months)) {
     for (const r of Object.values(v.regions)) r.revenue = Math.round(r.revenue);
+    v.cancelled = aggregateCancelled(ordersByMonth[ym] || []); // refused-positions breakdown
   }
 
   const snapshot = {

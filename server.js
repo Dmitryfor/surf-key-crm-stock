@@ -203,17 +203,18 @@ function loadGeoSnapshot() {
   }
 }
 
-// Re-fetch current + previous month live, bucket by region (overlays the snapshot).
+// Re-fetch current + previous month live, bucket by region + cancelled-item breakdown
+// (overlays the snapshot). include=products adds the cancelled line-item detail.
 async function fetchGeoLiveMonths() {
   const ranges = [monthRange(0), monthRange(-1)];
   const fetched = await Promise.all(
     ranges.map((r) =>
-      paginateAll('/order', { 'filter[created_between]': `${r.from},${r.to}`, include: 'shipping' })
+      paginateAll('/order', { 'filter[created_between]': `${r.from},${r.to}`, include: 'shipping,products' })
     )
   );
   const live = {};
   ranges.forEach((r, i) => {
-    live[r.ym] = { label: r.label, regions: geo.bucketOrders(fetched[i]) };
+    live[r.ym] = { label: r.label, regions: geo.bucketOrders(fetched[i]), cancelled: geo.aggregateCancelled(fetched[i]) };
   });
   return live;
 }
